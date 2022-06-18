@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="cr.ac.una_SIDEGI_jar_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>cr.ac.una.sidegi.model.Ingreso</class>
+    <class>cr.ac.una.sidegi.model.Estadia</class>
+    <class>cr.ac.una.sidegi.model.Institucion</class>
+    <class>cr.ac.una.sidegi.model.Direccion</class>
+    <class>cr.ac.una.sidegi.model.Entrevista</class>
+    <class>cr.ac.una.sidegi.model.TipoContacto</class>
+    <class>cr.ac.una.sidegi.model.Casa</class>
+    <class>cr.ac.una.sidegi.model.Contacto</class>
+    <class>cr.ac.una.sidegi.model.ModalidadEntrevista</class>
+    <class>cr.ac.una.sidegi.model.TipoRedApoyo</class>
+    <class>cr.ac.una.sidegi.model.RedApoyo</class>
+    <class>cr.ac.una.sidegi.model.TipoSeguro</class>
+    <class>cr.ac.una.sidegi.model.TiposInstitucion</class>
+    <class>cr.ac.una.sidegi.model.Observacion</class>
+    <class>cr.ac.una.sidegi.model.Escolaridad</class>
+    <class>cr.ac.una.sidegi.model.TipoDocumento</class>
+    <class>cr.ac.una.sidegi.model.Anexo</class>
+    <class>cr.ac.una.sidegi.model.TipoObservacion</class>
+    <class>cr.ac.una.sidegi.model.Persona</class>
+    <class>cr.ac.una.sidegi.model.SituacionEconomica</class>
+    <class>cr.ac.una.sidegi.model.Usuario</class>
+    <class>cr.ac.una.sidegi.model.Vivienda</class>
+    <class>cr.ac.una.sidegi.model.Tratamiento</class>
+    <class>cr.ac.una.sidegi.model.Acompannante</class>
+    <class>cr.ac.una.sidegi.model.Paciente</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sidegiebd?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="admin"/>
+    </properties>
+  </persistence-unit>
+</persistence>
