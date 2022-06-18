@@ -39,7 +39,7 @@ public class RedApoyo implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ra_id")
-    private BigDecimal raId;
+    private Long raId;
     @Basic(optional = false)
     @Column(name = "ra_descripcion")
     private String raDescripcion;
@@ -52,20 +52,20 @@ public class RedApoyo implements Serializable {
     public RedApoyo() {
     }
 
-    public RedApoyo(BigDecimal raId) {
+    public RedApoyo(Long raId) {
         this.raId = raId;
     }
 
-    public RedApoyo(BigDecimal raId, String raDescripcion) {
+    public RedApoyo(Long raId, String raDescripcion) {
         this.raId = raId;
         this.raDescripcion = raDescripcion;
     }
 
-    public BigDecimal getRaId() {
+    public Long getRaId() {
         return raId;
     }
 
-    public void setRaId(BigDecimal raId) {
+    public void setRaId(Long raId) {
         this.raId = raId;
     }
 

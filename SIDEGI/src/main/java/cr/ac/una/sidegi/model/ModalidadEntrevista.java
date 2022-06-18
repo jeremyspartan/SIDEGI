@@ -37,7 +37,7 @@ public class ModalidadEntrevista implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "me_id")
-    private BigDecimal meId;
+    private Long meId;
     @Basic(optional = false)
     @Column(name = "me_modalidad")
     private String meModalidad;
@@ -47,20 +47,20 @@ public class ModalidadEntrevista implements Serializable {
     public ModalidadEntrevista() {
     }
 
-    public ModalidadEntrevista(BigDecimal meId) {
+    public ModalidadEntrevista(Long meId) {
         this.meId = meId;
     }
 
-    public ModalidadEntrevista(BigDecimal meId, String meModalidad) {
+    public ModalidadEntrevista(Long meId, String meModalidad) {
         this.meId = meId;
         this.meModalidad = meModalidad;
     }
 
-    public BigDecimal getMeId() {
+    public Long getMeId() {
         return meId;
     }
 
-    public void setMeId(BigDecimal meId) {
+    public void setMeId(Long meId) {
         this.meId = meId;
     }
 

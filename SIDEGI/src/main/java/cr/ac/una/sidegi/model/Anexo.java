@@ -36,7 +36,7 @@ public class Anexo implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ane_idAnexo")
-    private BigDecimal aneidAnexo;
+    private Long aneidAnexo;
     @Basic(optional = false)
     @Lob
     @Column(name = "ane_documento")
@@ -51,20 +51,20 @@ public class Anexo implements Serializable {
     public Anexo() {
     }
 
-    public Anexo(BigDecimal aneidAnexo) {
+    public Anexo(Long aneidAnexo) {
         this.aneidAnexo = aneidAnexo;
     }
 
-    public Anexo(BigDecimal aneidAnexo, byte[] aneDocumento) {
+    public Anexo(Long aneidAnexo, byte[] aneDocumento) {
         this.aneidAnexo = aneidAnexo;
         this.aneDocumento = aneDocumento;
     }
 
-    public BigDecimal getAneidAnexo() {
+    public Long getAneidAnexo() {
         return aneidAnexo;
     }
 
-    public void setAneidAnexo(BigDecimal aneidAnexo) {
+    public void setAneidAnexo(Long aneidAnexo) {
         this.aneidAnexo = aneidAnexo;
     }
 

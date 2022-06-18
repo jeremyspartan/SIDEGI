@@ -43,7 +43,7 @@ public class Ingreso implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ing_id")
-    private BigDecimal ingId;
+    private Long ingId;
     @Basic(optional = false)
     @Column(name = "ing_cantGrupoFam")
     private BigInteger ingcantGrupoFam;
@@ -65,11 +65,11 @@ public class Ingreso implements Serializable {
     public Ingreso() {
     }
 
-    public Ingreso(BigDecimal ingId) {
+    public Ingreso(Long ingId) {
         this.ingId = ingId;
     }
 
-    public Ingreso(BigDecimal ingId, BigInteger ingcantGrupoFam, BigInteger ingcantPerIngre, double ingcantIngresos, double ingperCapita) {
+    public Ingreso(Long ingId, BigInteger ingcantGrupoFam, BigInteger ingcantPerIngre, double ingcantIngresos, double ingperCapita) {
         this.ingId = ingId;
         this.ingcantGrupoFam = ingcantGrupoFam;
         this.ingcantPerIngre = ingcantPerIngre;
@@ -77,11 +77,11 @@ public class Ingreso implements Serializable {
         this.ingperCapita = ingperCapita;
     }
 
-    public BigDecimal getIngId() {
+    public Long getIngId() {
         return ingId;
     }
 
-    public void setIngId(BigDecimal ingId) {
+    public void setIngId(Long ingId) {
         this.ingId = ingId;
     }
 

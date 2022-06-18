@@ -42,7 +42,7 @@ public class Estadia implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "est_idEstadia")
-    private BigDecimal estidEstadia;
+    private Long estidEstadia;
     @Basic(optional = false)
     @Column(name = "est_fechaIngreso")
     @Temporal(TemporalType.TIMESTAMP)
@@ -63,21 +63,21 @@ public class Estadia implements Serializable {
     public Estadia() {
     }
 
-    public Estadia(BigDecimal estidEstadia) {
+    public Estadia(Long estidEstadia) {
         this.estidEstadia = estidEstadia;
     }
 
-    public Estadia(BigDecimal estidEstadia, Date estfechaIngreso, BigInteger estcantidadComidas) {
+    public Estadia(Long estidEstadia, Date estfechaIngreso, BigInteger estcantidadComidas) {
         this.estidEstadia = estidEstadia;
         this.estfechaIngreso = estfechaIngreso;
         this.estcantidadComidas = estcantidadComidas;
     }
 
-    public BigDecimal getEstidEstadia() {
+    public Long getEstidEstadia() {
         return estidEstadia;
     }
 
-    public void setEstidEstadia(BigDecimal estidEstadia) {
+    public void setEstidEstadia(Long estidEstadia) {
         this.estidEstadia = estidEstadia;
     }
 

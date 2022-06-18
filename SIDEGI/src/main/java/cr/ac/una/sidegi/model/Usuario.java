@@ -35,7 +35,7 @@ public class Usuario implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "usu_idUsuario")
-    private BigDecimal usuidUsuario;
+    private Long usuidUsuario;
     @Basic(optional = false)
     @Column(name = "usu_nombreUsuario")
     private String usunombreUsuario;
@@ -46,21 +46,21 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(BigDecimal usuidUsuario) {
+    public Usuario(Long usuidUsuario) {
         this.usuidUsuario = usuidUsuario;
     }
 
-    public Usuario(BigDecimal usuidUsuario, String usunombreUsuario, String usuContrasenna) {
+    public Usuario(Long usuidUsuario, String usunombreUsuario, String usuContrasenna) {
         this.usuidUsuario = usuidUsuario;
         this.usunombreUsuario = usunombreUsuario;
         this.usuContrasenna = usuContrasenna;
     }
 
-    public BigDecimal getUsuidUsuario() {
+    public Long getUsuidUsuario() {
         return usuidUsuario;
     }
 
-    public void setUsuidUsuario(BigDecimal usuidUsuario) {
+    public void setUsuidUsuario(Long usuidUsuario) {
         this.usuidUsuario = usuidUsuario;
     }
 

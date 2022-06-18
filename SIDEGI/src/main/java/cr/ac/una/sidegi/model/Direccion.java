@@ -37,7 +37,7 @@ public class Direccion implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "dir_idDireccion")
-    private BigDecimal diridDireccion;
+    private Long diridDireccion;
     @Basic(optional = false)
     @Column(name = "dir_descDireccion")
     private String dirdescDireccion;
@@ -47,20 +47,20 @@ public class Direccion implements Serializable {
     public Direccion() {
     }
 
-    public Direccion(BigDecimal diridDireccion) {
+    public Direccion(Long diridDireccion) {
         this.diridDireccion = diridDireccion;
     }
 
-    public Direccion(BigDecimal diridDireccion, String dirdescDireccion) {
+    public Direccion(Long diridDireccion, String dirdescDireccion) {
         this.diridDireccion = diridDireccion;
         this.dirdescDireccion = dirdescDireccion;
     }
 
-    public BigDecimal getDiridDireccion() {
+    public Long getDiridDireccion() {
         return diridDireccion;
     }
 
-    public void setDiridDireccion(BigDecimal diridDireccion) {
+    public void setDiridDireccion(Long diridDireccion) {
         this.diridDireccion = diridDireccion;
     }
 

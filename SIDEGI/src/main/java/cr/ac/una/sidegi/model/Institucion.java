@@ -40,7 +40,7 @@ public class Institucion implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ins_id")
-    private BigDecimal insId;
+    private Long insId;
     @Basic(optional = false)
     @Column(name = "ins_descripcion")
     private String insDescripcion;
@@ -55,20 +55,20 @@ public class Institucion implements Serializable {
     public Institucion() {
     }
 
-    public Institucion(BigDecimal insId) {
+    public Institucion(Long insId) {
         this.insId = insId;
     }
 
-    public Institucion(BigDecimal insId, String insDescripcion) {
+    public Institucion(Long insId, String insDescripcion) {
         this.insId = insId;
         this.insDescripcion = insDescripcion;
     }
 
-    public BigDecimal getInsId() {
+    public Long getInsId() {
         return insId;
     }
 
-    public void setInsId(BigDecimal insId) {
+    public void setInsId(Long insId) {
         this.insId = insId;
     }
 

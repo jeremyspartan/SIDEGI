@@ -37,7 +37,7 @@ public class TipoContacto implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "tpc_idTipoContacto")
-    private BigDecimal tpcidTipoContacto;
+    private Long tpcidTipoContacto;
     @Basic(optional = false)
     @Column(name = "tpc_descripcion")
     private String tpcDescripcion;
@@ -47,20 +47,20 @@ public class TipoContacto implements Serializable {
     public TipoContacto() {
     }
 
-    public TipoContacto(BigDecimal tpcidTipoContacto) {
+    public TipoContacto(Long tpcidTipoContacto) {
         this.tpcidTipoContacto = tpcidTipoContacto;
     }
 
-    public TipoContacto(BigDecimal tpcidTipoContacto, String tpcDescripcion) {
+    public TipoContacto(Long tpcidTipoContacto, String tpcDescripcion) {
         this.tpcidTipoContacto = tpcidTipoContacto;
         this.tpcDescripcion = tpcDescripcion;
     }
 
-    public BigDecimal getTpcidTipoContacto() {
+    public Long getTpcidTipoContacto() {
         return tpcidTipoContacto;
     }
 
-    public void setTpcidTipoContacto(BigDecimal tpcidTipoContacto) {
+    public void setTpcidTipoContacto(Long tpcidTipoContacto) {
         this.tpcidTipoContacto = tpcidTipoContacto;
     }
 

@@ -37,7 +37,7 @@ public class TipoSeguro implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "seg_id")
-    private BigDecimal segId;
+    private Long segId;
     @Basic(optional = false)
     @Column(name = "seg_descripcion")
     private String segDescripcion;
@@ -47,20 +47,20 @@ public class TipoSeguro implements Serializable {
     public TipoSeguro() {
     }
 
-    public TipoSeguro(BigDecimal segId) {
+    public TipoSeguro(Long segId) {
         this.segId = segId;
     }
 
-    public TipoSeguro(BigDecimal segId, String segDescripcion) {
+    public TipoSeguro(Long segId, String segDescripcion) {
         this.segId = segId;
         this.segDescripcion = segDescripcion;
     }
 
-    public BigDecimal getSegId() {
+    public Long getSegId() {
         return segId;
     }
 
-    public void setSegId(BigDecimal segId) {
+    public void setSegId(Long segId) {
         this.segId = segId;
     }
 

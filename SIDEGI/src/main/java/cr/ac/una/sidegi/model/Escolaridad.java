@@ -37,7 +37,7 @@ public class Escolaridad implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "esc_id")
-    private BigDecimal escId;
+    private Long escId;
     @Basic(optional = false)
     @Column(name = "esc_descripcion")
     private String escDescripcion;
@@ -47,20 +47,20 @@ public class Escolaridad implements Serializable {
     public Escolaridad() {
     }
 
-    public Escolaridad(BigDecimal escId) {
+    public Escolaridad(Long escId) {
         this.escId = escId;
     }
 
-    public Escolaridad(BigDecimal escId, String escDescripcion) {
+    public Escolaridad(Long escId, String escDescripcion) {
         this.escId = escId;
         this.escDescripcion = escDescripcion;
     }
 
-    public BigDecimal getEscId() {
+    public Long getEscId() {
         return escId;
     }
 
-    public void setEscId(BigDecimal escId) {
+    public void setEscId(Long escId) {
         this.escId = escId;
     }
 

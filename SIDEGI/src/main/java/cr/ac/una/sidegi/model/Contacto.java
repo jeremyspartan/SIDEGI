@@ -40,7 +40,7 @@ public class Contacto implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "con_idContacto")
-    private BigDecimal conidContacto;
+    private Long conidContacto;
     @Basic(optional = false)
     @Column(name = "con_contacto")
     private String conContacto;
@@ -61,20 +61,20 @@ public class Contacto implements Serializable {
     public Contacto() {
     }
 
-    public Contacto(BigDecimal conidContacto) {
+    public Contacto(Long conidContacto) {
         this.conidContacto = conidContacto;
     }
 
-    public Contacto(BigDecimal conidContacto, String conContacto) {
+    public Contacto(Long conidContacto, String conContacto) {
         this.conidContacto = conidContacto;
         this.conContacto = conContacto;
     }
 
-    public BigDecimal getConidContacto() {
+    public Long getConidContacto() {
         return conidContacto;
     }
 
-    public void setConidContacto(BigDecimal conidContacto) {
+    public void setConidContacto(Long conidContacto) {
         this.conidContacto = conidContacto;
     }
 

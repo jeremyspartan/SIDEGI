@@ -6,7 +6,6 @@
 package cr.ac.una.sidegi.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -50,7 +49,7 @@ public class Paciente implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "pac_idPaciente")
-    private BigDecimal pacidPaciente;
+    private Long pacidPaciente;
     @Basic(optional = false)
     @Column(name = "pac_diagnostico")
     private String pacDiagnostico;
@@ -78,15 +77,15 @@ public class Paciente implements Serializable {
         @JoinColumn(name = "pac_idPaciente", referencedColumnName = "pac_idPaciente")}, inverseJoinColumns = {
         @JoinColumn(name = "tra_id", referencedColumnName = "tra_id")})
     @ManyToMany
-    private List<Tratamiento> tratamientoList;
+    private List<Tratamiento> tratamientos;
     @OneToMany(mappedBy = "pacidPaciente")
     private List<Observacion> observacionList;
     @OneToMany(mappedBy = "pacidPaciente")
-    private List<Estadia> estadiaList;
+    private List<Estadia> estadias;
     @OneToMany(mappedBy = "pacidPaciente")
-    private List<Entrevista> entrevistaList;
+    private List<Entrevista> entrevistas;
     @OneToMany(mappedBy = "pacidPaciente")
-    private List<Anexo> anexoList;
+    private List<Anexo> anexos;
     @JoinColumn(name = "ins_id", referencedColumnName = "ins_id")
     @ManyToOne
     private Institucion insId;
@@ -97,11 +96,11 @@ public class Paciente implements Serializable {
     public Paciente() {
     }
 
-    public Paciente(BigDecimal pacidPaciente) {
+    public Paciente(Long pacidPaciente) {
         this.pacidPaciente = pacidPaciente;
     }
 
-    public Paciente(BigDecimal pacidPaciente, String pacDiagnostico, String pacEstado, Date pacfechaReferencia, Date pacfechaDiagnostico, String pacDoctor, Date pacfechaRegistro) {
+    public Paciente(Long pacidPaciente, String pacDiagnostico, String pacEstado, Date pacfechaReferencia, Date pacfechaDiagnostico, String pacDoctor, Date pacfechaRegistro) {
         this.pacidPaciente = pacidPaciente;
         this.pacDiagnostico = pacDiagnostico;
         this.pacEstado = pacEstado;
@@ -111,11 +110,11 @@ public class Paciente implements Serializable {
         this.pacfechaRegistro = pacfechaRegistro;
     }
 
-    public BigDecimal getPacidPaciente() {
+    public Long getPacidPaciente() {
         return pacidPaciente;
     }
 
-    public void setPacidPaciente(BigDecimal pacidPaciente) {
+    public void setPacidPaciente(Long pacidPaciente) {
         this.pacidPaciente = pacidPaciente;
     }
 
@@ -176,12 +175,12 @@ public class Paciente implements Serializable {
     }
 
     @XmlTransient
-    public List<Tratamiento> getTratamientoList() {
-        return tratamientoList;
+    public List<Tratamiento> getTratamientos() {
+        return tratamientos;
     }
 
-    public void setTratamientoList(List<Tratamiento> tratamientoList) {
-        this.tratamientoList = tratamientoList;
+    public void setTratamientos(List<Tratamiento> tratamientos) {
+        this.tratamientos = tratamientos;
     }
 
     @XmlTransient
@@ -194,30 +193,30 @@ public class Paciente implements Serializable {
     }
 
     @XmlTransient
-    public List<Estadia> getEstadiaList() {
-        return estadiaList;
+    public List<Estadia> getEstadias() {
+        return estadias;
     }
 
-    public void setEstadiaList(List<Estadia> estadiaList) {
-        this.estadiaList = estadiaList;
-    }
-
-    @XmlTransient
-    public List<Entrevista> getEntrevistaList() {
-        return entrevistaList;
-    }
-
-    public void setEntrevistaList(List<Entrevista> entrevistaList) {
-        this.entrevistaList = entrevistaList;
+    public void setEstadias(List<Estadia> estadias) {
+        this.estadias = estadias;
     }
 
     @XmlTransient
-    public List<Anexo> getAnexoList() {
-        return anexoList;
+    public List<Entrevista> getEntrevistas() {
+        return entrevistas;
     }
 
-    public void setAnexoList(List<Anexo> anexoList) {
-        this.anexoList = anexoList;
+    public void setEntrevistas(List<Entrevista> entrevistas) {
+        this.entrevistas = entrevistas;
+    }
+
+    @XmlTransient
+    public List<Anexo> getAnexos() {
+        return anexos;
+    }
+
+    public void setAnexos(List<Anexo> anexos) {
+        this.anexos = anexos;
     }
 
     public Institucion getInsId() {

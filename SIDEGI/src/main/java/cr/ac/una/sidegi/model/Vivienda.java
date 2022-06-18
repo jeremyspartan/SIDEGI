@@ -38,7 +38,7 @@ public class Vivienda implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "viv_id")
-    private BigDecimal vivId;
+    private Long vivId;
     @Column(name = "viv_descripcion")
     private String vivDescripcion;
     @Basic(optional = false)
@@ -50,20 +50,20 @@ public class Vivienda implements Serializable {
     public Vivienda() {
     }
 
-    public Vivienda(BigDecimal vivId) {
+    public Vivienda(Long vivId) {
         this.vivId = vivId;
     }
 
-    public Vivienda(BigDecimal vivId, String vivisAcondicionada) {
+    public Vivienda(Long vivId, String vivisAcondicionada) {
         this.vivId = vivId;
         this.vivisAcondicionada = vivisAcondicionada;
     }
 
-    public BigDecimal getVivId() {
+    public Long getVivId() {
         return vivId;
     }
 
-    public void setVivId(BigDecimal vivId) {
+    public void setVivId(Long vivId) {
         this.vivId = vivId;
     }
 

@@ -37,7 +37,7 @@ public class SituacionEconomica implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "se_id")
-    private BigDecimal seId;
+    private Long seId;
     @Basic(optional = false)
     @Column(name = "se_tipoSituacion")
     private String setipoSituacion;
@@ -47,20 +47,20 @@ public class SituacionEconomica implements Serializable {
     public SituacionEconomica() {
     }
 
-    public SituacionEconomica(BigDecimal seId) {
+    public SituacionEconomica(Long seId) {
         this.seId = seId;
     }
 
-    public SituacionEconomica(BigDecimal seId, String setipoSituacion) {
+    public SituacionEconomica(Long seId, String setipoSituacion) {
         this.seId = seId;
         this.setipoSituacion = setipoSituacion;
     }
 
-    public BigDecimal getSeId() {
+    public Long getSeId() {
         return seId;
     }
 
-    public void setSeId(BigDecimal seId) {
+    public void setSeId(Long seId) {
         this.seId = seId;
     }
 

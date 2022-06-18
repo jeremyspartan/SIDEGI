@@ -37,7 +37,7 @@ public class TipoObservacion implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "tob_idTipoObservacion")
-    private BigDecimal tobidTipoObservacion;
+    private Long tobidTipoObservacion;
     @Column(name = "tob_descripcion")
     private String tobDescripcion;
     @OneToMany(mappedBy = "tobidTipoObservacion")
@@ -46,15 +46,15 @@ public class TipoObservacion implements Serializable {
     public TipoObservacion() {
     }
 
-    public TipoObservacion(BigDecimal tobidTipoObservacion) {
+    public TipoObservacion(Long tobidTipoObservacion) {
         this.tobidTipoObservacion = tobidTipoObservacion;
     }
 
-    public BigDecimal getTobidTipoObservacion() {
+    public Long getTobidTipoObservacion() {
         return tobidTipoObservacion;
     }
 
-    public void setTobidTipoObservacion(BigDecimal tobidTipoObservacion) {
+    public void setTobidTipoObservacion(Long tobidTipoObservacion) {
         this.tobidTipoObservacion = tobidTipoObservacion;
     }
 

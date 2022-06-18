@@ -59,7 +59,7 @@ public class Persona implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date perfechaNac;
     @ManyToMany(mappedBy = "personaList")
-    private List<Contacto> contactoList;
+    private List<Contacto> contactos;
     @JoinColumn(name = "dir_idDireccion", referencedColumnName = "dir_idDireccion")
     @ManyToOne
     private Direccion diridDireccion;
@@ -70,9 +70,9 @@ public class Persona implements Serializable {
     @ManyToOne
     private TipoSeguro segId;
     @OneToMany(mappedBy = "perCedula")
-    private List<Acompannante> acompannanteList;
+    private List<Acompannante> acompannantes;
     @OneToMany(mappedBy = "perCedula")
-    private List<Paciente> pacienteList;
+    private List<Paciente> pacientes;
 
     public Persona() {
     }
@@ -131,11 +131,11 @@ public class Persona implements Serializable {
 
     @XmlTransient
     public List<Contacto> getContactoList() {
-        return contactoList;
+        return contactos;
     }
 
     public void setContactoList(List<Contacto> contactoList) {
-        this.contactoList = contactoList;
+        this.contactos = contactoList;
     }
 
     public Direccion getDiridDireccion() {
@@ -164,20 +164,20 @@ public class Persona implements Serializable {
 
     @XmlTransient
     public List<Acompannante> getAcompannanteList() {
-        return acompannanteList;
+        return acompannantes;
     }
 
     public void setAcompannanteList(List<Acompannante> acompannanteList) {
-        this.acompannanteList = acompannanteList;
+        this.acompannantes = acompannanteList;
     }
 
     @XmlTransient
     public List<Paciente> getPacienteList() {
-        return pacienteList;
+        return pacientes;
     }
 
     public void setPacienteList(List<Paciente> pacienteList) {
-        this.pacienteList = pacienteList;
+        this.pacientes = pacienteList;
     }
 
     @Override

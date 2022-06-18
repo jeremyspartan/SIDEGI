@@ -38,7 +38,7 @@ public class Acompannante implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "aco_idAcompannante")
-    private BigDecimal acoidAcompannante;
+    private Long acoidAcompannante;
     @Basic(optional = false)
     @Column(name = "aco_parentesco")
     private String acoParentesco;
@@ -54,21 +54,21 @@ public class Acompannante implements Serializable {
     public Acompannante() {
     }
 
-    public Acompannante(BigDecimal acoidAcompannante) {
+    public Acompannante(Long acoidAcompannante) {
         this.acoidAcompannante = acoidAcompannante;
     }
 
-    public Acompannante(BigDecimal acoidAcompannante, String acoParentesco, String acosituacionActual) {
+    public Acompannante(Long acoidAcompannante, String acoParentesco, String acosituacionActual) {
         this.acoidAcompannante = acoidAcompannante;
         this.acoParentesco = acoParentesco;
         this.acosituacionActual = acosituacionActual;
     }
 
-    public BigDecimal getAcoidAcompannante() {
+    public Long getAcoidAcompannante() {
         return acoidAcompannante;
     }
 
-    public void setAcoidAcompannante(BigDecimal acoidAcompannante) {
+    public void setAcoidAcompannante(Long acoidAcompannante) {
         this.acoidAcompannante = acoidAcompannante;
     }
 

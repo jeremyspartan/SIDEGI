@@ -37,7 +37,7 @@ public class TipoRedApoyo implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "tra_id")
-    private BigDecimal traId;
+    private Long traId;
     @Basic(optional = false)
     @Column(name = "tra_tipo")
     private String traTipo;
@@ -47,20 +47,20 @@ public class TipoRedApoyo implements Serializable {
     public TipoRedApoyo() {
     }
 
-    public TipoRedApoyo(BigDecimal traId) {
+    public TipoRedApoyo(Long traId) {
         this.traId = traId;
     }
 
-    public TipoRedApoyo(BigDecimal traId, String traTipo) {
+    public TipoRedApoyo(Long traId, String traTipo) {
         this.traId = traId;
         this.traTipo = traTipo;
     }
 
-    public BigDecimal getTraId() {
+    public Long getTraId() {
         return traId;
     }
 
-    public void setTraId(BigDecimal traId) {
+    public void setTraId(Long traId) {
         this.traId = traId;
     }
 

@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Observacion.findAll", query = "SELECT o FROM Observacion o"),
-    @NamedQuery(name = "Observacion.findByObsidObservacion", query = "SELECT o FROM Observacion o WHERE o.obsidObservacion = :obsidObservacion"),
+    @NamedQuery(name = "Observacion.findByObsidObservacion", query = "SELECT o FROM Observacion o WHERE o.obsIdObservacion = :obsidObservacion"),
     @NamedQuery(name = "Observacion.findByObsdescObservacion", query = "SELECT o FROM Observacion o WHERE o.obsdescObservacion = :obsdescObservacion")})
 public class Observacion implements Serializable {
 
@@ -36,7 +36,7 @@ public class Observacion implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "obs_idObservacion")
-    private BigDecimal obsidObservacion;
+    private Long obsIdObservacion;
     @Basic(optional = false)
     @Column(name = "obs_descObservacion")
     private String obsdescObservacion;
@@ -50,21 +50,21 @@ public class Observacion implements Serializable {
     public Observacion() {
     }
 
-    public Observacion(BigDecimal obsidObservacion) {
-        this.obsidObservacion = obsidObservacion;
+    public Observacion(Long obsidObservacion) {
+        this.obsIdObservacion = obsidObservacion;
     }
 
-    public Observacion(BigDecimal obsidObservacion, String obsdescObservacion) {
-        this.obsidObservacion = obsidObservacion;
+    public Observacion(Long obsidObservacion, String obsdescObservacion) {
+        this.obsIdObservacion = obsidObservacion;
         this.obsdescObservacion = obsdescObservacion;
     }
 
-    public BigDecimal getObsidObservacion() {
-        return obsidObservacion;
+    public Long getObsidObservacion() {
+        return obsIdObservacion;
     }
 
-    public void setObsidObservacion(BigDecimal obsidObservacion) {
-        this.obsidObservacion = obsidObservacion;
+    public void setObsidObservacion(Long obsidObservacion) {
+        this.obsIdObservacion = obsidObservacion;
     }
 
     public String getObsdescObservacion() {
@@ -94,7 +94,7 @@ public class Observacion implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (obsidObservacion != null ? obsidObservacion.hashCode() : 0);
+        hash += (obsIdObservacion != null ? obsIdObservacion.hashCode() : 0);
         return hash;
     }
 
@@ -105,7 +105,7 @@ public class Observacion implements Serializable {
             return false;
         }
         Observacion other = (Observacion) object;
-        if ((this.obsidObservacion == null && other.obsidObservacion != null) || (this.obsidObservacion != null && !this.obsidObservacion.equals(other.obsidObservacion))) {
+        if ((this.obsIdObservacion == null && other.obsIdObservacion != null) || (this.obsIdObservacion != null && !this.obsIdObservacion.equals(other.obsIdObservacion))) {
             return false;
         }
         return true;
@@ -113,7 +113,7 @@ public class Observacion implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.Observacion[ obsidObservacion=" + obsidObservacion + " ]";
+        return "cr.ac.una.sidegi.model.Observacion[ obsidObservacion=" + obsIdObservacion + " ]";
     }
     
 }

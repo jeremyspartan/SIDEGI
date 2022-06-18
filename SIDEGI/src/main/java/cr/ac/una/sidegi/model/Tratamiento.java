@@ -37,7 +37,7 @@ public class Tratamiento implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "tra_id")
-    private BigDecimal traId;
+    private Long traId;
     @Basic(optional = false)
     @Column(name = "tra_descripcion")
     private String traDescripcion;
@@ -47,20 +47,20 @@ public class Tratamiento implements Serializable {
     public Tratamiento() {
     }
 
-    public Tratamiento(BigDecimal traId) {
+    public Tratamiento(Long traId) {
         this.traId = traId;
     }
 
-    public Tratamiento(BigDecimal traId, String traDescripcion) {
+    public Tratamiento(Long traId, String traDescripcion) {
         this.traId = traId;
         this.traDescripcion = traDescripcion;
     }
 
-    public BigDecimal getTraId() {
+    public Long getTraId() {
         return traId;
     }
 
-    public void setTraId(BigDecimal traId) {
+    public void setTraId(Long traId) {
         this.traId = traId;
     }
 

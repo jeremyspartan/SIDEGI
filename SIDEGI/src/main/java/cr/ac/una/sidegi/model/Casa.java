@@ -37,7 +37,7 @@ public class Casa implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "cas_id")
-    private BigDecimal casId;
+    private Long casId;
     @Basic(optional = false)
     @Column(name = "cas_descripcion")
     private String casDescripcion;
@@ -47,20 +47,20 @@ public class Casa implements Serializable {
     public Casa() {
     }
 
-    public Casa(BigDecimal casId) {
+    public Casa(Long casId) {
         this.casId = casId;
     }
 
-    public Casa(BigDecimal casId, String casDescripcion) {
+    public Casa(Long casId, String casDescripcion) {
         this.casId = casId;
         this.casDescripcion = casDescripcion;
     }
 
-    public BigDecimal getCasId() {
+    public Long getCasId() {
         return casId;
     }
 
-    public void setCasId(BigDecimal casId) {
+    public void setCasId(Long casId) {
         this.casId = casId;
     }
 

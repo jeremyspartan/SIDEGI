@@ -37,7 +37,7 @@ public class TipoDocumento implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "tdo_idTipoDocumento")
-    private BigDecimal tdoidTipoDocumento;
+    private Long tdoidTipoDocumento;
     @Basic(optional = false)
     @Column(name = "tdo_descripcion")
     private String tdoDescripcion;
@@ -47,20 +47,20 @@ public class TipoDocumento implements Serializable {
     public TipoDocumento() {
     }
 
-    public TipoDocumento(BigDecimal tdoidTipoDocumento) {
+    public TipoDocumento(Long tdoidTipoDocumento) {
         this.tdoidTipoDocumento = tdoidTipoDocumento;
     }
 
-    public TipoDocumento(BigDecimal tdoidTipoDocumento, String tdoDescripcion) {
+    public TipoDocumento(Long tdoidTipoDocumento, String tdoDescripcion) {
         this.tdoidTipoDocumento = tdoidTipoDocumento;
         this.tdoDescripcion = tdoDescripcion;
     }
 
-    public BigDecimal getTdoidTipoDocumento() {
+    public Long getTdoidTipoDocumento() {
         return tdoidTipoDocumento;
     }
 
-    public void setTdoidTipoDocumento(BigDecimal tdoidTipoDocumento) {
+    public void setTdoidTipoDocumento(Long tdoidTipoDocumento) {
         this.tdoidTipoDocumento = tdoidTipoDocumento;
     }
 

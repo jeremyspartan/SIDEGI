@@ -37,7 +37,7 @@ public class TiposInstitucion implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "tins_id")
-    private BigDecimal tinsId;
+    private Long tinsId;
     @Basic(optional = false)
     @Column(name = "tins_descripicion")
     private String tinsDescripicion;
@@ -47,20 +47,20 @@ public class TiposInstitucion implements Serializable {
     public TiposInstitucion() {
     }
 
-    public TiposInstitucion(BigDecimal tinsId) {
+    public TiposInstitucion(Long tinsId) {
         this.tinsId = tinsId;
     }
 
-    public TiposInstitucion(BigDecimal tinsId, String tinsDescripicion) {
+    public TiposInstitucion(Long tinsId, String tinsDescripicion) {
         this.tinsId = tinsId;
         this.tinsDescripicion = tinsDescripicion;
     }
 
-    public BigDecimal getTinsId() {
+    public Long getTinsId() {
         return tinsId;
     }
 
-    public void setTinsId(BigDecimal tinsId) {
+    public void setTinsId(Long tinsId) {
         this.tinsId = tinsId;
     }
 
