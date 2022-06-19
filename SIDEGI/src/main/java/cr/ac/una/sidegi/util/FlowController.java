@@ -92,10 +92,10 @@ public class FlowController {
     public void goMain() {
         try {
             //this.mainStage.initStyle(StageStyle.UNDECORATED);
-            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("views/root.fxml"), this.idioma)));
+            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("views/MenuView.fxml"), this.idioma)));
             this.mainStage.setResizable(true);
            // this.mainStage.getIcons().add(new Image(App.class.getResource("resources/Television.png").toString()));
-            this.mainStage.setTitle("SDEGI");
+            this.mainStage.setTitle("SDEGI-Menu de Usuario");
             ResizeHelper.addResizeListener(this.mainStage);
 //            this.mainStage.setHeight(400);
 //            this.mainStage.setWidth(600);

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" prefHeight="809.0" prefWidth="1031.0" stylesheets="@../resources/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="cr.ac.una.sidegi.controller.ExpedienteViewController">
+   <children>
+      <BorderPane layoutX="392.0" layoutY="250.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox alignment="CENTER" prefHeight="70.0" prefWidth="1031.0" styleClass="labelSubTitulos" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" prefHeight="73.0" prefWidth="561.0" styleClass="labelTitulos" text="Expediente Digital" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="50.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <JFXTabPane BorderPane.alignment="CENTER">
+               <tabs>
+                  <Tab text="Persona">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <JFXTextField fx:id="txtCedula" labelFloat="true" promptText="Cedula" />
+                                    <JFXTextField fx:id="txtNombre" labelFloat="true" promptText="Nombre" />
+                                    <JFXTextField fx:id="txtPrimerApellido" labelFloat="true" promptText="Primer Apeliido" />
+                                    <JFXTextField fx:id="txtSegundoApellido" labelFloat="true" promptText="Segundo Apellido" />
+                                    <JFXTextField labelFloat="true" promptText="Direccion" />
+                                    <JFXDatePicker fx:id="dtpFechaNacimeinto" promptText="Fecha Naciemiento" styleClass="JFXDatePicker" />
+                                    <JFXComboBox fx:id="cmbTipoSeguro" prefHeight="29.0" prefWidth="198.0" promptText="Tipo Seguro" VBox.vgrow="ALWAYS" />
+                                    <JFXComboBox fx:id="cmbEscolaridad" prefHeight="29.0" prefWidth="198.0" promptText="Escolaridad" VBox.vgrow="ALWAYS" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                                 <styleClass>
+                                    <String fx:value="contenedorTxt" />
+                                    <String fx:value="ComboBox" />
+                                    <String fx:value="datePickerContenedor" />
+                                 </styleClass>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Paciente">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <JFXTextArea fx:id="txaDiagnosticoMedico" labelFloat="true" prefHeight="126.0" prefWidth="971.0" promptText="Diagnostico Medico" VBox.vgrow="ALWAYS">
+                                       <VBox.margin>
+                                          <Insets top="20.0" />
+                                       </VBox.margin>
+                                    </JFXTextArea>
+                                    <JFXComboBox fx:id="cmbEstadoPaciente" prefHeight="29.0" prefWidth="197.0" promptText="Estado del Paciente" VBox.vgrow="ALWAYS" />
+                                    <JFXDatePicker fx:id="dtpFechaReferencia" promptText="Fecha de referencia" />
+                                    <JFXTextField fx:id="txtProfesionalResponsable" labelFloat="true" promptText="Profesional Responsable" />
+                                    <JFXTextField fx:id="txtDoctor" labelFloat="true" promptText="Doctor" />
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="200.0" styleClass="datePickerContenedor">
+                                       <children>
+                                          <JFXDatePicker fx:id="dtpFechaDiagnostico" promptText="Fecha Diagnostico" />
+                                          <JFXDatePicker fx:id="dtpFechaRegistro" promptText="Fecha Registro" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="contenedorTxt" />
+                                    <String fx:value="ComboBox" />
+                                    <String fx:value="datePickerContenedor" />
+                                    <String fx:value="AreaDeTexto" />
+                                 </styleClass>
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Red Apoyo">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+               </tabs>
+               <BorderPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </BorderPane.margin>
+            </JFXTabPane>
+         </center>
+         <bottom>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0" stylesheets="@../resources/style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXButton fx:id="btnLimpiar" onAction="#onActionBtnLimpiar" prefHeight="43.0" prefWidth="144.0" text="Limpiar" />
+                  <JFXButton fx:id="btnGuardar" onAction="#onActionBtnGuardar" prefHeight="43.0" prefWidth="144.0" text="Guardar" />
+                  <JFXButton fx:id="btnEliminar" onAction="#onActionBtnEliminar" prefHeight="43.0" prefWidth="144.0" text="Eliminar" />
+               </children>
+               <styleClass>
+                  <String fx:value="botonesSimples2" />
+                  <String fx:value="botonesRegistroHover2" />
+               </styleClass>
+            </HBox>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>
