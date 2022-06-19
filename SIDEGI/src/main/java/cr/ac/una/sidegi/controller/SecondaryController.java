@@ -1,4 +1,4 @@
-package cr.ac.una.sidegi.controllers;
+package cr.ac.una.sidegi.controller;
 
 import cr.ac.una.sidegi.App;
 import cr.ac.una.sidegi.util.FlowController;

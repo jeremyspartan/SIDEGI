@@ -20,7 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import cr.ac.una.sidegi.controllers.Controller;
+import cr.ac.una.sidegi.controller.Controller;
 import javafx.stage.StageStyle;
 import java.util.logging.Logger;
 import java.util.logging.Level;

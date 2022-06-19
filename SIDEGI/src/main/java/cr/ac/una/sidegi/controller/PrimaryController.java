@@ -1,4 +1,4 @@
-package cr.ac.una.sidegi.controllers;
+package cr.ac.una.sidegi.controller;
 
 import com.jfoenix.controls.JFXButton;
 import cr.ac.una.sidegi.util.FlowController;
