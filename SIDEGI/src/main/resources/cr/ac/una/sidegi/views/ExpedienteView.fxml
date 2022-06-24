@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="809.0" prefWidth="1031.0" stylesheets="@../resources/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="cr.ac.una.sidegi.controller.ExpedienteViewController">
+<AnchorPane fx:id="root" prefHeight="809.0" prefWidth="1031.0" stylesheets="@../resources/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.sidegi.controller.ExpedienteViewController">
    <children>
       <BorderPane layoutX="392.0" layoutY="250.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -43,8 +43,8 @@
                                     <JFXTextField fx:id="txtNombre" labelFloat="true" promptText="Nombre" />
                                     <JFXTextField fx:id="txtPrimerApellido" labelFloat="true" promptText="Primer Apeliido" />
                                     <JFXTextField fx:id="txtSegundoApellido" labelFloat="true" promptText="Segundo Apellido" />
-                                    <JFXTextField labelFloat="true" promptText="Direccion" />
-                                    <JFXDatePicker fx:id="dtpFechaNacimeinto" promptText="Fecha Naciemiento" styleClass="JFXDatePicker" />
+                                    <JFXTextField fx:id="txtDireccion" labelFloat="true" promptText="Direccion" />
+                                    <JFXDatePicker fx:id="dtpFechaNacimiento" promptText="Fecha Naciemiento" styleClass="JFXDatePicker" />
                                     <JFXComboBox fx:id="cmbTipoSeguro" prefHeight="29.0" prefWidth="198.0" promptText="Tipo Seguro" VBox.vgrow="ALWAYS" />
                                     <JFXComboBox fx:id="cmbEscolaridad" prefHeight="29.0" prefWidth="198.0" promptText="Escolaridad" VBox.vgrow="ALWAYS" />
                                  </children>
@@ -72,8 +72,33 @@
                                           <Insets top="20.0" />
                                        </VBox.margin>
                                     </JFXTextArea>
-                                    <JFXComboBox fx:id="cmbEstadoPaciente" prefHeight="29.0" prefWidth="197.0" promptText="Estado del Paciente" VBox.vgrow="ALWAYS" />
-                                    <JFXDatePicker fx:id="dtpFechaReferencia" promptText="Fecha de referencia" />
+                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <JFXComboBox fx:id="cmbEstadoPaciente" prefHeight="29.0" prefWidth="197.0" promptText="Estado del Paciente" VBox.vgrow="ALWAYS" />
+                                                <JFXDatePicker fx:id="dtpFechaReferencia" promptText="Fecha de referencia" VBox.vgrow="ALWAYS" />
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="datePickerContenedor" />
+                                                <String fx:value="ComboBox" />
+                                             </styleClass>
+                                          </VBox>
+                                          <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <JFXComboBox fx:id="cmbTipoInstitucion" prefHeight="23.0" prefWidth="203.0" promptText="Tipo de institucion" VBox.vgrow="ALWAYS" />
+                                                <JFXTextField fx:id="txtNombreInstitucion" promptText="Nombre de la Institucion" VBox.vgrow="ALWAYS" />
+                                             </children>
+                                             <styleClass>
+                                                <String fx:value="ComboBox" />
+                                                <String fx:value="contenedorTxt" />
+                                             </styleClass>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
                                     <JFXTextField fx:id="txtProfesionalResponsable" labelFloat="true" promptText="Profesional Responsable" />
                                     <JFXTextField fx:id="txtDoctor" labelFloat="true" promptText="Doctor" />
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="200.0" styleClass="datePickerContenedor">
