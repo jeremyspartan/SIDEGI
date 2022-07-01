@@ -5,8 +5,9 @@
  */
 package cr.ac.una.sidegi.model;
 
+import cr.ac.una.sidegi.model.dto.PacienteDto;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -34,14 +35,14 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Paciente.findAll", query = "SELECT p FROM Paciente p"),
-    @NamedQuery(name = "Paciente.findByPacidPaciente", query = "SELECT p FROM Paciente p WHERE p.pacidPaciente = :pacidPaciente"),
+    @NamedQuery(name = "Paciente.findByPacidPaciente", query = "SELECT p FROM Paciente p WHERE p.pacIdPaciente = :pacIdPaciente"),
     @NamedQuery(name = "Paciente.findByPacDiagnostico", query = "SELECT p FROM Paciente p WHERE p.pacDiagnostico = :pacDiagnostico"),
     @NamedQuery(name = "Paciente.findByPacEstado", query = "SELECT p FROM Paciente p WHERE p.pacEstado = :pacEstado"),
-    @NamedQuery(name = "Paciente.findByPacprofesionalResponsable", query = "SELECT p FROM Paciente p WHERE p.pacprofesionalResponsable = :pacprofesionalResponsable"),
-    @NamedQuery(name = "Paciente.findByPacfechaReferencia", query = "SELECT p FROM Paciente p WHERE p.pacfechaReferencia = :pacfechaReferencia"),
+    @NamedQuery(name = "Paciente.findByPacprofesionalResponsable", query = "SELECT p FROM Paciente p WHERE p.pacProfesionalResponsable = :pacProfesionalResponsable"),
+    @NamedQuery(name = "Paciente.findByPacfechaReferencia", query = "SELECT p FROM Paciente p WHERE p.pacFechaReferencia = :pacFechaReferencia"),
     @NamedQuery(name = "Paciente.findByPacfechaDiagnostico", query = "SELECT p FROM Paciente p WHERE p.pacfechaDiagnostico = :pacfechaDiagnostico"),
     @NamedQuery(name = "Paciente.findByPacDoctor", query = "SELECT p FROM Paciente p WHERE p.pacDoctor = :pacDoctor"),
-    @NamedQuery(name = "Paciente.findByPacfechaRegistro", query = "SELECT p FROM Paciente p WHERE p.pacfechaRegistro = :pacfechaRegistro")})
+    @NamedQuery(name = "Paciente.findByPacfechaRegistro", query = "SELECT p FROM Paciente p WHERE p.pacFechaRegistro = :pacFechaRegistro")})
 public class Paciente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,7 +50,7 @@ public class Paciente implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "pac_idPaciente")
-    private Long pacidPaciente;
+    private Long pacIdPaciente;
     @Basic(optional = false)
     @Column(name = "pac_diagnostico")
     private String pacDiagnostico;
@@ -57,29 +58,29 @@ public class Paciente implements Serializable {
     @Column(name = "pac_estado")
     private String pacEstado;
     @Column(name = "pac_profesionalResponsable")
-    private String pacprofesionalResponsable;
+    private String pacProfesionalResponsable;
     @Basic(optional = false)
     @Column(name = "pac_fechaReferencia")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date pacfechaReferencia;
+    private LocalDate pacFechaReferencia;
     @Basic(optional = false)
     @Column(name = "pac_fechaDiagnostico")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date pacfechaDiagnostico;
+    private LocalDate pacfechaDiagnostico;
     @Basic(optional = false)
     @Column(name = "pac_doctor")
     private String pacDoctor;
     @Basic(optional = false)
     @Column(name = "pac_fechaRegistro")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date pacfechaRegistro;
+    private LocalDate pacFechaRegistro;
     @JoinTable(name = "sid_pacientetratamientos", joinColumns = {
         @JoinColumn(name = "pac_idPaciente", referencedColumnName = "pac_idPaciente")}, inverseJoinColumns = {
         @JoinColumn(name = "tra_id", referencedColumnName = "tra_id")})
     @ManyToMany
     private List<Tratamiento> tratamientos;
     @OneToMany(mappedBy = "pacidPaciente")
-    private List<Observacion> observacionList;
+    private List<Observacion> observaciones;
     @OneToMany(mappedBy = "pacidPaciente")
     private List<Estadia> estadias;
     @OneToMany(mappedBy = "pacidPaciente")
@@ -95,27 +96,42 @@ public class Paciente implements Serializable {
 
     public Paciente() {
     }
-
-    public Paciente(Long pacidPaciente) {
-        this.pacidPaciente = pacidPaciente;
+    
+    public Paciente(PacienteDto pacienteDto) {
+        actualizarPaciente(pacienteDto);
     }
 
-    public Paciente(Long pacidPaciente, String pacDiagnostico, String pacEstado, Date pacfechaReferencia, Date pacfechaDiagnostico, String pacDoctor, Date pacfechaRegistro) {
-        this.pacidPaciente = pacidPaciente;
+    public void actualizarPaciente(PacienteDto pacienteDto){
+        this.pacIdPaciente = pacienteDto.getPacIdPaciente();
+        this.pacDiagnostico = pacienteDto.getPacDiagnostico();
+        this.pacEstado = pacienteDto.getPacEstado();
+        this.pacProfesionalResponsable = pacienteDto.getPacProfesionalResponsable();
+        this.pacFechaReferencia = pacienteDto.getPacFechaReferencia();
+        this.pacfechaDiagnostico = pacienteDto.getPacfechaDiagnostico();
+        this.pacDoctor = pacienteDto.getPacDoctor();
+        this.pacFechaRegistro = pacienteDto.getPacFechaRegistro();
+        this.insId = new Institucion(pacienteDto.getInsId());
+    }
+    public Paciente(Long pacidPaciente) {
+        this.pacIdPaciente = pacidPaciente;
+    }
+
+    public Paciente(Long pacidPaciente, String pacDiagnostico, String pacEstado, LocalDate pacfechaReferencia, LocalDate pacfechaDiagnostico, String pacDoctor, LocalDate pacfechaRegistro) {
+        this.pacIdPaciente = pacidPaciente;
         this.pacDiagnostico = pacDiagnostico;
         this.pacEstado = pacEstado;
-        this.pacfechaReferencia = pacfechaReferencia;
+        this.pacFechaReferencia = pacfechaReferencia;
         this.pacfechaDiagnostico = pacfechaDiagnostico;
         this.pacDoctor = pacDoctor;
-        this.pacfechaRegistro = pacfechaRegistro;
+        this.pacFechaRegistro = pacfechaRegistro;
     }
 
-    public Long getPacidPaciente() {
-        return pacidPaciente;
+    public Long getPacIdPaciente() {
+        return pacIdPaciente;
     }
 
-    public void setPacidPaciente(Long pacidPaciente) {
-        this.pacidPaciente = pacidPaciente;
+    public void setPacIdPaciente(Long pacidPaciente) {
+        this.pacIdPaciente = pacidPaciente;
     }
 
     public String getPacDiagnostico() {
@@ -134,27 +150,27 @@ public class Paciente implements Serializable {
         this.pacEstado = pacEstado;
     }
 
-    public String getPacprofesionalResponsable() {
-        return pacprofesionalResponsable;
+    public String getPacProfesionalResponsable() {
+        return pacProfesionalResponsable;
     }
 
-    public void setPacprofesionalResponsable(String pacprofesionalResponsable) {
-        this.pacprofesionalResponsable = pacprofesionalResponsable;
+    public void setPacProfesionalResponsable(String pacProfesionalResponsable) {
+        this.pacProfesionalResponsable = pacProfesionalResponsable;
     }
 
-    public Date getPacfechaReferencia() {
-        return pacfechaReferencia;
+    public LocalDate getPacFechaReferencia() {
+        return pacFechaReferencia;
     }
 
-    public void setPacfechaReferencia(Date pacfechaReferencia) {
-        this.pacfechaReferencia = pacfechaReferencia;
+    public void setPacFechaReferencia(LocalDate pacFechaReferencia) {
+        this.pacFechaReferencia = pacFechaReferencia;
     }
 
-    public Date getPacfechaDiagnostico() {
+    public LocalDate getPacfechaDiagnostico() {
         return pacfechaDiagnostico;
     }
 
-    public void setPacfechaDiagnostico(Date pacfechaDiagnostico) {
+    public void setPacfechaDiagnostico(LocalDate pacfechaDiagnostico) {
         this.pacfechaDiagnostico = pacfechaDiagnostico;
     }
 
@@ -166,12 +182,12 @@ public class Paciente implements Serializable {
         this.pacDoctor = pacDoctor;
     }
 
-    public Date getPacfechaRegistro() {
-        return pacfechaRegistro;
+    public LocalDate getPacFechaRegistro() {
+        return pacFechaRegistro;
     }
 
-    public void setPacfechaRegistro(Date pacfechaRegistro) {
-        this.pacfechaRegistro = pacfechaRegistro;
+    public void setPacFechaRegistro(LocalDate pacFechaRegistro) {
+        this.pacFechaRegistro = pacFechaRegistro;
     }
 
     @XmlTransient
@@ -184,12 +200,12 @@ public class Paciente implements Serializable {
     }
 
     @XmlTransient
-    public List<Observacion> getObservacionList() {
-        return observacionList;
+    public List<Observacion> getObservaciones() {
+        return observaciones;
     }
 
-    public void setObservacionList(List<Observacion> observacionList) {
-        this.observacionList = observacionList;
+    public void setObservaciones(List<Observacion> observaciones) {
+        this.observaciones = observaciones;
     }
 
     @XmlTransient
@@ -238,7 +254,7 @@ public class Paciente implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (pacidPaciente != null ? pacidPaciente.hashCode() : 0);
+        hash += (pacIdPaciente != null ? pacIdPaciente.hashCode() : 0);
         return hash;
     }
 
@@ -249,7 +265,7 @@ public class Paciente implements Serializable {
             return false;
         }
         Paciente other = (Paciente) object;
-        if ((this.pacidPaciente == null && other.pacidPaciente != null) || (this.pacidPaciente != null && !this.pacidPaciente.equals(other.pacidPaciente))) {
+        if ((this.pacIdPaciente == null && other.pacIdPaciente != null) || (this.pacIdPaciente != null && !this.pacIdPaciente.equals(other.pacIdPaciente))) {
             return false;
         }
         return true;
@@ -257,7 +273,7 @@ public class Paciente implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.Paciente[ pacidPaciente=" + pacidPaciente + " ]";
+        return "cr.ac.una.sidegi.model.Paciente[ pacidPaciente=" + pacIdPaciente + " ]";
     }
     
 }

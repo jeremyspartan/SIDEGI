@@ -5,8 +5,8 @@
  */
 package cr.ac.una.sidegi.model;
 
+import cr.ac.una.sidegi.model.dto.TipoContactoDto;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -41,10 +41,22 @@ public class TipoContacto implements Serializable {
     @Basic(optional = false)
     @Column(name = "tpc_descripcion")
     private String tpcDescripcion;
-    @OneToMany(mappedBy = "tpcidTipoContacto")
-    private List<Contacto> contactoList;
+    @OneToMany(mappedBy = "tpcIdTipoContacto")
+    private List<Contacto> contactos;
 
     public TipoContacto() {
+    }
+    
+    public TipoContacto(TipoContactoDto  tipoContactoDto) {
+        actualizarTipoContacto(tipoContactoDto);
+    }
+     
+    public void actualizarTipoContacto(TipoContactoDto tipoContactoDto){
+        this.tpcidTipoContacto = tipoContactoDto.getTpcidTipoContacto();
+        this.tpcDescripcion = tipoContactoDto.getTpcDescripcion();
+        tipoContactoDto.getContactos().forEach((object) -> {
+            contactos.add(new Contacto(object));
+        });
     }
 
     public TipoContacto(Long tpcidTipoContacto) {
@@ -73,12 +85,12 @@ public class TipoContacto implements Serializable {
     }
 
     @XmlTransient
-    public List<Contacto> getContactoList() {
-        return contactoList;
+    public List<Contacto> getContactos() {
+        return contactos;
     }
 
-    public void setContactoList(List<Contacto> contactoList) {
-        this.contactoList = contactoList;
+    public void setContactos(List<Contacto> contactoList) {
+        this.contactos = contactoList;
     }
 
     @Override

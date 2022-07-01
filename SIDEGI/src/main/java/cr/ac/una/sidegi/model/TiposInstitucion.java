@@ -5,8 +5,8 @@
  */
 package cr.ac.una.sidegi.model;
 
+import cr.ac.una.sidegi.model.dto.TiposInstitucionDto;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -42,9 +42,21 @@ public class TiposInstitucion implements Serializable {
     @Column(name = "tins_descripicion")
     private String tinsDescripicion;
     @OneToMany(mappedBy = "tinsId")
-    private List<Institucion> institucionList;
+    private List<Institucion> instituciones;
 
     public TiposInstitucion() {
+    }
+    
+    public TiposInstitucion(TiposInstitucionDto tiposInstitucionDto) {
+        actualizarTiposInstitucion(tiposInstitucionDto);
+    }
+    
+    public void actualizarTiposInstitucion(TiposInstitucionDto tipoInstitucionDto){
+        this.tinsId = tipoInstitucionDto.getTinsId();
+        this.tinsDescripicion = tipoInstitucionDto.getTinsDescripicion();
+        tipoInstitucionDto.getInstitucionesDto().forEach((object) -> {
+            this.instituciones.add(new Institucion(object));
+        });
     }
 
     public TiposInstitucion(Long tinsId) {
@@ -73,12 +85,12 @@ public class TiposInstitucion implements Serializable {
     }
 
     @XmlTransient
-    public List<Institucion> getInstitucionList() {
-        return institucionList;
+    public List<Institucion> getInstituciones() {
+        return instituciones;
     }
 
-    public void setInstitucionList(List<Institucion> institucionList) {
-        this.institucionList = institucionList;
+    public void setInstituciones(List<Institucion> instituciones) {
+        this.instituciones = instituciones;
     }
 
     @Override

@@ -5,8 +5,8 @@
  */
 package cr.ac.una.sidegi.model;
 
+import cr.ac.una.sidegi.model.dto.InstitucionDto;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -45,14 +45,27 @@ public class Institucion implements Serializable {
     @Column(name = "ins_descripcion")
     private String insDescripcion;
     @ManyToMany(mappedBy = "institucionList")
-    private List<Contacto> contactoList;
+    private List<Contacto> contactos;
     @JoinColumn(name = "tins_id", referencedColumnName = "tins_id")
     @ManyToOne
     private TiposInstitucion tinsId;
     @OneToMany(mappedBy = "insId")
-    private List<Paciente> pacienteList;
+    private List<Paciente> pacientes;
 
     public Institucion() {
+    }
+    
+    public Institucion(InstitucionDto institucionDto){
+        actualizarInstitucion(institucionDto);
+    }
+    
+    private void actualizarInstitucion(InstitucionDto institucionDto) {
+        this.insId = institucionDto.getInsId();
+        this.insDescripcion = institucionDto.getInsDescripcion();
+         institucionDto.getContactos().forEach((object) -> {
+            contactos.add(new Contacto(object));
+        });
+         this.tinsId = new TiposInstitucion(institucionDto.getTipoInstitucion());
     }
 
     public Institucion(Long insId) {
@@ -81,12 +94,12 @@ public class Institucion implements Serializable {
     }
 
     @XmlTransient
-    public List<Contacto> getContactoList() {
-        return contactoList;
+    public List<Contacto> getContactos() {
+        return contactos;
     }
 
-    public void setContactoList(List<Contacto> contactoList) {
-        this.contactoList = contactoList;
+    public void setContactos(List<Contacto> contactos) {
+        this.contactos = contactos;
     }
 
     public TiposInstitucion getTinsId() {
@@ -98,12 +111,12 @@ public class Institucion implements Serializable {
     }
 
     @XmlTransient
-    public List<Paciente> getPacienteList() {
-        return pacienteList;
+    public List<Paciente> getPacientes() {
+        return pacientes;
     }
 
-    public void setPacienteList(List<Paciente> pacienteList) {
-        this.pacienteList = pacienteList;
+    public void setPacientes(List<Paciente> pacientes) {
+        this.pacientes = pacientes;
     }
 
     @Override

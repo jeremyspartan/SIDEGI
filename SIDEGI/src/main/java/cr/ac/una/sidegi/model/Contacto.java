@@ -5,8 +5,9 @@
  */
 package cr.ac.una.sidegi.model;
 
+import cr.ac.una.sidegi.model.dto.ContactoDto;
+import cr.ac.una.sidegi.model.dto.TipoContactoDto;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -31,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Contacto.findAll", query = "SELECT c FROM Contacto c"),
-    @NamedQuery(name = "Contacto.findByConidContacto", query = "SELECT c FROM Contacto c WHERE c.conidContacto = :conidContacto"),
+    @NamedQuery(name = "Contacto.findByConidContacto", query = "SELECT c FROM Contacto c WHERE c.conIdContacto = :conIdContacto"),
     @NamedQuery(name = "Contacto.findByConContacto", query = "SELECT c FROM Contacto c WHERE c.conContacto = :conContacto")})
 public class Contacto implements Serializable {
 
@@ -40,7 +41,7 @@ public class Contacto implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "con_idContacto")
-    private Long conidContacto;
+    private Long conIdContacto;
     @Basic(optional = false)
     @Column(name = "con_contacto")
     private String conContacto;
@@ -48,34 +49,48 @@ public class Contacto implements Serializable {
         @JoinColumn(name = "con_idContacto", referencedColumnName = "con_idContacto")}, inverseJoinColumns = {
         @JoinColumn(name = "ins_id", referencedColumnName = "ins_id")})
     @ManyToMany
-    private List<Institucion> institucionList;
+    private List<Institucion> instituciones;
     @JoinTable(name = "sid_personacontactos", joinColumns = {
         @JoinColumn(name = "con_idContacto", referencedColumnName = "con_idContacto")}, inverseJoinColumns = {
         @JoinColumn(name = "per_cedula", referencedColumnName = "per_cedula")})
     @ManyToMany
-    private List<Persona> personaList;
+    private List<Persona> personas;
     @JoinColumn(name = "tpc_idTipoContacto", referencedColumnName = "tpc_idTipoContacto")
     @ManyToOne
-    private TipoContacto tpcidTipoContacto;
+    private TipoContacto tpcIdTipoContacto;
 
     public Contacto() {
     }
+    
+    public Contacto(ContactoDto contactoDto){
+        ActualizarContacto(contactoDto);
+    }
+    
+    public void ActualizarContacto(ContactoDto contactoDto)
+    {
+        this.conIdContacto = contactoDto.getConIdContacto();
+        this.conContacto = contactoDto.getConContacto();
+        this.tpcIdTipoContacto = new TipoContacto(contactoDto.getTpcIdTipoContactoDto());
+        contactoDto.getInstitucionesDto().forEach((object) -> {
+            this.instituciones.add(new Institucion(object));
+        });
+    }
 
     public Contacto(Long conidContacto) {
-        this.conidContacto = conidContacto;
+        this.conIdContacto = conidContacto;
     }
 
     public Contacto(Long conidContacto, String conContacto) {
-        this.conidContacto = conidContacto;
+        this.conIdContacto = conidContacto;
         this.conContacto = conContacto;
     }
 
-    public Long getConidContacto() {
-        return conidContacto;
+    public Long getConIdContacto() {
+        return conIdContacto;
     }
 
-    public void setConidContacto(Long conidContacto) {
-        this.conidContacto = conidContacto;
+    public void setConIdContacto(Long conIdContacto) {
+        this.conIdContacto = conIdContacto;
     }
 
     public String getConContacto() {
@@ -87,35 +102,35 @@ public class Contacto implements Serializable {
     }
 
     @XmlTransient
-    public List<Institucion> getInstitucionList() {
-        return institucionList;
+    public List<Institucion> getInstituciones() {
+        return instituciones;
     }
 
-    public void setInstitucionList(List<Institucion> institucionList) {
-        this.institucionList = institucionList;
+    public void setInstituciones(List<Institucion> instituciones) {
+        this.instituciones = instituciones;
     }
 
     @XmlTransient
-    public List<Persona> getPersonaList() {
-        return personaList;
+    public List<Persona> getPersonas() {
+        return personas;
     }
 
-    public void setPersonaList(List<Persona> personaList) {
-        this.personaList = personaList;
+    public void setPersonas(List<Persona> personas) {
+        this.personas = personas;
     }
 
-    public TipoContacto getTpcidTipoContacto() {
-        return tpcidTipoContacto;
+    public TipoContacto getTpcIdTipoContacto() {
+        return tpcIdTipoContacto;
     }
 
-    public void setTpcidTipoContacto(TipoContacto tpcidTipoContacto) {
-        this.tpcidTipoContacto = tpcidTipoContacto;
+    public void setTpcIdTipoContacto(TipoContacto tpcIdTipoContacto) {
+        this.tpcIdTipoContacto = tpcIdTipoContacto;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (conidContacto != null ? conidContacto.hashCode() : 0);
+        hash += (conIdContacto != null ? conIdContacto.hashCode() : 0);
         return hash;
     }
 
@@ -126,7 +141,7 @@ public class Contacto implements Serializable {
             return false;
         }
         Contacto other = (Contacto) object;
-        if ((this.conidContacto == null && other.conidContacto != null) || (this.conidContacto != null && !this.conidContacto.equals(other.conidContacto))) {
+        if ((this.conIdContacto == null && other.conIdContacto != null) || (this.conIdContacto != null && !this.conIdContacto.equals(other.conIdContacto))) {
             return false;
         }
         return true;
@@ -134,7 +149,7 @@ public class Contacto implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.Contacto[ conidContacto=" + conidContacto + " ]";
+        return "cr.ac.una.sidegi.model.Contacto[ conidContacto=" + conIdContacto + " ]";
     }
     
 }
