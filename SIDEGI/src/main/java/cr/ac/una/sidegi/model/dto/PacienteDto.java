@@ -16,20 +16,20 @@ import javafx.beans.property.SimpleStringProperty;
  * @author computer
  */
 public class PacienteDto {
-    private SimpleStringProperty pacIdPaciente;
-    private SimpleStringProperty pacDiagnostico;
-    private SimpleStringProperty pacEstado;
-    private SimpleStringProperty pacProfesionalResponsable;
-    private ObjectProperty<LocalDate> pacFechaReferencia;
-    private ObjectProperty<LocalDate> pacfechaDiagnostico;
-    private SimpleStringProperty pacDoctor;
-    private ObjectProperty<LocalDate> pacFechaRegistro;
+    public SimpleStringProperty pacIdPaciente;
+    public SimpleStringProperty pacDiagnostico;
+    public SimpleStringProperty pacEstado;
+    public SimpleStringProperty pacProfesionalResponsable;
+    public ObjectProperty<LocalDate> pacFechaReferencia;
+    public ObjectProperty<LocalDate> pacfechaDiagnostico;
+    public SimpleStringProperty pacDoctor;
+    public ObjectProperty<LocalDate> pacFechaRegistro;
     /*private List<Tratamiento> tratamientos;
     private List<Observacion> observacionList;
     private List<Estadia> estadias;
     private List<Entrevista> entrevistas;
     private List<Anexo> anexos;*/
-    private InstitucionDto insId;
+    public InstitucionDto insId;
     //private Persona perCedula;
     
     public PacienteDto(){
