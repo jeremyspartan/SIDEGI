@@ -29,9 +29,9 @@ public class ContactoDto {
         this.conIdContacto.set(Long.toString(contacto.getConIdContacto()));
         this.conContacto.set(contacto.getConContacto());
         this.tpcIdTipoContactoDto = new TipoContactoDto(contacto.getTpcIdTipoContacto());
-        contacto.getInstituciones().forEach((object) -> {
-            this.institucionesDto.add(new InstitucionDto(object));
-        });
+        //    contacto.getInstituciones().forEach((object) -> {
+          //      this.institucionesDto.add(new InstitucionDto(object));
+          //  });
     }
 
     public Long getConIdContacto() {

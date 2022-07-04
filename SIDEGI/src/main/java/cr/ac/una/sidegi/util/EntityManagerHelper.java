@@ -21,7 +21,7 @@ public class EntityManagerHelper {
 
     static {
         try {
-            emf = Persistence.createEntityManagerFactory("SIDEGI_PU");
+            emf = Persistence.createEntityManagerFactory("SIDEGIPU");
             em = emf.createEntityManager();
         } catch (ExceptionInInitializerError e) {
             throw e;

@@ -19,6 +19,11 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import cr.ac.una.sidegi.model.dto.PacienteDto;
+import cr.ac.una.sidegi.model.dto.PersonaDto;
+import cr.ac.una.sidegi.service.PersonaService;
+import cr.ac.una.sidegi.util.Respuesta;
+import java.time.LocalDate;
+import java.time.Month;
 
 /**
  *
@@ -63,7 +68,7 @@ public class ExpedienteViewController extends Controller {
     @FXML
     private JFXDatePicker dtpFechaRegistro;
     private PacienteDto paciente;
-    
+    private PersonaDto persona=new PersonaDto();
     private List<Node> requeridos = new ArrayList<>();
 
     @Override
@@ -152,6 +157,14 @@ public class ExpedienteViewController extends Controller {
 
     @FXML
     private void onActionBtnGuardar(ActionEvent event) {
+        persona.setPerCedula("116860582");
+        persona.setPerNombre("Alberth");
+        persona.setPerPapellido("Gamboa");
+        persona.setPerSapellido("Alfaro");
+        persona.setPerFechaNacimiento(LocalDate.of(1997, Month.SEPTEMBER, 4));
+        
+        PersonaService service = new PersonaService();
+        Respuesta respuesta = service.guardarPersona(persona);
     }
 
     @FXML

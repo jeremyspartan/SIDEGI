@@ -5,7 +5,9 @@
  */
 package cr.ac.una.sidegi.model;
 
+import cr.ac.una.sidegi.model.dto.PersonaDto;
 import java.io.Serializable;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -87,6 +89,18 @@ public class Persona implements Serializable {
         this.persApellido = persApellido;
         this.perNombre = perNombre;
         this.perfechaNac = perfechaNac;
+    }
+    public Persona(PersonaDto personaDto) {
+        this.perCedula= personaDto.getPerCedula();
+        actualizarPersona(personaDto);
+    }
+    
+    public void actualizarPersona(PersonaDto personaDto) {
+        this.perCedula = personaDto.getPerCedula();
+        this.perpApellido = personaDto.getPerPapellido();
+        this.persApellido = personaDto.getPerSapellido();
+        this.perNombre = personaDto.getPerNombre();
+        this.perfechaNac =  Date.from(personaDto.getPerFechaNacimiento().atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
 
     public String getPerCedula() {
