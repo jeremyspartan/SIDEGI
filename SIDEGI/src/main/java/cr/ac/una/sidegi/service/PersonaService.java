@@ -23,9 +23,7 @@ import javax.persistence.Query;
  * @author Usuario
  */
 public class PersonaService {
-    private static final Logger LOG = Logger.getLogger(PersonaService.class.getName());
-
-    EntityManager em = EntityManagerHelper.getInstance().getManager();
+    EntityManager em = EntityManagerHelper.getManager();
     private EntityTransaction et;
 //    public Respuesta getAposento(Long id) {
 //        try {
@@ -49,24 +47,24 @@ public class PersonaService {
         try {
             et = em.getTransaction();
             et.begin();
-                Persona persona;
-            if(personaDto.getPerCedula() != null ){
-               persona =  em.find(Persona.class,personaDto.getPerCedula());
-            if(persona == null){
-                et.rollback();
-                return new Respuesta(false,"No se encontro el asociado a modificar.","guardarTipoplanilla noResultException");
-            }
-                persona.actualizarPersona(personaDto);
-                persona = em.merge(persona);
-            }else{
+            Persona persona;
+//            if(personaDto.getPerCedula() != null ){
+//               persona =  em.find(Persona.class,personaDto.getPerCedula());
+//            if(persona == null){
+//                et.rollback();
+//                return new Respuesta(false,"No se encontro el asociado a modificar.","guardarTipoplanilla noResultException");
+//            }
+//                persona.actualizarPersona(personaDto);
+//                em.merge(persona);
+//            }else{
                 persona = new Persona(personaDto);
                 em.persist(persona);
-            }
+            //}
             et.commit();
             return new Respuesta(true, "", "", "Asociado", new PersonaDto());
         } catch (Exception ex) {
             et.rollback();
-            Logger.getLogger(InstitucionService.class.getName()).log(Level.SEVERE, "Error guardando el asociado.", ex);
+            //Logger.getLogger(PersonaService.class.getName()).log(Level.SEVERE, "Error guardando el asociado.", ex.getMessage());
             return new Respuesta(false, "Error guardando el Asociado.", "guardarAsociado " + ex.getMessage());
         }
     }

@@ -60,7 +60,7 @@ public class Persona implements Serializable {
     @Column(name = "per_fechaNac")
     @Temporal(TemporalType.TIMESTAMP)
     private Date perfechaNac;
-    @ManyToMany(mappedBy = "personaList")
+    @ManyToMany(mappedBy = "personas")
     private List<Contacto> contactos;
     @JoinColumn(name = "dir_idDireccion", referencedColumnName = "dir_idDireccion")
     @ManyToOne

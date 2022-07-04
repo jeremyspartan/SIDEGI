@@ -61,18 +61,18 @@ public class Paciente implements Serializable {
     private String pacProfesionalResponsable;
     @Basic(optional = false)
     @Column(name = "pac_fechaReferencia")
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     private LocalDate pacFechaReferencia;
     @Basic(optional = false)
     @Column(name = "pac_fechaDiagnostico")
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     private LocalDate pacfechaDiagnostico;
     @Basic(optional = false)
     @Column(name = "pac_doctor")
     private String pacDoctor;
     @Basic(optional = false)
     @Column(name = "pac_fechaRegistro")
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     private LocalDate pacFechaRegistro;
     @JoinTable(name = "sid_pacientetratamientos", joinColumns = {
         @JoinColumn(name = "pac_idPaciente", referencedColumnName = "pac_idPaciente")}, inverseJoinColumns = {

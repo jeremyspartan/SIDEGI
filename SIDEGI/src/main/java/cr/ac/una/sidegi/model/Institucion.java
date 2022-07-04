@@ -44,7 +44,7 @@ public class Institucion implements Serializable {
     @Basic(optional = false)
     @Column(name = "ins_descripcion")
     private String insDescripcion;
-    @ManyToMany(mappedBy = "institucionList")
+    @ManyToMany(mappedBy = "instituciones")
     private List<Contacto> contactos;
     @JoinColumn(name = "tins_id", referencedColumnName = "tins_id")
     @ManyToOne

@@ -15,27 +15,27 @@ import javax.persistence.Persistence;
  */
 public class EntityManagerHelper {
 
-    private static final EntityManagerHelper SINGLENTON = new EntityManagerHelper();
+    private static final EntityManagerHelper SINGLENTON;
     private static EntityManagerFactory emf;
     private static EntityManager em;
 
-    static {
-        try {
+    static{
+        try{
+            SINGLENTON = new EntityManagerHelper();
             emf = Persistence.createEntityManagerFactory("SIDEGIPU");
             em = emf.createEntityManager();
-        } catch (ExceptionInInitializerError e) {
-            throw e;
+        }catch(Exception e){
+            throw new RuntimeException(e);
         }
     }
     
     public static EntityManagerHelper getInstance() {
-
         return SINGLENTON;
     }
 
     public static EntityManager getManager() {
         if (em == null) {
-            emf = Persistence.createEntityManagerFactory("CooperativaPU");
+            emf = Persistence.createEntityManagerFactory("SIDEGIPU");
             em = emf.createEntityManager();
         }
         return em;

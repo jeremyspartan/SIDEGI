@@ -70,6 +70,7 @@ public class ExpedienteViewController extends Controller {
     private PacienteDto paciente;
     private PersonaDto persona=new PersonaDto();
     private List<Node> requeridos = new ArrayList<>();
+    private PersonaService service = new PersonaService();
 
     @Override
     public void initialize() {
@@ -162,8 +163,6 @@ public class ExpedienteViewController extends Controller {
         persona.setPerPapellido("Gamboa");
         persona.setPerSapellido("Alfaro");
         persona.setPerFechaNacimiento(LocalDate.of(1997, Month.SEPTEMBER, 4));
-        
-        PersonaService service = new PersonaService();
         Respuesta respuesta = service.guardarPersona(persona);
     }
 
