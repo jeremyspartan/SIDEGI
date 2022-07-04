@@ -24,13 +24,13 @@ public class PacienteDto {
     public ObjectProperty<LocalDate> pacfechaDiagnostico;
     public SimpleStringProperty pacDoctor;
     public ObjectProperty<LocalDate> pacFechaRegistro;
-    /*private List<Tratamiento> tratamientos;
-    private List<Observacion> observacionList;
-    private List<Estadia> estadias;
-    private List<Entrevista> entrevistas;
-    private List<Anexo> anexos;*/
+    /*public List<Tratamiento> tratamientos;
+    public List<Observacion> observacionList;
+    public List<Estadia> estadias;
+    public List<Entrevista> entrevistas;
+    public List<Anexo> anexos;*/
     public InstitucionDto insId;
-    //private Persona perCedula;
+    //public Persona perCedula;
     
     public PacienteDto(){
         this.pacIdPaciente = new SimpleStringProperty();

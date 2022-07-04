@@ -14,11 +14,11 @@ import javafx.beans.property.SimpleStringProperty;
  * @author computer
  */
 public class ContactoDto {
-    private SimpleStringProperty conIdContacto;
-    private SimpleStringProperty conContacto;
-    private List<InstitucionDto> institucionesDto;
+    public SimpleStringProperty conIdContacto;
+    public SimpleStringProperty conContacto;
+    public List<InstitucionDto> institucionesDto;
     //private List<Persona> personas;
-    private TipoContactoDto tpcIdTipoContactoDto;
+    public TipoContactoDto tpcIdTipoContactoDto;
     
     public ContactoDto(){
         this.conIdContacto = new SimpleStringProperty();

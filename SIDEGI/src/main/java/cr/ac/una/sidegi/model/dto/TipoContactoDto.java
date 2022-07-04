@@ -16,9 +16,9 @@ import javafx.beans.property.SimpleStringProperty;
  * @author computer
  */
 public class TipoContactoDto {
-    private SimpleStringProperty tpcidTipoContacto;
-    private SimpleStringProperty tpcDescripcion;
-    private List<ContactoDto> contactos;
+    public SimpleStringProperty tpcidTipoContacto;
+    public SimpleStringProperty tpcDescripcion;
+    public List<ContactoDto> contactos;
     
     public TipoContactoDto(){
         this.tpcidTipoContacto = new SimpleStringProperty();

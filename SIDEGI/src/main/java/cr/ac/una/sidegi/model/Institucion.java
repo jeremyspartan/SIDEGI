@@ -59,7 +59,7 @@ public class Institucion implements Serializable {
         actualizarInstitucion(institucionDto);
     }
     
-    private void actualizarInstitucion(InstitucionDto institucionDto) {
+    public void actualizarInstitucion(InstitucionDto institucionDto) {
         this.insId = institucionDto.getInsId();
         this.insDescripcion = institucionDto.getInsDescripcion();
          institucionDto.getContactos().forEach((object) -> {

@@ -15,10 +15,10 @@ import javafx.beans.property.SimpleStringProperty;
  * @author computer
  */
 public class InstitucionDto {
-    private SimpleStringProperty insId;
-    private SimpleStringProperty insDescripcion;
-    private List<ContactoDto> contactos;
-    private TiposInstitucionDto tipoInstitucion;
+    public SimpleStringProperty insId;
+    public SimpleStringProperty insDescripcion;
+    public List<ContactoDto> contactos;
+    public TiposInstitucionDto tipoInstitucion;
     //private List<Paciente> pacienteList;
     
      public InstitucionDto(){

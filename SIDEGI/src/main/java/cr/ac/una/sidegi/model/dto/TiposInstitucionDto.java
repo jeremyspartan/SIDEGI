@@ -16,9 +16,9 @@ import javafx.beans.property.SimpleStringProperty;
  * @author computer
  */
 public class TiposInstitucionDto {
-    private SimpleStringProperty tinsId;
-    private SimpleStringProperty tinsDescripicion;
-    private List<InstitucionDto> institucionesDto;
+    public SimpleStringProperty tinsId;
+    public SimpleStringProperty tinsDescripicion;
+    public List<InstitucionDto> institucionesDto;
     
     public TiposInstitucionDto(){
         this.tinsId = new SimpleStringProperty();
