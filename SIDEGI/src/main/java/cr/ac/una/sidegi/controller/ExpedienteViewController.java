@@ -25,10 +25,14 @@ import cr.ac.una.sidegi.model.dto.PersonaDto;
 import cr.ac.una.sidegi.model.dto.TipoContactoDto;
 import cr.ac.una.sidegi.model.dto.TipoSeguroDto;
 import cr.ac.una.sidegi.service.PersonaService;
+import cr.ac.una.sidegi.util.Mensaje;
 import cr.ac.una.sidegi.util.Respuesta;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.Property;
+import javafx.scene.control.Alert;
 
 /**
  *
@@ -175,7 +179,7 @@ public class ExpedienteViewController extends Controller {
             txtDireccion.textProperty().bind(direccion.direcDesc);
     }
     
-    private void bindExpediente()
+    private void unbindExpediente()
     {
             txtDoctor.textProperty().unbind();
             dtpFechaDiagnostico.valueProperty().unbind();
@@ -200,14 +204,37 @@ public class ExpedienteViewController extends Controller {
 
     @FXML
     private void onActionBtnGuardar(ActionEvent event) {
-        persona.setPerCedula("116860582");
-        persona.setPerNombre("Alberth");
-        persona.setPerPapellido("Gamboa");
-        persona.setPerSapellido("Alfaro");
-        persona.setPerFechaNacimiento(LocalDate.of(1997, Month.SEPTEMBER, 4));
+//        persona.setPerCedula("116860582");
+//        persona.setPerNombre("Alberth");
+//        persona.setPerPapellido("Gamboa");
+//        persona.setPerSapellido("Alfaro");
+//        persona.setPerFechaNacimiento(LocalDate.of(1997, Month.SEPTEMBER, 4));
         
-        PersonaService service = new PersonaService();
-        Respuesta respuesta = service.guardarPersona(persona);
+//        PersonaService service = new PersonaService();
+//        Respuesta respuesta = service.guardarPersona(persona);
+//        Respuesta respuesta;
+        
+        try {
+            String invalidos = validarRequeridos();
+            if (!invalidos.isEmpty()) {
+                new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar persona", getStage(), invalidos);
+            } else {
+                PersonaService service = new PersonaService();
+                    Respuesta respuesta = service.guardarPersona(persona);
+                    if (!respuesta.getEstado()) {
+                        new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar persona", getStage(), respuesta.getMensaje());
+                    } else {
+                            unbindExpediente();
+//                            persona = (PersonaDto) respuesta.guardarPersona(persona);
+                            
+                            bindExpediente(false);
+                            new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar persona", getStage(), "Persona actualizado correctamente.");
+                    }  
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ExpedienteViewController.class.getName()).log(Level.SEVERE, "Error guardando el producto.", ex);
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar persona", getStage(), "Ocurrio un error guardando el producto.");
+        }
     }
 
     @FXML
