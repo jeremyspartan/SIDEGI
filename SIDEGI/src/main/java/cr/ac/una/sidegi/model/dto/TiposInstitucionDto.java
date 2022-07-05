@@ -26,7 +26,7 @@ public class TiposInstitucionDto {
         this.institucionesDto = new ArrayList<>();
     }
     
-    TiposInstitucionDto(TiposInstitucion tiposInstitucion){
+    public TiposInstitucionDto(TiposInstitucion tiposInstitucion){
         this.tinsId.set(Long.toString(tiposInstitucion.getTinsId()));
         this.tinsDescripicion.set(tiposInstitucion.getTinsDescripicion());
         tiposInstitucion.getInstituciones().forEach((object) -> {
