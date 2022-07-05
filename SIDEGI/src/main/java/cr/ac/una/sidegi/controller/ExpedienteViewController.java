@@ -11,6 +11,8 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import cr.ac.una.sidegi.model.dto.DireccionDto;
+import cr.ac.una.sidegi.model.dto.EscolaridadDto;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,10 +22,13 @@ import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import cr.ac.una.sidegi.model.dto.PacienteDto;
 import cr.ac.una.sidegi.model.dto.PersonaDto;
+import cr.ac.una.sidegi.model.dto.TipoContactoDto;
+import cr.ac.una.sidegi.model.dto.TipoSeguroDto;
 import cr.ac.una.sidegi.service.PersonaService;
 import cr.ac.una.sidegi.util.Respuesta;
 import java.time.LocalDate;
 import java.time.Month;
+import javafx.beans.property.Property;
 
 /**
  *
@@ -50,13 +55,13 @@ public class ExpedienteViewController extends Controller {
     @FXML
     private JFXDatePicker dtpFechaNacimeinto;
     @FXML
-    private JFXComboBox<?> cmbTipoSeguro;
+    private JFXComboBox<String> cmbTipoSeguro;
     @FXML
-    private JFXComboBox<?> cmbEscolaridad;
+    private JFXComboBox<String> cmbEscolaridad;
     @FXML
     private JFXTextArea txaDiagnosticoMedico;
     @FXML
-    private JFXComboBox<?> cmbEstadoPaciente;
+    private JFXComboBox<String> cmbEstadoPaciente;
     @FXML
     private JFXDatePicker dtpFechaReferencia;
     @FXML
@@ -68,9 +73,14 @@ public class ExpedienteViewController extends Controller {
     @FXML
     private JFXDatePicker dtpFechaRegistro;
     private PacienteDto paciente;
+    private TipoSeguroDto tipoSeguro;
+    private EscolaridadDto escolaridad;
+    private DireccionDto direccion;
     private PersonaDto persona=new PersonaDto();
     private List<Node> requeridos = new ArrayList<>();
-    private PersonaService service = new PersonaService();
+    @FXML
+    private JFXTextField txtDireccion;
+    
 
     @Override
     public void initialize() {
@@ -147,9 +157,41 @@ public class ExpedienteViewController extends Controller {
     }
     
     
-    private void bindUsuario(Boolean nuevo){
-            txtDoctor.textProperty().bindBidirectional(paciente.pacDoctor);
-            
+    private void bindExpediente(Boolean nuevo){
+            txtDoctor.textProperty().bind(paciente.pacDoctor);
+            dtpFechaDiagnostico.valueProperty().bind(paciente.pacfechaDiagnostico);
+            dtpFechaReferencia.valueProperty().bind(paciente.pacFechaReferencia);
+            txtProfesionalResponsable.textProperty().bind(paciente.pacProfesionalResponsable);
+            txaDiagnosticoMedico.textProperty().bind(paciente.pacDiagnostico);
+            dtpFechaRegistro.valueProperty().bind(paciente.pacFechaRegistro);
+            cmbEstadoPaciente.valueProperty().bind(paciente.pacEstado); 
+            txtCedula.textProperty().bind(persona.perCedula);
+            txtNombre.textProperty().bind(persona.perNombre);
+            txtPrimerApellido.textProperty().bind(persona.perPapellido);
+            txtSegundoApellido.textProperty().bind(persona.perSapellido);
+            dtpFechaNacimeinto.valueProperty().bind(persona.perFechaNacimiento);
+            cmbTipoSeguro.valueProperty().bind(tipoSeguro.tipoSegDesc);
+            cmbEscolaridad.valueProperty().bind(escolaridad.escDesc);
+            txtDireccion.textProperty().bind(direccion.direcDesc);
+    }
+    
+    private void bindExpediente()
+    {
+            txtDoctor.textProperty().unbind();
+            dtpFechaDiagnostico.valueProperty().unbind();
+            dtpFechaReferencia.valueProperty().unbind();
+            txtProfesionalResponsable.textProperty().unbind();
+            txaDiagnosticoMedico.textProperty().unbind();
+            dtpFechaRegistro.valueProperty().unbind();
+            cmbEstadoPaciente.valueProperty().unbind();
+            txtCedula.textProperty().unbind();
+            txtNombre.textProperty().unbind();
+            txtPrimerApellido.textProperty().unbind();
+            txtSegundoApellido.textProperty().unbind();
+            dtpFechaNacimeinto.valueProperty().unbind();
+            cmbTipoSeguro.valueProperty().unbind();
+            cmbEscolaridad.valueProperty().unbind();
+            txtDireccion.textProperty().unbind();
     }
     
     @FXML
@@ -163,6 +205,8 @@ public class ExpedienteViewController extends Controller {
         persona.setPerPapellido("Gamboa");
         persona.setPerSapellido("Alfaro");
         persona.setPerFechaNacimiento(LocalDate.of(1997, Month.SEPTEMBER, 4));
+        
+        PersonaService service = new PersonaService();
         Respuesta respuesta = service.guardarPersona(persona);
     }
 

@@ -43,7 +43,7 @@
                                     <JFXTextField fx:id="txtNombre" labelFloat="true" promptText="Nombre" />
                                     <JFXTextField fx:id="txtPrimerApellido" labelFloat="true" promptText="Primer Apeliido" />
                                     <JFXTextField fx:id="txtSegundoApellido" labelFloat="true" promptText="Segundo Apellido" />
-                                    <JFXTextField labelFloat="true" promptText="Direccion" />
+                                    <JFXTextField fx:id="txtDireccion" labelFloat="true" promptText="Direccion" />
                                     <JFXDatePicker fx:id="dtpFechaNacimeinto" promptText="Fecha Naciemiento" styleClass="JFXDatePicker" VBox.vgrow="ALWAYS" />
                                     <JFXComboBox fx:id="cmbTipoSeguro" prefHeight="29.0" prefWidth="198.0" promptText="Tipo Seguro" VBox.vgrow="ALWAYS" />
                                     <JFXComboBox fx:id="cmbEscolaridad" prefHeight="29.0" prefWidth="198.0" promptText="Escolaridad" VBox.vgrow="ALWAYS" />
