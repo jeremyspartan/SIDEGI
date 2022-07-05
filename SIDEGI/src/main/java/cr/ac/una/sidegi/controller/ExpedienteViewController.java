@@ -80,7 +80,7 @@ public class ExpedienteViewController extends Controller {
     private TipoSeguroDto tipoSeguro;
     private EscolaridadDto escolaridad;
     private DireccionDto direccion;
-    private PersonaDto persona=new PersonaDto();
+    private PersonaDto persona;
     private List<Node> requeridos = new ArrayList<>();
     @FXML
     private JFXTextField txtDireccion;
@@ -88,10 +88,19 @@ public class ExpedienteViewController extends Controller {
 
     @Override
     public void initialize() {
-        
+        persona = new PersonaDto();
+        nuevaPersona();
     }
     
-        public void indicarRequeridos()
+    private void nuevaPersona()
+     {
+         unbindExpediente();
+         bindExpediente(true);
+         txtNombre.clear();
+         txtNombre.requestFocus();
+     }
+    
+    public void indicarRequeridos()
     {
         requeridos.clear();
         requeridos.addAll(Arrays.asList(txtNombre,txtPrimerApellido,txtSegundoApellido,txtCedula,dtpFechaNacimeinto,cmbTipoSeguro,cmbEscolaridad));
@@ -162,40 +171,40 @@ public class ExpedienteViewController extends Controller {
     
     
     private void bindExpediente(Boolean nuevo){
-            txtDoctor.textProperty().bind(paciente.pacDoctor);
-            dtpFechaDiagnostico.valueProperty().bind(paciente.pacfechaDiagnostico);
-            dtpFechaReferencia.valueProperty().bind(paciente.pacFechaReferencia);
-            txtProfesionalResponsable.textProperty().bind(paciente.pacProfesionalResponsable);
-            txaDiagnosticoMedico.textProperty().bind(paciente.pacDiagnostico);
-            dtpFechaRegistro.valueProperty().bind(paciente.pacFechaRegistro);
-            cmbEstadoPaciente.valueProperty().bind(paciente.pacEstado); 
-            txtCedula.textProperty().bind(persona.perCedula);
-            txtNombre.textProperty().bind(persona.perNombre);
-            txtPrimerApellido.textProperty().bind(persona.perPapellido);
-            txtSegundoApellido.textProperty().bind(persona.perSapellido);
-            dtpFechaNacimeinto.valueProperty().bind(persona.perFechaNacimiento);
-            cmbTipoSeguro.valueProperty().bind(tipoSeguro.tipoSegDesc);
-            cmbEscolaridad.valueProperty().bind(escolaridad.escDesc);
-            txtDireccion.textProperty().bind(direccion.direcDesc);
+//            txtDoctor.textProperty().bindBidirectional(paciente.pacDoctor);
+//            dtpFechaDiagnostico.valueProperty().bindBidirectional(paciente.pacfechaDiagnostico);
+//            dtpFechaReferencia.valueProperty().bindBidirectional(paciente.pacFechaReferencia);
+//            txtProfesionalResponsable.textProperty().bindBidirectional(paciente.pacProfesionalResponsable);
+//            txaDiagnosticoMedico.textProperty().bindBidirectional(paciente.pacDiagnostico);
+//            dtpFechaRegistro.valueProperty().bindBidirectional(paciente.pacFechaRegistro);
+//            cmbEstadoPaciente.valueProperty().bindBidirectional(paciente.pacEstado); 
+            txtCedula.textProperty().bindBidirectional(persona.perCedula);
+            txtNombre.textProperty().bindBidirectional(persona.perNombre);
+            txtPrimerApellido.textProperty().bindBidirectional(persona.perPapellido);
+            txtSegundoApellido.textProperty().bindBidirectional(persona.perSapellido);
+            dtpFechaNacimeinto.valueProperty().bindBidirectional(persona.perFechaNacimiento);
+//            cmbTipoSeguro.valueProperty().bindBidirectional(tipoSeguro.tipoSegDesc);
+//            cmbEscolaridad.valueProperty().bindBidirectional(escolaridad.escDesc);
+//            txtDireccion.textProperty().bindBidirectional(direccion.direcDesc);
     }
     
     private void unbindExpediente()
     {
-            txtDoctor.textProperty().unbind();
-            dtpFechaDiagnostico.valueProperty().unbind();
-            dtpFechaReferencia.valueProperty().unbind();
-            txtProfesionalResponsable.textProperty().unbind();
-            txaDiagnosticoMedico.textProperty().unbind();
-            dtpFechaRegistro.valueProperty().unbind();
-            cmbEstadoPaciente.valueProperty().unbind();
+//            txtDoctor.textProperty().unbind();
+//            dtpFechaDiagnostico.valueProperty().unbind();
+//            dtpFechaReferencia.valueProperty().unbind();
+//            txtProfesionalResponsable.textProperty().unbind();
+//            txaDiagnosticoMedico.textProperty().unbind();
+//            dtpFechaRegistro.valueProperty().unbind();
+//            cmbEstadoPaciente.valueProperty().unbind();
             txtCedula.textProperty().unbind();
             txtNombre.textProperty().unbind();
             txtPrimerApellido.textProperty().unbind();
             txtSegundoApellido.textProperty().unbind();
             dtpFechaNacimeinto.valueProperty().unbind();
-            cmbTipoSeguro.valueProperty().unbind();
-            cmbEscolaridad.valueProperty().unbind();
-            txtDireccion.textProperty().unbind();
+//            cmbTipoSeguro.valueProperty().unbind();
+//            cmbEscolaridad.valueProperty().unbind();
+//            txtDireccion.textProperty().unbind();
     }
     
     @FXML
@@ -233,6 +242,7 @@ public class ExpedienteViewController extends Controller {
             }
         } catch (Exception ex) {
             Logger.getLogger(ExpedienteViewController.class.getName()).log(Level.SEVERE, "Error guardando el producto.", ex);
+            System.out.println(ex);
             new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar persona", getStage(), "Ocurrio un error guardando el producto.");
         }
     }
