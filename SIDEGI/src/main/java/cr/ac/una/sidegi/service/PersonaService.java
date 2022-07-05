@@ -61,11 +61,11 @@ public class PersonaService {
                 em.persist(persona);
             //}
             et.commit();
-            return new Respuesta(true, "", "", "Asociado", new PersonaDto());
+            return new Respuesta(true, "", "", "Persona", new PersonaDto());
         } catch (Exception ex) {
             et.rollback();
             //Logger.getLogger(PersonaService.class.getName()).log(Level.SEVERE, "Error guardando el asociado.", ex.getMessage());
-            return new Respuesta(false, "Error guardando el Asociado.", "guardarAsociado " + ex.getMessage());
+            return new Respuesta(false, "Error guardando la persona.", "guardarPersona " + ex.getMessage());
         }
     }
     

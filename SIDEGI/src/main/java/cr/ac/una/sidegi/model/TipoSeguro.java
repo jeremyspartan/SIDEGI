@@ -5,6 +5,7 @@
  */
 package cr.ac.una.sidegi.model;
 
+import cr.ac.una.sidegi.model.dto.TipoSeguroDto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -45,6 +46,15 @@ public class TipoSeguro implements Serializable {
     private List<Persona> personaList;
 
     public TipoSeguro() {
+    }
+    public TipoSeguro(TipoSeguroDto tipoSeguroDto) {
+        actualizarTipoSeguro(tipoSeguroDto);
+    }
+     
+    public void actualizarTipoSeguro(TipoSeguroDto tipoSeguroDto){
+        this.segId = tipoSeguroDto.getTipoSegId();
+        this.segDescripcion = tipoSeguroDto.getTipoSegDesc();
+        
     }
 
     public TipoSeguro(Long segId) {

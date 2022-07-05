@@ -5,6 +5,7 @@
  */
 package cr.ac.una.sidegi.model;
 
+import cr.ac.una.sidegi.model.dto.DireccionDto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -45,6 +46,16 @@ public class Direccion implements Serializable {
     private List<Persona> personaList;
 
     public Direccion() {
+    }
+    
+    public Direccion(DireccionDto direccionDto) {
+        actualizarDireccion(direccionDto);
+    }
+     
+    public void actualizarDireccion(DireccionDto direccionDto){
+        this.diridDireccion = direccionDto.getDirecId();
+        this.dirdescDireccion = direccionDto.getDirecDesc();
+        
     }
 
     public Direccion(Long diridDireccion) {

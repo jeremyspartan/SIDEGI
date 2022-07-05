@@ -5,6 +5,7 @@
  */
 package cr.ac.una.sidegi.model;
 
+import cr.ac.una.sidegi.model.dto.EscolaridadDto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -45,6 +46,16 @@ public class Escolaridad implements Serializable {
     private List<Persona> personaList;
 
     public Escolaridad() {
+    }
+    
+    public Escolaridad(EscolaridadDto escolaridadDto) {
+        actualizarEscolaridad(escolaridadDto);
+    }
+     
+    public void actualizarEscolaridad(EscolaridadDto escolaridadDto){
+        this.escId = escolaridadDto.getEscId();
+        this.escDescripcion = escolaridadDto.getEscDesc();
+        
     }
 
     public Escolaridad(Long escId) {
