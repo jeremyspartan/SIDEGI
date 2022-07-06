@@ -30,7 +30,7 @@ public class PacienteDto {
     public List<Entrevista> entrevistas;
     public List<Anexo> anexos;*/
     public InstitucionDto insId;
-    //public Persona perCedula;
+    public SimpleStringProperty perCedula;
     
     public PacienteDto(){
         this.pacIdPaciente = new SimpleStringProperty();
@@ -41,6 +41,7 @@ public class PacienteDto {
         this.pacfechaDiagnostico = new SimpleObjectProperty();
         this.pacDoctor = new SimpleStringProperty();
         this.pacFechaRegistro = new SimpleObjectProperty();
+        this.perCedula = new SimpleStringProperty();
     }
     
     public PacienteDto(Paciente paciente)
@@ -55,6 +56,7 @@ public class PacienteDto {
         this.pacDoctor.set(paciente.getPacDoctor());
         this.pacFechaRegistro.set(paciente.getPacFechaRegistro());
         this.insId = new InstitucionDto(paciente.getInsId());
+        this.perCedula.set(paciente.getPerCedula().getPerCedula());
     }
 
     public Long getPacIdPaciente() {
@@ -87,6 +89,16 @@ public class PacienteDto {
     public String getPacProfesionalResponsable() {
         return pacProfesionalResponsable.get();
     }
+
+    public String getPerCedula() {
+        return perCedula.get();
+    }
+
+    public void setPerCedula(String perCedula) {
+       this.perCedula.set(perCedula);
+    }
+    
+    
 
     public void setPacProfesionalResponsable(String pacProfesionalResponsable) {
         this.pacProfesionalResponsable.set(pacProfesionalResponsable);
