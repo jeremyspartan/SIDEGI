@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -52,7 +53,7 @@ public class Paciente implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @Column(name = "pac_idPaciente")
     private Long pacIdPaciente;
@@ -92,11 +93,11 @@ public class Paciente implements Serializable {
     private List<Entrevista> entrevistas;
     @OneToMany(mappedBy = "pacidPaciente")
     private List<Anexo> anexos;
+    @ManyToOne(cascade= CascadeType.MERGE)
     @JoinColumn(name = "ins_id", referencedColumnName = "ins_id")
-    @ManyToOne
     private Institucion insId;
+    @ManyToOne(cascade= CascadeType.MERGE)
     @JoinColumn(name = "per_cedula", referencedColumnName = "per_cedula")
-    @ManyToOne
     private Persona perCedula;
 
     public Paciente() {

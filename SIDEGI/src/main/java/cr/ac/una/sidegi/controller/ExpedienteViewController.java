@@ -234,10 +234,11 @@ public class ExpedienteViewController extends Controller {
                 PacienteService servicePac = new PacienteService();
                     Respuesta respuesta = service.guardarPersona(persona);
                     paciente.setPacEstado("T");
+                    paciente.setPacIdPaciente(Long.valueOf(1));
                     paciente.setPerCedula(persona.getPerCedula());
-                    Respuesta resPac = servicePac.guardarPaciente(paciente);
-                    if (!resPac.getEstado()) {
-                        new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar persona", getStage(), resPac.getMensaje());
+//                    Respuesta resPac = servicePac.guardarPaciente(paciente);
+                    if (!respuesta.getEstado()) {
+                        new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar persona", getStage(), respuesta.getMensaje());
                     } else {
                             unbindExpediente();
 //                            persona = (PersonaDto) respuesta.guardarPersona(persona);

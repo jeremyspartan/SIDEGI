@@ -24,21 +24,25 @@ public class PacienteService {
     private static final Logger LOG = Logger.getLogger(PacienteService.class.getName());
     
     
-    public Respuesta guardarPaciente(PacienteDto pacienteDto) {
+public Respuesta guardarPaciente(PacienteDto pacienteDto) {
         try {
+            et = em.getTransaction();
+            et.begin();
             Paciente paciente;
-            if (pacienteDto.getPacIdPaciente()!= null && pacienteDto.getPacIdPaciente()> 0) {
-                paciente = em.find(Paciente.class, pacienteDto.getInsId());
-                if (paciente == null) {
-                    return new Respuesta(false, "No se encrontró el paciente a modificar.", "guardarPaciente NoResultException");
-                }
-                paciente.actualizarPaciente(pacienteDto);
-                paciente = em.merge(paciente);
-            } else {
+            
+//            if (pacienteDto.getPacIdPaciente()!= null && pacienteDto.getPacIdPaciente()> 0) {
+//                paciente = em.find(Paciente.class, pacienteDto.getInsId());
+//                if (paciente == null) {
+//                    return new Respuesta(false, "No se encrontró el paciente a modificar.", "guardarPaciente NoResultException");
+//                }
+//                paciente.actualizarPaciente(pacienteDto);
+//                paciente = em.merge(paciente);
+//            } else {
                 paciente = new Paciente(pacienteDto);
                 em.persist(paciente);
-            }
-            em.flush();
+//            }
+//            em.flush();
+            et.commit();
             return new Respuesta(true, "", "", "Paciente", new PacienteDto(paciente));
         } catch (Exception ex) {
             LOG.log(Level.SEVERE, "Ocurrio un error al guardar el paciente.", ex);
