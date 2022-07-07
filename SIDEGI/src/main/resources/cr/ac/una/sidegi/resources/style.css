@@ -185,7 +185,7 @@ and open the template in the editor.
 .Cerrar>ImageView{-fx-image: url("../resources/error.png");}
 .Maximizar>ImageView{-fx-image: url("../resources/television.png");}
 .Minimizar>ImageView{-fx-image: url("../resources/minus.png");}
-.ImagenMenu{-fx-image: url("../resources/Fondo6.png");}                        
+.ImagenMenu{-fx-image: url("../resources/logoPng2.png");}                        
 .Sugerencia>ImageView{-fx-image: url("../resources/Signo.png");}
 
 .Sugerenciaboton{

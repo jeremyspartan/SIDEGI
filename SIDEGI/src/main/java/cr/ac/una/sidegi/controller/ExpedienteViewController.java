@@ -215,15 +215,6 @@ public class ExpedienteViewController extends Controller {
 
     @FXML
     private void onActionBtnGuardar(ActionEvent event) {
-//        persona.setPerCedula("116860582");
-//        persona.setPerNombre("Alberth");
-//        persona.setPerPapellido("Gamboa");
-//        persona.setPerSapellido("Alfaro");
-//        persona.setPerFechaNacimiento(LocalDate.of(1997, Month.SEPTEMBER, 4));
-        
-//        PersonaService service = new PersonaService();
-//        Respuesta respuesta = service.guardarPersona(persona);
-//        Respuesta respuesta;
         
         try {
             String invalidos = validarRequeridos();

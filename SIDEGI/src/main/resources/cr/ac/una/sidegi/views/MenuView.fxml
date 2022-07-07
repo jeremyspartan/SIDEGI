@@ -5,6 +5,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane fx:id="root" prefHeight="699.0" prefWidth="1188.0" stylesheets="@../resources/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.sidegi.controller.MenuViewController">
@@ -12,8 +13,8 @@
       <VBox alignment="TOP_CENTER" prefHeight="659.0" prefWidth="171.0" spacing="50.0" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="ImagenMenu" />
-            <JFXButton fx:id="btnEntrevista" onAction="#onActionBtnEntrevista" prefHeight="52.0" prefWidth="142.0" text="Entrevista" />
-            <JFXButton fx:id="btnInformacion" onAction="#onActionBtnInformacion" prefHeight="46.0" prefWidth="148.0" text="Informacion" />
+            <JFXButton fx:id="btnEntrevista" onAction="#onActionBtnEntrevista" prefHeight="52.0" prefWidth="142.0" text="Expedientes" />
+            <JFXButton fx:id="btnInformacion" onAction="#onActionBtnInformacion" prefHeight="46.0" prefWidth="148.0" text="Agenda" />
             <JFXButton fx:id="btnCerrarSesion" layoutX="21.0" layoutY="364.0" onAction="#onActionBtnCerrarSesion" prefHeight="46.0" prefWidth="148.0" text="Cerrar Sesion" />
          </children>
          <styleClass>
@@ -29,6 +30,15 @@
       </VBox>
    </left>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: white; -fx-border-width: 2;" styleClass="bor" BorderPane.alignment="CENTER" />
    </center>
+   <bottom>
+      <HBox prefHeight="9.0" prefWidth="1188.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <right>
+      <VBox prefHeight="690.0" prefWidth="7.0" BorderPane.alignment="CENTER" />
+   </right>
+   <top>
+      <HBox prefHeight="7.0" prefWidth="1188.0" BorderPane.alignment="CENTER" />
+   </top>
 </BorderPane>
