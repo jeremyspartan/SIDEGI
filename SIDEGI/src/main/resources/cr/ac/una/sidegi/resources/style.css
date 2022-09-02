@@ -10,7 +10,7 @@ and open the template in the editor.
 
 *{
     -fx-font-family: Roboto;
-    -fx-base-color-focus:#fff;
+    -fx-base-color-focus: black;
     -fx-base-color-unfocus:#4d4d4d;
     -fx-base-color-etiquetas:#4d4d4d/*#bcbcbc*/;
     -fx-base-color-titulos:#51b6cd;
@@ -19,21 +19,21 @@ and open the template in the editor.
 }
 .contenedorTxt>JFXTextField,JFXPasswordField {
     -fx-font-size: 15px;
-    -jfx-focus-color: #c4e426;                                 
-    -jfx-unfocus-color: white;
-    -fx-text-fill: white;
+    -jfx-focus-color: #00B9BB; /*#446CCF;                                 */
+    -jfx-unfocus-color: black;
+    -fx-text-fill: black;
     -fx-prompt-text-fill: -fx-base-color-focus;
 }
 .labelTitulos {
      -fx-font-family: arial;
     -fx-font-size: 40px;
-    -fx-font-style: italic;
-    -fx-text-fill: white;
-    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.9), 2, 0.0, 1, 2); 
+/*    -fx-font-style:;*/
+    -fx-text-fill: black;
+    /*-fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.9), 2, 0.0, 1, 2);*/ 
 
 }
 .labelContrasenna {
-     -fx-text-fill: white; 
+     -fx-text-fill: black; 
 }
 .labelContrasennaH :hover {
      -fx-text-fill: RED; 
@@ -45,7 +45,7 @@ and open the template in the editor.
     -fx-font-family: arial;
     -fx-font-size: 75px;
     /*-fx-font-style: bold;*/
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.9), 2, 0.0, 1, 2); 
 }
 
@@ -68,24 +68,42 @@ and open the template in the editor.
 .botonesSimples>JFXButton{
         border: 10px;
         -fx-font-size: 17px;
-    -fx-background-color: #009999;
+    -fx-background-color: #055875;
     -fx-background-radius: 5em;
     -fx-text-fill: white;
   
 }
+.botonesSimples2>JFXButton{
+        border: 10px;
+        -fx-font-size: 17px;
+    -fx-background-color: #055875;
+    -fx-background-radius: 5em;
+    -fx-text-fill: white;
+}
+.botonesRegistroHover2 > JFXButton:hover {
+    -fx-background-color: #FFFF8D ;/*#c4e426; #B30071;*/
+    -fx-cursor: hand;
+    -fx-text-fill: #7d7877;
+    -fx-font-weight: bold;
+}
+
+.botonesRegistroHover > JFXButton:hover {
+    -fx-background-color:orangered;
+    -fx-cursor: hand;
+}
 .labelSubTitulos {
      -fx-font-family: arial;
     -fx-font-size: 32px;
-    -fx-font-style: italic;
+    -fx-font-style: bold;
     -fx-text-fill: white;
-    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.9), 2, 0.0, 1, 2); 
+    /*-fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.9), 2, 0.0, 1, 2);*/ 
 
 }
 .ComboBox>JFXComboBox{
-    -fx-prompt-text-fill: white;
+    -fx-prompt-text-fill: black;
     -fx-font-size: 15px;
-    -jfx-focus-color: #c4e426;                                 
-    -jfx-unfocus-color: white;
+    -jfx-focus-color: #446CCF; /*#c4e426;*/                                 
+    -jfx-unfocus-color: black;
 }
 
 .btnPassword
@@ -103,10 +121,7 @@ and open the template in the editor.
     -fx-background-radius: 50%;
 
 }
-.botonesRegistroHover > JFXButton:hover {
-    -fx-background-color:orangered;
-    -fx-cursor: hand;
-}
+
 .botonesVentana > JFXButton:hover {
  
     -fx-cursor: hand;
@@ -152,19 +167,13 @@ and open the template in the editor.
         -fx-control-inner-background,
         -fx-faint-focus-color,
         linear-gradient(from 0px 0px to 0px 5px, derive(-fx-control-inner-background, -9%), -fx-control-inner-background);
--jfx-default-color: #10adcc;
+-jfx-default-color: #00B9BB;
 -fx-text-fill: white;
 -fx-prompt-text-fill: white;
 -fx-font-size: 15px;
 -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 2, 0.0, 1, 2);
 }
-.botonesSimples2>JFXButton{
-        border: 10px;
-        -fx-font-size: 17px;
-    -fx-background-color: #e65c00;
-    -fx-background-radius: 5em;
-    -fx-text-fill: white;
-}
+
 
 .botonesAnterior-Siguiente{
         border: 10px;
@@ -173,10 +182,7 @@ and open the template in the editor.
     -fx-background-radius: 5em;
     -fx-text-fill: white;
 }
-.botonesRegistroHover2 > JFXButton:hover {
-    -fx-background-color: #B30071;
-    -fx-cursor: hand;
-}
+
 .BackgroundTiutloMenu{-fx-background-image: url("../resources/fondo3.jpg");}
 .Background3 > ImageView{-fx-image: url("../resources/fondo3.jpg");}
 
@@ -240,14 +246,14 @@ and open the template in the editor.
 }
 
 .tab-header-background {
-    -fx-background-color: #A8155A;
+    -fx-background-color: #00B9BB;
 }
 
 /*Opciones para el tab del proyecto*/
 
 .tab .tab-label { 
     -fx-alignment: CENTER;
-    -fx-text-fill: #A0A0A0;
+    -fx-text-fill: #7d7877;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
     
@@ -374,9 +380,17 @@ and open the template in the editor.
 
 .root
 {
-    -fx-background-image:url("Fondo10.png");
+    /*-fx-background-image:url("Fondo11.png");*/
+    -fx-background-color:#00B9BB;
 }
-
+#expedienteViewRoot
+{
+   -fx-background-image:url("Fondo11.png"); 
+}
+#bpCenter
+{
+   -fx-background-image:url("Fondo11.png"); 
+}
 .MyJFXTextField
 {
    -jfx-focus-color: #c4e426;

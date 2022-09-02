@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import cr.ac.una.sidegi.util.FlowController;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -32,7 +33,13 @@ public class MenuViewController extends Controller {
     @FXML
     private JFXButton btnEntrevista;
     @FXML
-    private JFXButton btnInformacion;
+    private VBox bpCenter;
+    @FXML
+    private JFXButton btnRegistro;
+    @FXML
+    private JFXButton btnAgenda;
+    @FXML
+    private JFXButton btnReportes;
 
     /**
      * Initializes the controller class.
@@ -52,14 +59,22 @@ public class MenuViewController extends Controller {
         FlowController.getInstance().goView("ExpedienteView");
     }
 
-    @FXML
-    private void onActionBtnInformacion(ActionEvent event) {
-        
-    }
 
     @Override
     public void initialize() {
     
+    }
+
+    @FXML
+    private void onActionBtnRegistro(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionBtnAgenda(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionBtnReportes(ActionEvent event) {
     }
     
 }

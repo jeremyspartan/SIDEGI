@@ -42,8 +42,6 @@ import javafx.scene.control.Alert;
 public class ExpedienteViewController extends Controller {
 
     @FXML
-    private AnchorPane root;
-    @FXML
     private JFXButton btnLimpiar;
     @FXML
     private JFXButton btnGuardar;
@@ -85,6 +83,24 @@ public class ExpedienteViewController extends Controller {
     private List<Node> requeridos = new ArrayList<>();
     @FXML
     private JFXTextField txtDireccion;
+    @FXML
+    private AnchorPane expedienteViewRoot;
+    @FXML
+    private JFXTextField txtCedulaPerCuidadora;
+    @FXML
+    private JFXTextField txtNombrePerCuidadora;
+    @FXML
+    private JFXTextField txtPrimerApellidoPerCuidadora;
+    @FXML
+    private JFXTextField txtSegundoApellidoPerCuidadora;
+    @FXML
+    private JFXTextField txtDireccionPerCuidadora;
+    @FXML
+    private JFXDatePicker dtpFechaNacimeintoPerCuidadora;
+    @FXML
+    private JFXComboBox<String> cmbTipoSeguroPerCuidadora;
+    @FXML
+    private JFXComboBox<String> cmbEscolaridadPerCuidadora;
     
 
     @Override
