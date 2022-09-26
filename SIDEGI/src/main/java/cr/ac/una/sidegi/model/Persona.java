@@ -11,10 +11,12 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -35,169 +37,184 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p"),
-    @NamedQuery(name = "Persona.findByPerCedula", query = "SELECT p FROM Persona p WHERE p.perCedula = :perCedula"),
-    @NamedQuery(name = "Persona.findByPerpApellido", query = "SELECT p FROM Persona p WHERE p.perpApellido = :perpApellido"),
-    @NamedQuery(name = "Persona.findByPersApellido", query = "SELECT p FROM Persona p WHERE p.persApellido = :persApellido"),
-    @NamedQuery(name = "Persona.findByPerNombre", query = "SELECT p FROM Persona p WHERE p.perNombre = :perNombre"),
-    @NamedQuery(name = "Persona.findByPerfechaNac", query = "SELECT p FROM Persona p WHERE p.perfechaNac = :perfechaNac")})
+    @NamedQuery(name = "Persona.findByPerCedula", query = "SELECT p FROM Persona p WHERE p.cedula = :cedula"),
+    @NamedQuery(name = "Persona.findByPerpApellido", query = "SELECT p FROM Persona p WHERE p.pApellido = :pApellido"),
+    @NamedQuery(name = "Persona.findByPersApellido", query = "SELECT p FROM Persona p WHERE p.sApellido = :sApellido"),
+    @NamedQuery(name = "Persona.findByPerNombre", query = "SELECT p FROM Persona p WHERE p.nombre = :nombre"),
+    @NamedQuery(name = "Persona.findByPerfechaNac", query = "SELECT p FROM Persona p WHERE p.fechaNac = :fechaNac")})
 public class Persona implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "per_cedula")
-    private String perCedula;
+    private String cedula;
     @Basic(optional = false)
     @Column(name = "per_pApellido")
-    private String perpApellido;
+    private String pApellido;
     @Basic(optional = false)
     @Column(name = "per_sApellido")
-    private String persApellido;
+    private String sApellido;
     @Basic(optional = false)
     @Column(name = "per_nombre")
-    private String perNombre;
+    private String nombre;
     @Basic(optional = false)
     @Column(name = "per_fechaNac")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date perfechaNac;
-    @ManyToMany(mappedBy = "personas")
+    private Date fechaNac;
+    @JoinTable(name = "sid_personacontactos", joinColumns = {
+        @JoinColumn(name = "pxc_cedula", referencedColumnName = "per_cedula")}, inverseJoinColumns = {
+        @JoinColumn(name = "pxc_idContacto", referencedColumnName = "con_idContacto")})
+    @ManyToMany
     private List<Contacto> contactos;
-    @JoinColumn(name = "dir_idDireccion", referencedColumnName = "dir_idDireccion")
+    @JoinColumn(name = "per_idDireccion", referencedColumnName = "dir_idDireccion")
     @ManyToOne
-    private Direccion diridDireccion;
-    @JoinColumn(name = "esc_id", referencedColumnName = "esc_id")
+    private Direccion direccion;
+    @JoinColumn(name = "per_idEscolaridad", referencedColumnName = "esc_idEscolaridad")
     @ManyToOne
-    private Escolaridad escId;
-    @JoinColumn(name = "seg_id", referencedColumnName = "seg_id")
+    private Escolaridad escolaridad;
+    @JoinColumn(name = "per_idTipoSeguro", referencedColumnName = "seg_idTipoSeguro")
     @ManyToOne
-    private TipoSeguro segId;
-    @OneToMany(mappedBy = "perCedula")
-    private List<Acompannante> acompannantes;
-    @OneToMany(mappedBy = "perCedula")
-    private List<Paciente> pacientes;
+    private TipoSeguro tipoSeguro;
+    @OneToMany(mappedBy = "cedula")
+    private List<Acompannante> acompannantes;//mapeado por el campo cedula de Acompañante
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
+    private List<Usuario> usuarios;//mapeado por el campo cedula de Usuario
+    @OneToMany(mappedBy = "persona")
+    private List<Paciente> pacientes;//mapeado por el campo cedula de Paciente
 
     public Persona() {
     }
-
-    public Persona(String perCedula) {
-        this.perCedula = perCedula;
-    }
-
-    public Persona(String perCedula, String perpApellido, String persApellido, String perNombre, Date perfechaNac) {
-        this.perCedula = perCedula;
-        this.perpApellido = perpApellido;
-        this.persApellido = persApellido;
-        this.perNombre = perNombre;
-        this.perfechaNac = perfechaNac;
-    }
+    
     public Persona(PersonaDto personaDto) {
-        this.perCedula= personaDto.getPerCedula();
+        this.cedula= personaDto.getCedula();
         actualizarPersona(personaDto);
     }
     
     public void actualizarPersona(PersonaDto personaDto) {
-        this.perCedula = personaDto.getPerCedula();
-        this.perpApellido = personaDto.getPerPapellido();
-        this.persApellido = personaDto.getPerSapellido();
-        this.perNombre = personaDto.getPerNombre();
-        this.perfechaNac =  Date.from(personaDto.getPerFechaNacimiento().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        this.cedula = personaDto.getCedula();
+        this.pApellido = personaDto.getPapellido();
+        this.sApellido = personaDto.getSapellido();
+        this.nombre = personaDto.getNombre();
+        this.fechaNac =  Date.from(personaDto.getFechaNacimiento().atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
 
-    public String getPerCedula() {
-        return perCedula;
+    public Persona(String perCedula) {
+        this.cedula = perCedula;
     }
 
-    public void setPerCedula(String perCedula) {
-        this.perCedula = perCedula;
+    public Persona(String perCedula, String perpApellido, String persApellido, String perNombre, Date perfechaNac) {
+        this.cedula = perCedula;
+        this.pApellido = perpApellido;
+        this.sApellido = persApellido;
+        this.nombre = perNombre;
+        this.fechaNac = perfechaNac;
     }
 
-    public String getPerpApellido() {
-        return perpApellido;
+    public String getCedula() {
+        return cedula;
     }
 
-    public void setPerpApellido(String perpApellido) {
-        this.perpApellido = perpApellido;
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
-    public String getPersApellido() {
-        return persApellido;
+    public String getpApellido() {
+        return pApellido;
     }
 
-    public void setPersApellido(String persApellido) {
-        this.persApellido = persApellido;
+    public void setpApellido(String pApellido) {
+        this.pApellido = pApellido;
     }
 
-    public String getPerNombre() {
-        return perNombre;
+    public String getsApellido() {
+        return sApellido;
     }
 
-    public void setPerNombre(String perNombre) {
-        this.perNombre = perNombre;
+    public void setsApellido(String sApellido) {
+        this.sApellido = sApellido;
     }
 
-    public Date getPerfechaNac() {
-        return perfechaNac;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setPerfechaNac(Date perfechaNac) {
-        this.perfechaNac = perfechaNac;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Date getFechaNac() {
+        return fechaNac;
+    }
+
+    public void setFechaNac(Date fechaNac) {
+        this.fechaNac = fechaNac;
     }
 
     @XmlTransient
-    public List<Contacto> getContactoList() {
+    public List<Contacto> getContactos() {
         return contactos;
     }
 
-    public void setContactoList(List<Contacto> contactoList) {
-        this.contactos = contactoList;
+    public void setContactos(List<Contacto> contactos) {
+        this.contactos = contactos;
     }
 
-    public Direccion getDiridDireccion() {
-        return diridDireccion;
+    public Direccion getDireccion() {
+        return direccion;
     }
 
-    public void setDiridDireccion(Direccion diridDireccion) {
-        this.diridDireccion = diridDireccion;
+    public void setDireccion(Direccion direccion) {
+        this.direccion = direccion;
     }
 
-    public Escolaridad getEscId() {
-        return escId;
+    public Escolaridad getEscolaridad() {
+        return escolaridad;
     }
 
-    public void setEscId(Escolaridad escId) {
-        this.escId = escId;
+    public void setEscolaridad(Escolaridad escolaridad) {
+        this.escolaridad = escolaridad;
     }
 
-    public TipoSeguro getSegId() {
-        return segId;
+    public TipoSeguro getTipoSeguro() {
+        return tipoSeguro;
     }
 
-    public void setSegId(TipoSeguro segId) {
-        this.segId = segId;
+    public void setTipoSeguro(TipoSeguro tipoSeguro) {
+        this.tipoSeguro = tipoSeguro;
     }
 
     @XmlTransient
-    public List<Acompannante> getAcompannanteList() {
+    public List<Acompannante> getAcompannantes() {
         return acompannantes;
     }
 
-    public void setAcompannanteList(List<Acompannante> acompannanteList) {
-        this.acompannantes = acompannanteList;
+    public void setAcompannantes(List<Acompannante> acompannantes) {
+        this.acompannantes = acompannantes;
     }
 
     @XmlTransient
-    public List<Paciente> getPacienteList() {
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    @XmlTransient
+    public List<Paciente> getPacientes() {
         return pacientes;
     }
 
-    public void setPacienteList(List<Paciente> pacienteList) {
-        this.pacientes = pacienteList;
+    public void setPacientes(List<Paciente> pacientes) {
+        this.pacientes = pacientes;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (perCedula != null ? perCedula.hashCode() : 0);
+        hash += (cedula != null ? cedula.hashCode() : 0);
         return hash;
     }
 
@@ -208,7 +225,7 @@ public class Persona implements Serializable {
             return false;
         }
         Persona other = (Persona) object;
-        if ((this.perCedula == null && other.perCedula != null) || (this.perCedula != null && !this.perCedula.equals(other.perCedula))) {
+        if ((this.cedula == null && other.cedula != null) || (this.cedula != null && !this.cedula.equals(other.cedula))) {
             return false;
         }
         return true;
@@ -216,7 +233,7 @@ public class Persona implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.Persona[ perCedula=" + perCedula + " ]";
+        return "cr.ac.una.sidegi.model.Persona[ perCedula=" + cedula + " ]";
     }
     
 }

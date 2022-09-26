@@ -6,11 +6,12 @@
 package cr.ac.una.sidegi.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -28,74 +29,74 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Vivienda.findAll", query = "SELECT v FROM Vivienda v"),
-    @NamedQuery(name = "Vivienda.findByVivId", query = "SELECT v FROM Vivienda v WHERE v.vivId = :vivId"),
-    @NamedQuery(name = "Vivienda.findByVivDescripcion", query = "SELECT v FROM Vivienda v WHERE v.vivDescripcion = :vivDescripcion"),
-    @NamedQuery(name = "Vivienda.findByVivisAcondicionada", query = "SELECT v FROM Vivienda v WHERE v.vivisAcondicionada = :vivisAcondicionada")})
+    @NamedQuery(name = "Vivienda.findByVividVivienda", query = "SELECT v FROM Vivienda v WHERE v.idVivienda = :idVivienda"),
+    @NamedQuery(name = "Vivienda.findByVivDescripcion", query = "SELECT v FROM Vivienda v WHERE v.descripcion = :descripcion"),
+    @NamedQuery(name = "Vivienda.findByVivisAcondicionada", query = "SELECT v FROM Vivienda v WHERE v.isAcondicionada = :isAcondicionada")})
 public class Vivienda implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "viv_id")
-    private Long vivId;
+    @Column(name = "viv_idVivienda")
+    private Integer idVivienda;
     @Column(name = "viv_descripcion")
-    private String vivDescripcion;
+    private String descripcion;
     @Basic(optional = false)
     @Column(name = "viv_isAcondicionada")
-    private String vivisAcondicionada;
-    @OneToMany(mappedBy = "vivId")
-    private List<Entrevista> entrevistaList;
+    private String isAcondicionada;
+    @OneToMany(mappedBy = "vivienda")
+    private List<Entrevista> entrevistas;//mapeado por el campo idVivivienda de Entrevista
 
     public Vivienda() {
     }
 
-    public Vivienda(Long vivId) {
-        this.vivId = vivId;
+    public Vivienda(Integer vividVivienda) {
+        this.idVivienda = vividVivienda;
     }
 
-    public Vivienda(Long vivId, String vivisAcondicionada) {
-        this.vivId = vivId;
-        this.vivisAcondicionada = vivisAcondicionada;
+    public Vivienda(Integer vividVivienda, String vivisAcondicionada) {
+        this.idVivienda = vividVivienda;
+        this.isAcondicionada = vivisAcondicionada;
     }
 
-    public Long getVivId() {
-        return vivId;
+    public Integer getIdVivienda() {
+        return idVivienda;
     }
 
-    public void setVivId(Long vivId) {
-        this.vivId = vivId;
+    public void setIdVivienda(Integer idVivienda) {
+        this.idVivienda = idVivienda;
     }
 
-    public String getVivDescripcion() {
-        return vivDescripcion;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setVivDescripcion(String vivDescripcion) {
-        this.vivDescripcion = vivDescripcion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public String getVivisAcondicionada() {
-        return vivisAcondicionada;
+    public String getIsAcondicionada() {
+        return isAcondicionada;
     }
 
-    public void setVivisAcondicionada(String vivisAcondicionada) {
-        this.vivisAcondicionada = vivisAcondicionada;
+    public void setIsAcondicionada(String isAcondicionada) {
+        this.isAcondicionada = isAcondicionada;
     }
 
     @XmlTransient
-    public List<Entrevista> getEntrevistaList() {
-        return entrevistaList;
+    public List<Entrevista> getEntrevistas() {
+        return entrevistas;
     }
 
-    public void setEntrevistaList(List<Entrevista> entrevistaList) {
-        this.entrevistaList = entrevistaList;
+    public void setEntrevistas(List<Entrevista> entrevistas) {
+        this.entrevistas = entrevistas;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (vivId != null ? vivId.hashCode() : 0);
+        hash += (idVivienda != null ? idVivienda.hashCode() : 0);
         return hash;
     }
 
@@ -106,7 +107,7 @@ public class Vivienda implements Serializable {
             return false;
         }
         Vivienda other = (Vivienda) object;
-        if ((this.vivId == null && other.vivId != null) || (this.vivId != null && !this.vivId.equals(other.vivId))) {
+        if ((this.idVivienda == null && other.idVivienda != null) || (this.idVivienda != null && !this.idVivienda.equals(other.idVivienda))) {
             return false;
         }
         return true;
@@ -114,7 +115,7 @@ public class Vivienda implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.Vivienda[ vivId=" + vivId + " ]";
+        return "cr.ac.una.sidegi.model.Vivienda[ vividVivienda=" + idVivienda + " ]";
     }
     
 }

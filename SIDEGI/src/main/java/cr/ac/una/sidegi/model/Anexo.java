@@ -6,10 +6,11 @@
 package cr.ac.una.sidegi.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -28,74 +29,74 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Anexo.findAll", query = "SELECT a FROM Anexo a"),
-    @NamedQuery(name = "Anexo.findByAneidAnexo", query = "SELECT a FROM Anexo a WHERE a.aneidAnexo = :aneidAnexo")})
+    @NamedQuery(name = "Anexo.findByAneidAnexo", query = "SELECT a FROM Anexo a WHERE a.idAnexo = :idAnexo")})
 public class Anexo implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ane_idAnexo")
-    private Long aneidAnexo;
+    private Integer idAnexo;
     @Basic(optional = false)
     @Lob
     @Column(name = "ane_documento")
-    private byte[] aneDocumento;
-    @JoinColumn(name = "pac_idPaciente", referencedColumnName = "pac_idPaciente")
+    private byte[] documento;
+    @JoinColumn(name = "ane_idPaciente", referencedColumnName = "pac_idPaciente")
     @ManyToOne
-    private Paciente pacidPaciente;
-    @JoinColumn(name = "tdo_idTipoDocumento", referencedColumnName = "tdo_idTipoDocumento")
+    private Paciente idPaciente;
+    @JoinColumn(name = "ane_idTipoDocumento", referencedColumnName = "tdo_idTipoDocumento")
     @ManyToOne
-    private TipoDocumento tdoidTipoDocumento;
+    private TipoDocumento tipoDocumento;
 
     public Anexo() {
     }
 
-    public Anexo(Long aneidAnexo) {
-        this.aneidAnexo = aneidAnexo;
+    public Anexo(Integer aneidAnexo) {
+        this.idAnexo = aneidAnexo;
     }
 
-    public Anexo(Long aneidAnexo, byte[] aneDocumento) {
-        this.aneidAnexo = aneidAnexo;
-        this.aneDocumento = aneDocumento;
+    public Anexo(Integer aneidAnexo, byte[] aneDocumento) {
+        this.idAnexo = aneidAnexo;
+        this.documento = aneDocumento;
     }
 
-    public Long getAneidAnexo() {
-        return aneidAnexo;
+    public Integer getIdAnexo() {
+        return idAnexo;
     }
 
-    public void setAneidAnexo(Long aneidAnexo) {
-        this.aneidAnexo = aneidAnexo;
+    public void setIdAnexo(Integer idAnexo) {
+        this.idAnexo = idAnexo;
     }
 
-    public byte[] getAneDocumento() {
-        return aneDocumento;
+    public byte[] getDocumento() {
+        return documento;
     }
 
-    public void setAneDocumento(byte[] aneDocumento) {
-        this.aneDocumento = aneDocumento;
+    public void setDocumento(byte[] documento) {
+        this.documento = documento;
     }
 
-    public Paciente getPacidPaciente() {
-        return pacidPaciente;
+    public Paciente getIdPaciente() {
+        return idPaciente;
     }
 
-    public void setPacidPaciente(Paciente pacidPaciente) {
-        this.pacidPaciente = pacidPaciente;
+    public void setIdPaciente(Paciente idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
-    public TipoDocumento getTdoidTipoDocumento() {
-        return tdoidTipoDocumento;
+    public TipoDocumento getTipoDocumento() {
+        return tipoDocumento;
     }
 
-    public void setTdoidTipoDocumento(TipoDocumento tdoidTipoDocumento) {
-        this.tdoidTipoDocumento = tdoidTipoDocumento;
+    public void setTipoDocumento(TipoDocumento tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (aneidAnexo != null ? aneidAnexo.hashCode() : 0);
+        hash += (idAnexo != null ? idAnexo.hashCode() : 0);
         return hash;
     }
 
@@ -106,7 +107,7 @@ public class Anexo implements Serializable {
             return false;
         }
         Anexo other = (Anexo) object;
-        if ((this.aneidAnexo == null && other.aneidAnexo != null) || (this.aneidAnexo != null && !this.aneidAnexo.equals(other.aneidAnexo))) {
+        if ((this.idAnexo == null && other.idAnexo != null) || (this.idAnexo != null && !this.idAnexo.equals(other.idAnexo))) {
             return false;
         }
         return true;
@@ -114,7 +115,7 @@ public class Anexo implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.Anexo[ aneidAnexo=" + aneidAnexo + " ]";
+        return "cr.ac.una.sidegi.model.Anexo[ aneidAnexo=" + idAnexo + " ]";
     }
     
 }

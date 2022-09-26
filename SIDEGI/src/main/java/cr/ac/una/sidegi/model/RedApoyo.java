@@ -6,11 +6,12 @@
 package cr.ac.una.sidegi.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -30,74 +31,74 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "RedApoyo.findAll", query = "SELECT r FROM RedApoyo r"),
-    @NamedQuery(name = "RedApoyo.findByRaId", query = "SELECT r FROM RedApoyo r WHERE r.raId = :raId"),
-    @NamedQuery(name = "RedApoyo.findByRaDescripcion", query = "SELECT r FROM RedApoyo r WHERE r.raDescripcion = :raDescripcion")})
+    @NamedQuery(name = "RedApoyo.findByRaidRedApoyo", query = "SELECT r FROM RedApoyo r WHERE r.idRedApoyo = :idRedApoyo"),
+    @NamedQuery(name = "RedApoyo.findByRaDescripcion", query = "SELECT r FROM RedApoyo r WHERE r.descripcion = :descripcion")})
 public class RedApoyo implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ra_id")
-    private Long raId;
+    @Column(name = "ra_idRedApoyo")
+    private Integer idRedApoyo;
     @Basic(optional = false)
     @Column(name = "ra_descripcion")
-    private String raDescripcion;
-    @OneToMany(mappedBy = "raId")
-    private List<Entrevista> entrevistaList;
-    @JoinColumn(name = "tra_id", referencedColumnName = "tra_id")
+    private String descripcion;
+    @OneToMany(mappedBy = "redApoyo")
+    private List<Entrevista> entrevistas;//mapeado por el campo idRedApoyo de Entrevista
+    @JoinColumn(name = "ra_idTipoRedDeApoyo", referencedColumnName = "tra_idTipoRedDeApoyo")
     @ManyToOne
-    private TipoRedApoyo traId;
+    private TipoRedApoyo tipoRedDeApoyo;
 
     public RedApoyo() {
     }
 
-    public RedApoyo(Long raId) {
-        this.raId = raId;
+    public RedApoyo(Integer raidRedApoyo) {
+        this.idRedApoyo = raidRedApoyo;
     }
 
-    public RedApoyo(Long raId, String raDescripcion) {
-        this.raId = raId;
-        this.raDescripcion = raDescripcion;
+    public RedApoyo(Integer raidRedApoyo, String raDescripcion) {
+        this.idRedApoyo = raidRedApoyo;
+        this.descripcion = raDescripcion;
     }
 
-    public Long getRaId() {
-        return raId;
+    public Integer getIdRedApoyo() {
+        return idRedApoyo;
     }
 
-    public void setRaId(Long raId) {
-        this.raId = raId;
+    public void setIdRedApoyo(Integer idRedApoyo) {
+        this.idRedApoyo = idRedApoyo;
     }
 
-    public String getRaDescripcion() {
-        return raDescripcion;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setRaDescripcion(String raDescripcion) {
-        this.raDescripcion = raDescripcion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @XmlTransient
-    public List<Entrevista> getEntrevistaList() {
-        return entrevistaList;
+    public List<Entrevista> getEntrevistas() {
+        return entrevistas;
     }
 
-    public void setEntrevistaList(List<Entrevista> entrevistaList) {
-        this.entrevistaList = entrevistaList;
+    public void setEntrevistas(List<Entrevista> entrevistas) {
+        this.entrevistas = entrevistas;
     }
 
-    public TipoRedApoyo getTraId() {
-        return traId;
+    public TipoRedApoyo getTipoRedDeApoyo() {
+        return tipoRedDeApoyo;
     }
 
-    public void setTraId(TipoRedApoyo traId) {
-        this.traId = traId;
+    public void setTipoRedDeApoyo(TipoRedApoyo tipoRedDeApoyo) {
+        this.tipoRedDeApoyo = tipoRedDeApoyo;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (raId != null ? raId.hashCode() : 0);
+        hash += (idRedApoyo != null ? idRedApoyo.hashCode() : 0);
         return hash;
     }
 
@@ -108,7 +109,7 @@ public class RedApoyo implements Serializable {
             return false;
         }
         RedApoyo other = (RedApoyo) object;
-        if ((this.raId == null && other.raId != null) || (this.raId != null && !this.raId.equals(other.raId))) {
+        if ((this.idRedApoyo == null && other.idRedApoyo != null) || (this.idRedApoyo != null && !this.idRedApoyo.equals(other.idRedApoyo))) {
             return false;
         }
         return true;
@@ -116,7 +117,7 @@ public class RedApoyo implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.RedApoyo[ raId=" + raId + " ]";
+        return "cr.ac.una.sidegi.model.RedApoyo[ raidRedApoyo=" + idRedApoyo + " ]";
     }
     
 }

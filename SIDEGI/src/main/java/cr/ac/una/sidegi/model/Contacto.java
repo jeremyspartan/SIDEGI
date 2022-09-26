@@ -6,12 +6,13 @@
 package cr.ac.una.sidegi.model;
 
 import cr.ac.una.sidegi.model.dto.ContactoDto;
-import cr.ac.una.sidegi.model.dto.TipoContactoDto;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -31,33 +32,30 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "sid_contactos")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Contacto.findAll", query = "SELECT c FROM Contacto c"),
-    @NamedQuery(name = "Contacto.findByConidContacto", query = "SELECT c FROM Contacto c WHERE c.conIdContacto = :conIdContacto"),
-    @NamedQuery(name = "Contacto.findByConContacto", query = "SELECT c FROM Contacto c WHERE c.conContacto = :conContacto")})
+    @NamedQuery(name = "Contacto_1.findAll", query = "SELECT c FROM Contacto c"),
+    @NamedQuery(name = "Contacto_1.findByConidContacto", query = "SELECT c FROM Contacto c WHERE c.idContacto = :idContacto"),
+    @NamedQuery(name = "Contacto_1.findByConContacto", query = "SELECT c FROM Contacto c WHERE c.contacto = :contacto")})
 public class Contacto implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "con_idContacto")
-    private Long conIdContacto;
+    private Integer idContacto;
     @Basic(optional = false)
     @Column(name = "con_contacto")
-    private String conContacto;
+    private String contacto;
     @JoinTable(name = "sid_institucionescontactos", joinColumns = {
-        @JoinColumn(name = "con_idContacto", referencedColumnName = "con_idContacto")}, inverseJoinColumns = {
-        @JoinColumn(name = "ins_id", referencedColumnName = "ins_id")})
+        @JoinColumn(name = "ixc_idContacto", referencedColumnName = "con_idContacto")}, inverseJoinColumns = {
+        @JoinColumn(name = "ixc_idInstitucion", referencedColumnName = "ins_idInstitucion")})
     @ManyToMany
     private List<Institucion> instituciones;
-    @JoinTable(name = "sid_personacontactos", joinColumns = {
-        @JoinColumn(name = "con_idContacto", referencedColumnName = "con_idContacto")}, inverseJoinColumns = {
-        @JoinColumn(name = "per_cedula", referencedColumnName = "per_cedula")})
-    @ManyToMany
+    @ManyToMany(mappedBy = "contactos")
     private List<Persona> personas;
-    @JoinColumn(name = "tpc_idTipoContacto", referencedColumnName = "tpc_idTipoContacto")
+    @JoinColumn(name = "con_idTipoContacto", referencedColumnName = "tpc_idTipoContacto")
     @ManyToOne
-    private TipoContacto tpcIdTipoContacto;
+    private TipoContacto tipoContacto;
 
     public Contacto() {
     }
@@ -68,37 +66,36 @@ public class Contacto implements Serializable {
     
     public void ActualizarContacto(ContactoDto contactoDto)
     {
-        this.conIdContacto = contactoDto.getConIdContacto();
-        this.conContacto = contactoDto.getConContacto();
-        this.tpcIdTipoContacto = new TipoContacto(contactoDto.getTpcIdTipoContactoDto());
+        this.contacto = contactoDto.getContacto();
+        this.tipoContacto = new TipoContacto(contactoDto.getTipoContactoDto().getIdTipoContacto());
         contactoDto.getInstitucionesDto().forEach((object) -> {
             this.instituciones.add(new Institucion(object));
         });
     }
 
-    public Contacto(Long conidContacto) {
-        this.conIdContacto = conidContacto;
+    public Contacto(Integer conidContacto) {
+        this.idContacto = conidContacto;
     }
 
-    public Contacto(Long conidContacto, String conContacto) {
-        this.conIdContacto = conidContacto;
-        this.conContacto = conContacto;
+    public Contacto(Integer conidContacto, String conContacto) {
+        this.idContacto = conidContacto;
+        this.contacto = conContacto;
     }
 
-    public Long getConIdContacto() {
-        return conIdContacto;
+    public Integer getIdContacto() {
+        return idContacto;
     }
 
-    public void setConIdContacto(Long conIdContacto) {
-        this.conIdContacto = conIdContacto;
+    public void setIdContacto(Integer idContacto) {
+        this.idContacto = idContacto;
     }
 
-    public String getConContacto() {
-        return conContacto;
+    public String getContacto() {
+        return contacto;
     }
 
-    public void setConContacto(String conContacto) {
-        this.conContacto = conContacto;
+    public void setContacto(String contacto) {
+        this.contacto = contacto;
     }
 
     @XmlTransient
@@ -119,18 +116,18 @@ public class Contacto implements Serializable {
         this.personas = personas;
     }
 
-    public TipoContacto getTpcIdTipoContacto() {
-        return tpcIdTipoContacto;
+    public TipoContacto getTipoContacto() {
+        return tipoContacto;
     }
 
-    public void setTpcIdTipoContacto(TipoContacto tpcIdTipoContacto) {
-        this.tpcIdTipoContacto = tpcIdTipoContacto;
+    public void setTipoContacto(TipoContacto tipoContacto) {
+        this.tipoContacto = tipoContacto;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (conIdContacto != null ? conIdContacto.hashCode() : 0);
+        hash += (idContacto != null ? idContacto.hashCode() : 0);
         return hash;
     }
 
@@ -141,7 +138,7 @@ public class Contacto implements Serializable {
             return false;
         }
         Contacto other = (Contacto) object;
-        if ((this.conIdContacto == null && other.conIdContacto != null) || (this.conIdContacto != null && !this.conIdContacto.equals(other.conIdContacto))) {
+        if ((this.idContacto == null && other.idContacto != null) || (this.idContacto != null && !this.idContacto.equals(other.idContacto))) {
             return false;
         }
         return true;
@@ -149,7 +146,7 @@ public class Contacto implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.Contacto[ conidContacto=" + conIdContacto + " ]";
+        return "cr.ac.una.sidegi.model.Contacto_1[ conidContacto=" + idContacto + " ]";
     }
     
 }

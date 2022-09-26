@@ -27,8 +27,8 @@ public class DireccionService {
     public Respuesta guardarDireccion(DireccionDto direccionDto) {
         try {
             Direccion direccion;
-            if (direccionDto.getDirecId()!= null && direccionDto.getDirecId()> 0) {
-                direccion = em.find(Direccion.class, direccionDto.getDirecId());
+            if (direccionDto.getIdDireccion()!= null && direccionDto.getIdDireccion()> 0) {
+                direccion = em.find(Direccion.class, direccionDto.getIdDireccion());
                 if (direccion == null) {
                     return new Respuesta(false, "No se encrontró la direccion a modificar.", "guardarDireccion NoResultException");
                 }

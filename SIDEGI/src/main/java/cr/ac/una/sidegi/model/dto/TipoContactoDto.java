@@ -16,41 +16,41 @@ import javafx.beans.property.SimpleStringProperty;
  * @author computer
  */
 public class TipoContactoDto {
-    public SimpleStringProperty tpcidTipoContacto;
-    public SimpleStringProperty tpcDescripcion;
+    public SimpleStringProperty idTipoContacto;
+    public SimpleStringProperty descripcion;
     public List<ContactoDto> contactos;
     
     public TipoContactoDto(){
-        this.tpcidTipoContacto = new SimpleStringProperty();
-        this.tpcDescripcion = new SimpleStringProperty();
+        this.idTipoContacto = new SimpleStringProperty();
+        this.descripcion = new SimpleStringProperty();
         contactos = new ArrayList<>();
     }
     
     public TipoContactoDto(TipoContacto tipoContacto){
-        this.tpcidTipoContacto.set(Long.toString(tipoContacto.getTpcidTipoContacto()));
-        this.tpcDescripcion.set(tipoContacto.getTpcDescripcion());
+        this.idTipoContacto.set(Long.toString(tipoContacto.getIdTipoContacto()));
+        this.descripcion.set(tipoContacto.getDescripcion());
         tipoContacto.getContactos().forEach((object) -> {
             contactos.add(new ContactoDto(object));
         });//paso la lista de contactos de la bd a la lista de contactos del tipo dto
     }
 
-    public Long getTpcidTipoContacto() {
-        if(tpcidTipoContacto.get()!=null && !tpcidTipoContacto.get().isEmpty())
-            return Long.valueOf(tpcidTipoContacto.get());
+    public Integer getIdTipoContacto() {
+        if(idTipoContacto.get()!=null && !idTipoContacto.get().isEmpty())
+            return Integer.valueOf(idTipoContacto.get());
         else
             return null;
     }
 
-    public void setTpcidTipoContacto(Long tpcidTipoContacto) {
-        this.tpcidTipoContacto.set(tpcidTipoContacto.toString());
+    public void setIdTipoContacto(Integer idTipoContacto) {
+        this.idTipoContacto.set(idTipoContacto.toString());
     }
 
-    public String getTpcDescripcion() {
-        return tpcDescripcion.get();
+    public String getDescripcion() {
+        return descripcion.get();
     }
 
-    public void setTpcDescripcion(String tpcDescripcion) {
-        this.tpcDescripcion.set(tpcDescripcion);
+    public void setDescripcion(String descripcion) {
+        this.descripcion.set(descripcion);
     }
 
     public List<ContactoDto> getContactos() {

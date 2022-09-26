@@ -6,11 +6,14 @@
 package cr.ac.una.sidegi.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -25,65 +28,76 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
-    @NamedQuery(name = "Usuario.findByUsuidUsuario", query = "SELECT u FROM Usuario u WHERE u.usuidUsuario = :usuidUsuario"),
-    @NamedQuery(name = "Usuario.findByUsunombreUsuario", query = "SELECT u FROM Usuario u WHERE u.usunombreUsuario = :usunombreUsuario"),
-    @NamedQuery(name = "Usuario.findByUsuContrasenna", query = "SELECT u FROM Usuario u WHERE u.usuContrasenna = :usuContrasenna")})
+    @NamedQuery(name = "Usuario.findByUsuidUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
+    @NamedQuery(name = "Usuario.findByUsunombreUsuario", query = "SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombreUsuario"),
+    @NamedQuery(name = "Usuario.findByUsuContrasenna", query = "SELECT u FROM Usuario u WHERE u.contrasenna = :contrasenna")})
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "usu_idUsuario")
-    private Long usuidUsuario;
+    private Integer idUsuario;
     @Basic(optional = false)
     @Column(name = "usu_nombreUsuario")
-    private String usunombreUsuario;
+    private String nombreUsuario;
     @Basic(optional = false)
     @Column(name = "usu_contrasenna")
-    private String usuContrasenna;
+    private String contrasenna;
+    @JoinColumn(name = "usu_cedula", referencedColumnName = "per_cedula")
+    @ManyToOne(optional = false)
+    private Persona persona;
 
     public Usuario() {
     }
 
-    public Usuario(Long usuidUsuario) {
-        this.usuidUsuario = usuidUsuario;
+    public Usuario(Integer usuidUsuario) {
+        this.idUsuario = usuidUsuario;
     }
 
-    public Usuario(Long usuidUsuario, String usunombreUsuario, String usuContrasenna) {
-        this.usuidUsuario = usuidUsuario;
-        this.usunombreUsuario = usunombreUsuario;
-        this.usuContrasenna = usuContrasenna;
+    public Usuario(Integer usuidUsuario, String usunombreUsuario, String usuContrasenna) {
+        this.idUsuario = usuidUsuario;
+        this.nombreUsuario = usunombreUsuario;
+        this.contrasenna = usuContrasenna;
     }
 
-    public Long getUsuidUsuario() {
-        return usuidUsuario;
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuidUsuario(Long usuidUsuario) {
-        this.usuidUsuario = usuidUsuario;
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public String getUsunombreUsuario() {
-        return usunombreUsuario;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public void setUsunombreUsuario(String usunombreUsuario) {
-        this.usunombreUsuario = usunombreUsuario;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
-    public String getUsuContrasenna() {
-        return usuContrasenna;
+    public String getContrasenna() {
+        return contrasenna;
     }
 
-    public void setUsuContrasenna(String usuContrasenna) {
-        this.usuContrasenna = usuContrasenna;
+    public void setContrasenna(String contrasenna) {
+        this.contrasenna = contrasenna;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (usuidUsuario != null ? usuidUsuario.hashCode() : 0);
+        hash += (idUsuario != null ? idUsuario.hashCode() : 0);
         return hash;
     }
 
@@ -94,7 +108,7 @@ public class Usuario implements Serializable {
             return false;
         }
         Usuario other = (Usuario) object;
-        if ((this.usuidUsuario == null && other.usuidUsuario != null) || (this.usuidUsuario != null && !this.usuidUsuario.equals(other.usuidUsuario))) {
+        if ((this.idUsuario == null && other.idUsuario != null) || (this.idUsuario != null && !this.idUsuario.equals(other.idUsuario))) {
             return false;
         }
         return true;
@@ -102,7 +116,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.Usuario[ usuidUsuario=" + usuidUsuario + " ]";
+        return "cr.ac.una.sidegi.model.Usuario[ usuidUsuario=" + idUsuario + " ]";
     }
     
 }

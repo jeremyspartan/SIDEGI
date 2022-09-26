@@ -6,11 +6,12 @@
 package cr.ac.una.sidegi.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -28,63 +29,63 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TipoDocumento.findAll", query = "SELECT t FROM TipoDocumento t"),
-    @NamedQuery(name = "TipoDocumento.findByTdoidTipoDocumento", query = "SELECT t FROM TipoDocumento t WHERE t.tdoidTipoDocumento = :tdoidTipoDocumento"),
-    @NamedQuery(name = "TipoDocumento.findByTdoDescripcion", query = "SELECT t FROM TipoDocumento t WHERE t.tdoDescripcion = :tdoDescripcion")})
+    @NamedQuery(name = "TipoDocumento.findByTdoidTipoDocumento", query = "SELECT t FROM TipoDocumento t WHERE t.idTipoDocumento = :idTipoDocumento"),
+    @NamedQuery(name = "TipoDocumento.findByTdoDescripcion", query = "SELECT t FROM TipoDocumento t WHERE t.descripcion = :descripcion")})
 public class TipoDocumento implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "tdo_idTipoDocumento")
-    private Long tdoidTipoDocumento;
+    private Integer idTipoDocumento;
     @Basic(optional = false)
     @Column(name = "tdo_descripcion")
-    private String tdoDescripcion;
-    @OneToMany(mappedBy = "tdoidTipoDocumento")
-    private List<Anexo> anexoList;
+    private String descripcion;
+    @OneToMany(mappedBy = "tipoDocumento")
+    private List<Anexo> anexos;//mapeado por el campo idTipoDocumento de Anexo
 
     public TipoDocumento() {
     }
 
-    public TipoDocumento(Long tdoidTipoDocumento) {
-        this.tdoidTipoDocumento = tdoidTipoDocumento;
+    public TipoDocumento(Integer tdoidTipoDocumento) {
+        this.idTipoDocumento = tdoidTipoDocumento;
     }
 
-    public TipoDocumento(Long tdoidTipoDocumento, String tdoDescripcion) {
-        this.tdoidTipoDocumento = tdoidTipoDocumento;
-        this.tdoDescripcion = tdoDescripcion;
+    public TipoDocumento(Integer tdoidTipoDocumento, String tdoDescripcion) {
+        this.idTipoDocumento = tdoidTipoDocumento;
+        this.descripcion = tdoDescripcion;
     }
 
-    public Long getTdoidTipoDocumento() {
-        return tdoidTipoDocumento;
+    public Integer getIdTipoDocumento() {
+        return idTipoDocumento;
     }
 
-    public void setTdoidTipoDocumento(Long tdoidTipoDocumento) {
-        this.tdoidTipoDocumento = tdoidTipoDocumento;
+    public void setIdTipoDocumento(Integer idTipoDocumento) {
+        this.idTipoDocumento = idTipoDocumento;
     }
 
-    public String getTdoDescripcion() {
-        return tdoDescripcion;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setTdoDescripcion(String tdoDescripcion) {
-        this.tdoDescripcion = tdoDescripcion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @XmlTransient
-    public List<Anexo> getAnexoList() {
-        return anexoList;
+    public List<Anexo> getAnexos() {
+        return anexos;
     }
 
-    public void setAnexoList(List<Anexo> anexoList) {
-        this.anexoList = anexoList;
+    public void setAnexos(List<Anexo> anexos) {
+        this.anexos = anexos;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (tdoidTipoDocumento != null ? tdoidTipoDocumento.hashCode() : 0);
+        hash += (idTipoDocumento != null ? idTipoDocumento.hashCode() : 0);
         return hash;
     }
 
@@ -95,7 +96,7 @@ public class TipoDocumento implements Serializable {
             return false;
         }
         TipoDocumento other = (TipoDocumento) object;
-        if ((this.tdoidTipoDocumento == null && other.tdoidTipoDocumento != null) || (this.tdoidTipoDocumento != null && !this.tdoidTipoDocumento.equals(other.tdoidTipoDocumento))) {
+        if ((this.idTipoDocumento == null && other.idTipoDocumento != null) || (this.idTipoDocumento != null && !this.idTipoDocumento.equals(other.idTipoDocumento))) {
             return false;
         }
         return true;
@@ -103,7 +104,7 @@ public class TipoDocumento implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.TipoDocumento[ tdoidTipoDocumento=" + tdoidTipoDocumento + " ]";
+        return "cr.ac.una.sidegi.model.TipoDocumento[ tdoidTipoDocumento=" + idTipoDocumento + " ]";
     }
     
 }

@@ -27,8 +27,8 @@ public class EscolaridadService {
     public Respuesta guardarEscolaridad(EscolaridadDto escolaridadDto) {
         try {
             Escolaridad direccion;
-            if (escolaridadDto.getEscId()!= null && escolaridadDto.getEscId()> 0) {
-                direccion = em.find(Escolaridad.class, escolaridadDto.getEscId());
+            if (escolaridadDto.getIdEscolaridad()!= null && escolaridadDto.getIdEscolaridad()> 0) {
+                direccion = em.find(Escolaridad.class, escolaridadDto.getIdEscolaridad());
                 if (direccion == null) {
                     return new Respuesta(false, "No se encrontró la escolaridad a modificar.", "guardarEscolaridad NoResultException");
                 }

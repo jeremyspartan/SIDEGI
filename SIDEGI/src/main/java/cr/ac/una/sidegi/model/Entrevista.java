@@ -6,11 +6,12 @@
 package cr.ac.una.sidegi.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -30,147 +31,147 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Entrevista.findAll", query = "SELECT e FROM Entrevista e"),
-    @NamedQuery(name = "Entrevista.findByEntId", query = "SELECT e FROM Entrevista e WHERE e.entId = :entId"),
-    @NamedQuery(name = "Entrevista.findByEntFecha", query = "SELECT e FROM Entrevista e WHERE e.entFecha = :entFecha"),
-    @NamedQuery(name = "Entrevista.findByEntdispEntrevistado", query = "SELECT e FROM Entrevista e WHERE e.entdispEntrevistado = :entdispEntrevistado"),
-    @NamedQuery(name = "Entrevista.findByEntLugar", query = "SELECT e FROM Entrevista e WHERE e.entLugar = :entLugar"),
-    @NamedQuery(name = "Entrevista.findByEntnombreAplicanrte", query = "SELECT e FROM Entrevista e WHERE e.entnombreAplicanrte = :entnombreAplicanrte")})
+    @NamedQuery(name = "Entrevista.findByEntidEntrevista", query = "SELECT e FROM Entrevista e WHERE e.idEntrevista = :idEntrevista"),
+    @NamedQuery(name = "Entrevista.findByEntFecha", query = "SELECT e FROM Entrevista e WHERE e.fecha = :fecha"),
+    @NamedQuery(name = "Entrevista.findByEntdispEntrevistado", query = "SELECT e FROM Entrevista e WHERE e.dispEntrevistado = :dispEntrevistado"),
+    @NamedQuery(name = "Entrevista.findByEntLugar", query = "SELECT e FROM Entrevista e WHERE e.lugar = :lugar"),
+    @NamedQuery(name = "Entrevista.findByEntnombreAplicanrte", query = "SELECT e FROM Entrevista e WHERE e.nombreAplicante = :nombreAplicante")})
 public class Entrevista implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ent_id")
-    private BigDecimal entId;
+    @Column(name = "ent_idEntrevista")
+    private Integer idEntrevista;
     @Basic(optional = false)
     @Column(name = "ent_fecha")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date entFecha;
+    private Date fecha;
     @Basic(optional = false)
     @Column(name = "ent_dispEntrevistado")
-    private String entdispEntrevistado;
+    private String dispEntrevistado;
     @Basic(optional = false)
     @Column(name = "ent_lugar")
-    private String entLugar;
+    private String lugar;
     @Basic(optional = false)
-    @Column(name = "ent_nombreAplicanrte")
-    private String entnombreAplicanrte;
-    @JoinColumn(name = "ing_id", referencedColumnName = "ing_id")
+    @Column(name = "ent_nombreAplicante")
+    private String nombreAplicante;
+    @JoinColumn(name = "ent_idIngresoEconomico", referencedColumnName = "ing_idIngresoEconomico")
     @ManyToOne
-    private Ingreso ingId;
-    @JoinColumn(name = "me_id", referencedColumnName = "me_id")
+    private IngresoEconomico ingresoEconomico;
+    @JoinColumn(name = "ent_idModalidadEntrevista", referencedColumnName = "me_idModalidadEntrevista")
     @ManyToOne
-    private ModalidadEntrevista meId;
-    @JoinColumn(name = "pac_idPaciente", referencedColumnName = "pac_idPaciente")
+    private ModalidadEntrevista modalidadEntrevista;
+    @JoinColumn(name = "ent_idPaciente", referencedColumnName = "pac_idPaciente")
     @ManyToOne
-    private Paciente pacidPaciente;
-    @JoinColumn(name = "ra_id", referencedColumnName = "ra_id")
+    private Paciente paciente;
+    @JoinColumn(name = "ent_idRedApoyoc", referencedColumnName = "ra_idRedApoyo")
     @ManyToOne
-    private RedApoyo raId;
-    @JoinColumn(name = "viv_id", referencedColumnName = "viv_id")
+    private RedApoyo redApoyo;
+    @JoinColumn(name = "ent_idVivienda", referencedColumnName = "viv_idVivienda")
     @ManyToOne
-    private Vivienda vivId;
+    private Vivienda vivienda;
 
     public Entrevista() {
     }
 
-    public Entrevista(BigDecimal entId) {
-        this.entId = entId;
+    public Entrevista(Integer entidEntrevista) {
+        this.idEntrevista = entidEntrevista;
     }
 
-    public Entrevista(BigDecimal entId, Date entFecha, String entdispEntrevistado, String entLugar, String entnombreAplicanrte) {
-        this.entId = entId;
-        this.entFecha = entFecha;
-        this.entdispEntrevistado = entdispEntrevistado;
-        this.entLugar = entLugar;
-        this.entnombreAplicanrte = entnombreAplicanrte;
+    public Entrevista(Integer entidEntrevista, Date entFecha, String entdispEntrevistado, String entLugar, String entnombreAplicanrte) {
+        this.idEntrevista = entidEntrevista;
+        this.fecha = entFecha;
+        this.dispEntrevistado = entdispEntrevistado;
+        this.lugar = entLugar;
+        this.nombreAplicante = entnombreAplicanrte;
     }
 
-    public BigDecimal getEntId() {
-        return entId;
+    public Integer getIdEntrevista() {
+        return idEntrevista;
     }
 
-    public void setEntId(BigDecimal entId) {
-        this.entId = entId;
+    public void setIdEntrevista(Integer idEntrevista) {
+        this.idEntrevista = idEntrevista;
     }
 
-    public Date getEntFecha() {
-        return entFecha;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setEntFecha(Date entFecha) {
-        this.entFecha = entFecha;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    public String getEntdispEntrevistado() {
-        return entdispEntrevistado;
+    public String getDispEntrevistado() {
+        return dispEntrevistado;
     }
 
-    public void setEntdispEntrevistado(String entdispEntrevistado) {
-        this.entdispEntrevistado = entdispEntrevistado;
+    public void setDispEntrevistado(String dispEntrevistado) {
+        this.dispEntrevistado = dispEntrevistado;
     }
 
-    public String getEntLugar() {
-        return entLugar;
+    public String getLugar() {
+        return lugar;
     }
 
-    public void setEntLugar(String entLugar) {
-        this.entLugar = entLugar;
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
     }
 
-    public String getEntnombreAplicanrte() {
-        return entnombreAplicanrte;
+    public String getNombreAplicante() {
+        return nombreAplicante;
     }
 
-    public void setEntnombreAplicanrte(String entnombreAplicanrte) {
-        this.entnombreAplicanrte = entnombreAplicanrte;
+    public void setNombreAplicante(String nombreAplicante) {
+        this.nombreAplicante = nombreAplicante;
     }
 
-    public Ingreso getIngId() {
-        return ingId;
+    public IngresoEconomico getIngresoEconomico() {
+        return ingresoEconomico;
     }
 
-    public void setIngId(Ingreso ingId) {
-        this.ingId = ingId;
+    public void setIngresoEconomico(IngresoEconomico ingresoEconomico) {
+        this.ingresoEconomico = ingresoEconomico;
     }
 
-    public ModalidadEntrevista getMeId() {
-        return meId;
+    public ModalidadEntrevista getModalidadEntrevista() {
+        return modalidadEntrevista;
     }
 
-    public void setMeId(ModalidadEntrevista meId) {
-        this.meId = meId;
+    public void setModalidadEntrevista(ModalidadEntrevista modalidadEntrevista) {
+        this.modalidadEntrevista = modalidadEntrevista;
     }
 
-    public Paciente getPacidPaciente() {
-        return pacidPaciente;
+    public Paciente getPaciente() {
+        return paciente;
     }
 
-    public void setPacidPaciente(Paciente pacidPaciente) {
-        this.pacidPaciente = pacidPaciente;
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
 
-    public RedApoyo getRaId() {
-        return raId;
+    public RedApoyo getRedApoyo() {
+        return redApoyo;
     }
 
-    public void setRaId(RedApoyo raId) {
-        this.raId = raId;
+    public void setRedApoyo(RedApoyo redApoyo) {
+        this.redApoyo = redApoyo;
     }
 
-    public Vivienda getVivId() {
-        return vivId;
+    public Vivienda getVivienda() {
+        return vivienda;
     }
 
-    public void setVivId(Vivienda vivId) {
-        this.vivId = vivId;
+    public void setVivienda(Vivienda vivienda) {
+        this.vivienda = vivienda;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (entId != null ? entId.hashCode() : 0);
+        hash += (idEntrevista != null ? idEntrevista.hashCode() : 0);
         return hash;
     }
 
@@ -181,7 +182,7 @@ public class Entrevista implements Serializable {
             return false;
         }
         Entrevista other = (Entrevista) object;
-        if ((this.entId == null && other.entId != null) || (this.entId != null && !this.entId.equals(other.entId))) {
+        if ((this.idEntrevista == null && other.idEntrevista != null) || (this.idEntrevista != null && !this.idEntrevista.equals(other.idEntrevista))) {
             return false;
         }
         return true;
@@ -189,7 +190,7 @@ public class Entrevista implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.Entrevista[ entId=" + entId + " ]";
+        return "cr.ac.una.sidegi.model.Entrevista[ entidEntrevista=" + idEntrevista + " ]";
     }
     
 }

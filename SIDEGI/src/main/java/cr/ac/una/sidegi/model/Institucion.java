@@ -11,6 +11,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -31,25 +33,25 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Institucion.findAll", query = "SELECT i FROM Institucion i"),
-    @NamedQuery(name = "Institucion.findByInsId", query = "SELECT i FROM Institucion i WHERE i.insId = :insId"),
-    @NamedQuery(name = "Institucion.findByInsDescripcion", query = "SELECT i FROM Institucion i WHERE i.insDescripcion = :insDescripcion")})
+    @NamedQuery(name = "Institucion.findByInsidInstitucion", query = "SELECT i FROM Institucion i WHERE i.idInstitucion = :idInstitucion"),
+    @NamedQuery(name = "Institucion.findByInsDescripcion", query = "SELECT i FROM Institucion i WHERE i.descripcion = :descripcion")})
 public class Institucion implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ins_id")
-    private Long insId;
+    @Column(name = "ins_idInstitucion")
+    private Integer idInstitucion;
     @Basic(optional = false)
     @Column(name = "ins_descripcion")
-    private String insDescripcion;
+    private String descripcion;
     @ManyToMany(mappedBy = "instituciones")
-    private List<Contacto> contactos;
-    @JoinColumn(name = "tins_id", referencedColumnName = "tins_id")
+    private List<Contacto> contactos;//mapeado por el campo instituciones de contacto
+    @JoinColumn(name = "ins_idTipoInstitucion", referencedColumnName = "tins_idTipoInstitucion")
     @ManyToOne
-    private TiposInstitucion tinsId;
-    @OneToMany(mappedBy = "insId")
+    private TipoInstitucion tipoInstitucion;
+    @OneToMany(mappedBy = "institucion")
     private List<Paciente> pacientes;
 
     public Institucion() {
@@ -60,37 +62,37 @@ public class Institucion implements Serializable {
     }
     
     public void actualizarInstitucion(InstitucionDto institucionDto) {
-        this.insId = institucionDto.getInsId();
-        this.insDescripcion = institucionDto.getInsDescripcion();
+        this.idInstitucion = institucionDto.getIdInstituicion();
+        this.descripcion = institucionDto.getDescripcion();
          institucionDto.getContactos().forEach((object) -> {
             contactos.add(new Contacto(object));
         });
-         this.tinsId = new TiposInstitucion(institucionDto.getTipoInstitucion());
+         this.tipoInstitucion = new TipoInstitucion(institucionDto.getTipoInstitucion());
     }
 
-    public Institucion(Long insId) {
-        this.insId = insId;
+    public Institucion(Integer idInstitucion) {
+        this.idInstitucion = idInstitucion;
     }
 
-    public Institucion(Long insId, String insDescripcion) {
-        this.insId = insId;
-        this.insDescripcion = insDescripcion;
+    public Institucion(Integer insidInstitucion, String insDescripcion) {
+        this.idInstitucion = insidInstitucion;
+        this.descripcion = insDescripcion;
     }
 
-    public Long getInsId() {
-        return insId;
+    public Integer getIdInstitucion() {
+        return idInstitucion;
     }
 
-    public void setInsId(Long insId) {
-        this.insId = insId;
+    public void setIdInstitucion(Integer idInstitucion) {
+        this.idInstitucion = idInstitucion;
     }
 
-    public String getInsDescripcion() {
-        return insDescripcion;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setInsDescripcion(String insDescripcion) {
-        this.insDescripcion = insDescripcion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @XmlTransient
@@ -102,12 +104,12 @@ public class Institucion implements Serializable {
         this.contactos = contactos;
     }
 
-    public TiposInstitucion getTinsId() {
-        return tinsId;
+    public TipoInstitucion getTipoInstitucion() {
+        return tipoInstitucion;
     }
 
-    public void setTinsId(TiposInstitucion tinsId) {
-        this.tinsId = tinsId;
+    public void setTipoInstitucion(TipoInstitucion tipoInstitucion) {
+        this.tipoInstitucion = tipoInstitucion;
     }
 
     @XmlTransient
@@ -122,7 +124,7 @@ public class Institucion implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (insId != null ? insId.hashCode() : 0);
+        hash += (idInstitucion != null ? idInstitucion.hashCode() : 0);
         return hash;
     }
 
@@ -133,7 +135,7 @@ public class Institucion implements Serializable {
             return false;
         }
         Institucion other = (Institucion) object;
-        if ((this.insId == null && other.insId != null) || (this.insId != null && !this.insId.equals(other.insId))) {
+        if ((this.idInstitucion == null && other.idInstitucion != null) || (this.idInstitucion != null && !this.idInstitucion.equals(other.idInstitucion))) {
             return false;
         }
         return true;
@@ -141,7 +143,7 @@ public class Institucion implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.Institucion[ insId=" + insId + " ]";
+        return "cr.ac.una.sidegi.model.Institucion[ insidInstitucion=" + idInstitucion + " ]";
     }
     
 }

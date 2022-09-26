@@ -6,11 +6,12 @@
 package cr.ac.una.sidegi.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -28,63 +29,63 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TipoRedApoyo.findAll", query = "SELECT t FROM TipoRedApoyo t"),
-    @NamedQuery(name = "TipoRedApoyo.findByTraId", query = "SELECT t FROM TipoRedApoyo t WHERE t.traId = :traId"),
-    @NamedQuery(name = "TipoRedApoyo.findByTraTipo", query = "SELECT t FROM TipoRedApoyo t WHERE t.traTipo = :traTipo")})
+    @NamedQuery(name = "TipoRedApoyo.findByTraidTipoRedDeApoyo", query = "SELECT t FROM TipoRedApoyo t WHERE t.idTipoRedDeApoyo = :idTipoRedDeApoyo"),
+    @NamedQuery(name = "TipoRedApoyo.findByTraTipo", query = "SELECT t FROM TipoRedApoyo t WHERE t.tipo = :tipo")})
 public class TipoRedApoyo implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "tra_id")
-    private Long traId;
+    @Column(name = "tra_idTipoRedDeApoyo")
+    private Integer idTipoRedDeApoyo;
     @Basic(optional = false)
     @Column(name = "tra_tipo")
-    private String traTipo;
-    @OneToMany(mappedBy = "traId")
-    private List<RedApoyo> redApoyoList;
+    private String tipo;
+    @OneToMany(mappedBy = "tipoRedDeApoyo")
+    private List<RedApoyo> redesDeApoyo;//mapeado por el campo idTipoRedDeApoyo de RedApoyo
 
     public TipoRedApoyo() {
     }
 
-    public TipoRedApoyo(Long traId) {
-        this.traId = traId;
+    public TipoRedApoyo(Integer traidTipoRedDeApoyo) {
+        this.idTipoRedDeApoyo = traidTipoRedDeApoyo;
     }
 
-    public TipoRedApoyo(Long traId, String traTipo) {
-        this.traId = traId;
-        this.traTipo = traTipo;
+    public TipoRedApoyo(Integer traidTipoRedDeApoyo, String traTipo) {
+        this.idTipoRedDeApoyo = traidTipoRedDeApoyo;
+        this.tipo = traTipo;
     }
 
-    public Long getTraId() {
-        return traId;
+    public Integer getIdTipoRedDeApoyo() {
+        return idTipoRedDeApoyo;
     }
 
-    public void setTraId(Long traId) {
-        this.traId = traId;
+    public void setIdTipoRedDeApoyo(Integer idTipoRedDeApoyo) {
+        this.idTipoRedDeApoyo = idTipoRedDeApoyo;
     }
 
-    public String getTraTipo() {
-        return traTipo;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setTraTipo(String traTipo) {
-        this.traTipo = traTipo;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     @XmlTransient
-    public List<RedApoyo> getRedApoyoList() {
-        return redApoyoList;
+    public List<RedApoyo> getRedesDeApoyo() {
+        return redesDeApoyo;
     }
 
-    public void setRedApoyoList(List<RedApoyo> redApoyoList) {
-        this.redApoyoList = redApoyoList;
+    public void setRedesDeApoyo(List<RedApoyo> redesDeApoyo) {
+        this.redesDeApoyo = redesDeApoyo;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (traId != null ? traId.hashCode() : 0);
+        hash += (idTipoRedDeApoyo != null ? idTipoRedDeApoyo.hashCode() : 0);
         return hash;
     }
 
@@ -95,7 +96,7 @@ public class TipoRedApoyo implements Serializable {
             return false;
         }
         TipoRedApoyo other = (TipoRedApoyo) object;
-        if ((this.traId == null && other.traId != null) || (this.traId != null && !this.traId.equals(other.traId))) {
+        if ((this.idTipoRedDeApoyo == null && other.idTipoRedDeApoyo != null) || (this.idTipoRedDeApoyo != null && !this.idTipoRedDeApoyo.equals(other.idTipoRedDeApoyo))) {
             return false;
         }
         return true;
@@ -103,7 +104,7 @@ public class TipoRedApoyo implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.TipoRedApoyo[ traId=" + traId + " ]";
+        return "cr.ac.una.sidegi.model.TipoRedApoyo[ traidTipoRedDeApoyo=" + idTipoRedDeApoyo + " ]";
     }
     
 }

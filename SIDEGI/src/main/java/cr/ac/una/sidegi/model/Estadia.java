@@ -6,12 +6,13 @@
 package cr.ac.una.sidegi.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -31,100 +32,100 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Estadia.findAll", query = "SELECT e FROM Estadia e"),
-    @NamedQuery(name = "Estadia.findByEstidEstadia", query = "SELECT e FROM Estadia e WHERE e.estidEstadia = :estidEstadia"),
-    @NamedQuery(name = "Estadia.findByEstfechaIngreso", query = "SELECT e FROM Estadia e WHERE e.estfechaIngreso = :estfechaIngreso"),
-    @NamedQuery(name = "Estadia.findByEstfechaSalida", query = "SELECT e FROM Estadia e WHERE e.estfechaSalida = :estfechaSalida"),
-    @NamedQuery(name = "Estadia.findByEstcantidadComidas", query = "SELECT e FROM Estadia e WHERE e.estcantidadComidas = :estcantidadComidas")})
+    @NamedQuery(name = "Estadia.findByEstidEstadia", query = "SELECT e FROM Estadia e WHERE e.idEstadia = :idEstadia"),
+    @NamedQuery(name = "Estadia.findByEstfechaIngreso", query = "SELECT e FROM Estadia e WHERE e.fechaIngreso = :fechaIngreso"),
+    @NamedQuery(name = "Estadia.findByEstfechaSalida", query = "SELECT e FROM Estadia e WHERE e.fechaSalida = :fechaSalida"),
+    @NamedQuery(name = "Estadia.findByEstcantidadComidas", query = "SELECT e FROM Estadia e WHERE e.cantidadComidas = :cantidadComidas")})
 public class Estadia implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "est_idEstadia")
-    private Long estidEstadia;
+    private Integer idEstadia;
     @Basic(optional = false)
     @Column(name = "est_fechaIngreso")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date estfechaIngreso;
+    private Date fechaIngreso;
     @Column(name = "est_fechaSalida")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date estfechaSalida;
+    private Date fechaSalida;
     @Basic(optional = false)
     @Column(name = "est_cantidadComidas")
-    private BigInteger estcantidadComidas;
-    @JoinColumn(name = "cas_id", referencedColumnName = "cas_id")
+    private BigInteger cantidadComidas;
+    @JoinColumn(name = "est_idCasa", referencedColumnName = "cas_idCasa")
     @ManyToOne
-    private Casa casId;
-    @JoinColumn(name = "pac_idPaciente", referencedColumnName = "pac_idPaciente")
+    private Casa casa;
+    @JoinColumn(name = "est_idPaciente", referencedColumnName = "pac_idPaciente")
     @ManyToOne
-    private Paciente pacidPaciente;
+    private Paciente paciente;
 
     public Estadia() {
     }
 
-    public Estadia(Long estidEstadia) {
-        this.estidEstadia = estidEstadia;
+    public Estadia(Integer estidEstadia) {
+        this.idEstadia = estidEstadia;
     }
 
-    public Estadia(Long estidEstadia, Date estfechaIngreso, BigInteger estcantidadComidas) {
-        this.estidEstadia = estidEstadia;
-        this.estfechaIngreso = estfechaIngreso;
-        this.estcantidadComidas = estcantidadComidas;
+    public Estadia(Integer estidEstadia, Date estfechaIngreso, BigInteger estcantidadComidas) {
+        this.idEstadia = estidEstadia;
+        this.fechaIngreso = estfechaIngreso;
+        this.cantidadComidas = estcantidadComidas;
     }
 
-    public Long getEstidEstadia() {
-        return estidEstadia;
+    public Integer getIdEstadia() {
+        return idEstadia;
     }
 
-    public void setEstidEstadia(Long estidEstadia) {
-        this.estidEstadia = estidEstadia;
+    public void setIdEstadia(Integer idEstadia) {
+        this.idEstadia = idEstadia;
     }
 
-    public Date getEstfechaIngreso() {
-        return estfechaIngreso;
+    public Date getFechaIngreso() {
+        return fechaIngreso;
     }
 
-    public void setEstfechaIngreso(Date estfechaIngreso) {
-        this.estfechaIngreso = estfechaIngreso;
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
     }
 
-    public Date getEstfechaSalida() {
-        return estfechaSalida;
+    public Date getFechaSalida() {
+        return fechaSalida;
     }
 
-    public void setEstfechaSalida(Date estfechaSalida) {
-        this.estfechaSalida = estfechaSalida;
+    public void setFechaSalida(Date fechaSalida) {
+        this.fechaSalida = fechaSalida;
     }
 
-    public BigInteger getEstcantidadComidas() {
-        return estcantidadComidas;
+    public BigInteger getCantidadComidas() {
+        return cantidadComidas;
     }
 
-    public void setEstcantidadComidas(BigInteger estcantidadComidas) {
-        this.estcantidadComidas = estcantidadComidas;
+    public void setCantidadComidas(BigInteger cantidadComidas) {
+        this.cantidadComidas = cantidadComidas;
     }
 
-    public Casa getCasId() {
-        return casId;
+    public Casa getCasa() {
+        return casa;
     }
 
-    public void setCasId(Casa casId) {
-        this.casId = casId;
+    public void setCasa(Casa casa) {
+        this.casa = casa;
     }
 
-    public Paciente getPacidPaciente() {
-        return pacidPaciente;
+    public Paciente getPaciente() {
+        return paciente;
     }
 
-    public void setPacidPaciente(Paciente pacidPaciente) {
-        this.pacidPaciente = pacidPaciente;
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (estidEstadia != null ? estidEstadia.hashCode() : 0);
+        hash += (idEstadia != null ? idEstadia.hashCode() : 0);
         return hash;
     }
 
@@ -135,7 +136,7 @@ public class Estadia implements Serializable {
             return false;
         }
         Estadia other = (Estadia) object;
-        if ((this.estidEstadia == null && other.estidEstadia != null) || (this.estidEstadia != null && !this.estidEstadia.equals(other.estidEstadia))) {
+        if ((this.idEstadia == null && other.idEstadia != null) || (this.idEstadia != null && !this.idEstadia.equals(other.idEstadia))) {
             return false;
         }
         return true;
@@ -143,7 +144,7 @@ public class Estadia implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.Estadia[ estidEstadia=" + estidEstadia + " ]";
+        return "cr.ac.una.sidegi.model.Estadia[ estidEstadia=" + idEstadia + " ]";
     }
     
 }

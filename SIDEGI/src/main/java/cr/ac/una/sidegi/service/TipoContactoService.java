@@ -27,8 +27,8 @@ public class TipoContactoService {
     public Respuesta guardarTipoContacto(TipoContactoDto tipoContactoDto) {
         try {
             TipoContacto tipoContacto;
-            if (tipoContactoDto.getTpcidTipoContacto()!= null && tipoContactoDto.getTpcidTipoContacto()> 0) {
-                tipoContacto = em.find(TipoContacto.class, tipoContactoDto.getTpcidTipoContacto());
+            if (tipoContactoDto.getIdTipoContacto()!= null && tipoContactoDto.getIdTipoContacto()> 0) {
+                tipoContacto = em.find(TipoContacto.class, tipoContactoDto.getIdTipoContacto());
                 if (tipoContacto == null) {
                     return new Respuesta(false, "No se encrontró el tipo de contacto a modificar.", "guardarTipoContacto NoResultException");
                 }

@@ -6,10 +6,11 @@
 package cr.ac.una.sidegi.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,87 +28,87 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Acompannante.findAll", query = "SELECT a FROM Acompannante a"),
-    @NamedQuery(name = "Acompannante.findByAcoidAcompannante", query = "SELECT a FROM Acompannante a WHERE a.acoidAcompannante = :acoidAcompannante"),
-    @NamedQuery(name = "Acompannante.findByAcoParentesco", query = "SELECT a FROM Acompannante a WHERE a.acoParentesco = :acoParentesco"),
-    @NamedQuery(name = "Acompannante.findByAcoOcupacion", query = "SELECT a FROM Acompannante a WHERE a.acoOcupacion = :acoOcupacion"),
-    @NamedQuery(name = "Acompannante.findByAcosituacionActual", query = "SELECT a FROM Acompannante a WHERE a.acosituacionActual = :acosituacionActual")})
+    @NamedQuery(name = "Acompannante.findByAcoidAcompannante", query = "SELECT a FROM Acompannante a WHERE a.idAcompannante = :idAcompannante"),
+    @NamedQuery(name = "Acompannante.findByAcoParentesco", query = "SELECT a FROM Acompannante a WHERE a.parentesco = :parentesco"),
+    @NamedQuery(name = "Acompannante.findByAcoOcupacion", query = "SELECT a FROM Acompannante a WHERE a.ocupacion = :ocupacion"),
+    @NamedQuery(name = "Acompannante.findByAcosituacionActual", query = "SELECT a FROM Acompannante a WHERE a.situacionActual = :situacionActual")})
 public class Acompannante implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "aco_idAcompannante")
-    private Long acoidAcompannante;
+    private Integer idAcompannante;
     @Basic(optional = false)
     @Column(name = "aco_parentesco")
-    private String acoParentesco;
+    private String parentesco;
     @Column(name = "aco_ocupacion")
-    private String acoOcupacion;
+    private String ocupacion;
     @Basic(optional = false)
     @Column(name = "aco_situacionActual")
-    private String acosituacionActual;
-    @JoinColumn(name = "per_cedula", referencedColumnName = "per_cedula")
+    private String situacionActual;
+    @JoinColumn(name = "aco_cedula", referencedColumnName = "per_cedula")
     @ManyToOne
-    private Persona perCedula;
+    private Persona cedula;
 
     public Acompannante() {
     }
 
-    public Acompannante(Long acoidAcompannante) {
-        this.acoidAcompannante = acoidAcompannante;
+    public Acompannante(Integer acoidAcompannante) {
+        this.idAcompannante = acoidAcompannante;
     }
 
-    public Acompannante(Long acoidAcompannante, String acoParentesco, String acosituacionActual) {
-        this.acoidAcompannante = acoidAcompannante;
-        this.acoParentesco = acoParentesco;
-        this.acosituacionActual = acosituacionActual;
+    public Acompannante(Integer acoidAcompannante, String acoParentesco, String acosituacionActual) {
+        this.idAcompannante = acoidAcompannante;
+        this.parentesco = acoParentesco;
+        this.situacionActual = acosituacionActual;
     }
 
-    public Long getAcoidAcompannante() {
-        return acoidAcompannante;
+    public Integer getIdAcompannante() {
+        return idAcompannante;
     }
 
-    public void setAcoidAcompannante(Long acoidAcompannante) {
-        this.acoidAcompannante = acoidAcompannante;
+    public void setIdAcompannante(Integer idAcompannante) {
+        this.idAcompannante = idAcompannante;
     }
 
-    public String getAcoParentesco() {
-        return acoParentesco;
+    public String getParentesco() {
+        return parentesco;
     }
 
-    public void setAcoParentesco(String acoParentesco) {
-        this.acoParentesco = acoParentesco;
+    public void setParentesco(String parentesco) {
+        this.parentesco = parentesco;
     }
 
-    public String getAcoOcupacion() {
-        return acoOcupacion;
+    public String getOcupacion() {
+        return ocupacion;
     }
 
-    public void setAcoOcupacion(String acoOcupacion) {
-        this.acoOcupacion = acoOcupacion;
+    public void setOcupacion(String ocupacion) {
+        this.ocupacion = ocupacion;
     }
 
-    public String getAcosituacionActual() {
-        return acosituacionActual;
+    public String getSituacionActual() {
+        return situacionActual;
     }
 
-    public void setAcosituacionActual(String acosituacionActual) {
-        this.acosituacionActual = acosituacionActual;
+    public void setSituacionActual(String situacionActual) {
+        this.situacionActual = situacionActual;
     }
 
-    public Persona getPerCedula() {
-        return perCedula;
+    public Persona getCedula() {
+        return cedula;
     }
 
-    public void setPerCedula(Persona perCedula) {
-        this.perCedula = perCedula;
+    public void setCedula(Persona cedula) {
+        this.cedula = cedula;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (acoidAcompannante != null ? acoidAcompannante.hashCode() : 0);
+        hash += (idAcompannante != null ? idAcompannante.hashCode() : 0);
         return hash;
     }
 
@@ -118,7 +119,7 @@ public class Acompannante implements Serializable {
             return false;
         }
         Acompannante other = (Acompannante) object;
-        if ((this.acoidAcompannante == null && other.acoidAcompannante != null) || (this.acoidAcompannante != null && !this.acoidAcompannante.equals(other.acoidAcompannante))) {
+        if ((this.idAcompannante == null && other.idAcompannante != null) || (this.idAcompannante != null && !this.idAcompannante.equals(other.idAcompannante))) {
             return false;
         }
         return true;
@@ -126,7 +127,7 @@ public class Acompannante implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.Acompannante[ acoidAcompannante=" + acoidAcompannante + " ]";
+        return "cr.ac.una.sidegi.model.Acompannante[ acoidAcompannante=" + idAcompannante + " ]";
     }
     
 }

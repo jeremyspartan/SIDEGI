@@ -23,74 +23,74 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 public class PersonaDto {
 
-    public SimpleStringProperty perCedula;
-    public SimpleStringProperty perNombre;
-    public SimpleStringProperty perPapellido;
-    public SimpleStringProperty perSapellido;  
-    public ObjectProperty<LocalDate> perFechaNacimiento;
-    public TipoSeguroDto perIdTipoSeguroDto;
-    public EscolaridadDto perIdEscolaridadDto;
-    public DireccionDto perIdDireccionDto;
+    public SimpleStringProperty cedula;
+    public SimpleStringProperty nombre;
+    public SimpleStringProperty pApellido;
+    public SimpleStringProperty sApellido;  
+    public ObjectProperty<LocalDate> fechaNacimiento;
+    public TipoSeguroDto tipoSeguroDto;
+    public EscolaridadDto escolaridadDto;
+    public DireccionDto direccionDto;
 
     public PersonaDto() {
-        this.perCedula = new SimpleStringProperty();
-        this.perNombre = new SimpleStringProperty();
-        this.perPapellido = new SimpleStringProperty();
-        this.perSapellido = new SimpleStringProperty();
-        this.perFechaNacimiento = new SimpleObjectProperty();
+        this.cedula = new SimpleStringProperty();
+        this.nombre = new SimpleStringProperty();
+        this.pApellido = new SimpleStringProperty();
+        this.sApellido = new SimpleStringProperty();
+        this.fechaNacimiento = new SimpleObjectProperty();
     }
     public PersonaDto(Persona persona) throws ParseException {
         this();
-        this.perNombre.set(persona.getPerNombre());
-        this.perPapellido.set(persona.getPerpApellido());
-        this.perSapellido.set(persona.getPersApellido());
-        this.perCedula.set(persona.getPerCedula());
-        this.perFechaNacimiento.set(persona.getPerfechaNac().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        this.perIdTipoSeguroDto = new TipoSeguroDto(persona.getSegId());
-        this.perIdEscolaridadDto=new EscolaridadDto(persona.getEscId());
-        this.perIdDireccionDto = new DireccionDto(persona.getDiridDireccion());
+        this.nombre.set(persona.getNombre());
+        this.pApellido.set(persona.getpApellido());
+        this.sApellido.set(persona.getsApellido());
+        this.cedula.set(persona.getCedula());
+        this.fechaNacimiento.set(persona.getFechaNac().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        this.tipoSeguroDto = new TipoSeguroDto(persona.getTipoSeguro());
+        this.escolaridadDto=new EscolaridadDto(persona.getEscolaridad());
+        this.direccionDto = new DireccionDto(persona.getDireccion());
 
 
     }
 
-    public String getPerCedula() {
-        return perCedula.get();
+    public String getCedula() {
+        return cedula.get();
     }
 
-    public void setPerCedula(String perCedula) {
-        this.perCedula.set(perCedula);
+    public void setCedula(String cedula) {
+        this.cedula.set(cedula);
     }
 
-    public String getPerNombre() {
-        return perNombre.get();
+    public String getNombre() {
+        return nombre.get();
     }
 
-    public void setPerNombre(String perNombre) {
-        this.perNombre.set(perNombre);
+    public void setNombre(String nombre) {
+        this.nombre.set(nombre);
     }
 
-    public String getPerPapellido() {
-        return perPapellido.get();
+    public String getPapellido() {
+        return pApellido.get();
     }
 
-    public void setPerPapellido(String perPapellido) {
-        this.perPapellido.set(perPapellido);
+    public void setPapellido(String pApellido) {
+        this.pApellido.set(pApellido);
     }
 
-    public String getPerSapellido() {
-        return perSapellido.get();
+    public String getSapellido() {
+        return sApellido.get();
     }
 
-    public void setPerSapellido(String perSapellido) {
-        this.perSapellido.set(perSapellido);
+    public void setSapellido(String sApellido) {
+        this.sApellido.set(sApellido);
     }
 
-    public LocalDate getPerFechaNacimiento() {
-        return perFechaNacimiento.get();
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento.get();
     }
 
-    public void setPerFechaNacimiento(LocalDate perFechaNacimiento) {
-        this.perFechaNacimiento.set(perFechaNacimiento);
+    public void setPerFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento.set(fechaNacimiento);
     }
     
     

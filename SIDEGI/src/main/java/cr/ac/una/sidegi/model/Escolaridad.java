@@ -7,11 +7,12 @@ package cr.ac.una.sidegi.model;
 
 import cr.ac.una.sidegi.model.dto.EscolaridadDto;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -29,21 +30,21 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Escolaridad.findAll", query = "SELECT e FROM Escolaridad e"),
-    @NamedQuery(name = "Escolaridad.findByEscId", query = "SELECT e FROM Escolaridad e WHERE e.escId = :escId"),
-    @NamedQuery(name = "Escolaridad.findByEscDescripcion", query = "SELECT e FROM Escolaridad e WHERE e.escDescripcion = :escDescripcion")})
+    @NamedQuery(name = "Escolaridad.findByEscidEscolaridad", query = "SELECT e FROM Escolaridad e WHERE e.idEscolaridad = :idEscolaridad"),
+    @NamedQuery(name = "Escolaridad.findByEscDescripcion", query = "SELECT e FROM Escolaridad e WHERE e.descripcion = :descripcion")})
 public class Escolaridad implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "esc_id")
-    private Long escId;
+    @Column(name = "esc_idEscolaridad")
+    private Integer idEscolaridad;
     @Basic(optional = false)
     @Column(name = "esc_descripcion")
-    private String escDescripcion;
-    @OneToMany(mappedBy = "escId")
-    private List<Persona> personaList;
+    private String descripcion;
+    @OneToMany(mappedBy = "escolaridad")
+    private List<Persona> personas;//mapeado por el campo idEscolaridad de persona
 
     public Escolaridad() {
     }
@@ -53,49 +54,48 @@ public class Escolaridad implements Serializable {
     }
      
     public void actualizarEscolaridad(EscolaridadDto escolaridadDto){
-        this.escId = escolaridadDto.getEscId();
-        this.escDescripcion = escolaridadDto.getEscDesc();
-        
+        this.idEscolaridad = escolaridadDto.getIdEscolaridad();
+        this.descripcion = escolaridadDto.getDescEscolaridad();
     }
 
-    public Escolaridad(Long escId) {
-        this.escId = escId;
+    public Escolaridad(Integer escidEscolaridad) {
+        this.idEscolaridad = escidEscolaridad;
     }
 
-    public Escolaridad(Long escId, String escDescripcion) {
-        this.escId = escId;
-        this.escDescripcion = escDescripcion;
+    public Escolaridad(Integer escidEscolaridad, String escDescripcion) {
+        this.idEscolaridad = escidEscolaridad;
+        this.descripcion = escDescripcion;
     }
 
-    public Long getEscId() {
-        return escId;
+    public Integer getIdEscolaridad() {
+        return idEscolaridad;
     }
 
-    public void setEscId(Long escId) {
-        this.escId = escId;
+    public void setIdEscolaridad(Integer idEscolaridad) {
+        this.idEscolaridad = idEscolaridad;
     }
 
-    public String getEscDescripcion() {
-        return escDescripcion;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setEscDescripcion(String escDescripcion) {
-        this.escDescripcion = escDescripcion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @XmlTransient
-    public List<Persona> getPersonaList() {
-        return personaList;
+    public List<Persona> getPersonas() {
+        return personas;
     }
 
-    public void setPersonaList(List<Persona> personaList) {
-        this.personaList = personaList;
+    public void setPersonas(List<Persona> personas) {
+        this.personas = personas;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (escId != null ? escId.hashCode() : 0);
+        hash += (idEscolaridad != null ? idEscolaridad.hashCode() : 0);
         return hash;
     }
 
@@ -106,7 +106,7 @@ public class Escolaridad implements Serializable {
             return false;
         }
         Escolaridad other = (Escolaridad) object;
-        if ((this.escId == null && other.escId != null) || (this.escId != null && !this.escId.equals(other.escId))) {
+        if ((this.idEscolaridad == null && other.idEscolaridad != null) || (this.idEscolaridad != null && !this.idEscolaridad.equals(other.idEscolaridad))) {
             return false;
         }
         return true;
@@ -114,7 +114,7 @@ public class Escolaridad implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.Escolaridad[ escId=" + escId + " ]";
+        return "cr.ac.una.sidegi.model.Escolaridad[ escidEscolaridad=" + idEscolaridad + " ]";
     }
     
 }

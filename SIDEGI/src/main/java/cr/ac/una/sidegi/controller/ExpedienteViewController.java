@@ -189,18 +189,18 @@ public class ExpedienteViewController extends Controller {
     
     
     private void bindExpediente(Boolean nuevo){
-            txtDoctor.textProperty().bindBidirectional(paciente.pacDoctor);
-            dtpFechaDiagnostico.valueProperty().bindBidirectional(paciente.pacfechaDiagnostico);
-            dtpFechaReferencia.valueProperty().bindBidirectional(paciente.pacFechaReferencia);
-            txtProfesionalResponsable.textProperty().bindBidirectional(paciente.pacProfesionalResponsable);
-            txaDiagnosticoMedico.textProperty().bindBidirectional(paciente.pacDiagnostico);
-            dtpFechaRegistro.valueProperty().bindBidirectional(paciente.pacFechaRegistro);
-            cmbEstadoPaciente.valueProperty().bindBidirectional(paciente.pacEstado); 
-            txtCedula.textProperty().bindBidirectional(persona.perCedula);
-            txtNombre.textProperty().bindBidirectional(persona.perNombre);
-            txtPrimerApellido.textProperty().bindBidirectional(persona.perPapellido);
-            txtSegundoApellido.textProperty().bindBidirectional(persona.perSapellido);
-            dtpFechaNacimeinto.valueProperty().bindBidirectional(persona.perFechaNacimiento);
+            txtDoctor.textProperty().bindBidirectional(paciente.doctor);
+            dtpFechaDiagnostico.valueProperty().bindBidirectional(paciente.fechaDiagnostico);
+            dtpFechaReferencia.valueProperty().bindBidirectional(paciente.fechaReferencia);
+            txtProfesionalResponsable.textProperty().bindBidirectional(paciente.profesionalResponsable);
+            txaDiagnosticoMedico.textProperty().bindBidirectional(paciente.diagnostico);
+            dtpFechaRegistro.valueProperty().bindBidirectional(paciente.fechaRegistro);
+            cmbEstadoPaciente.valueProperty().bindBidirectional(paciente.estado); 
+            txtCedula.textProperty().bindBidirectional(persona.cedula);
+            txtNombre.textProperty().bindBidirectional(persona.nombre);
+            txtPrimerApellido.textProperty().bindBidirectional(persona.pApellido);
+            txtSegundoApellido.textProperty().bindBidirectional(persona.sApellido);
+            dtpFechaNacimeinto.valueProperty().bindBidirectional(persona.fechaNacimiento);
 //            cmbTipoSeguro.valueProperty().bindBidirectional(tipoSeguro.tipoSegDesc);
 //            cmbEscolaridad.valueProperty().bindBidirectional(escolaridad.escDesc);
 //            txtDireccion.textProperty().bindBidirectional(direccion.direcDesc);
@@ -208,18 +208,18 @@ public class ExpedienteViewController extends Controller {
     
     private void unbindExpediente()
     {
-            txtDoctor.textProperty().unbindBidirectional(paciente.pacDoctor);
-            dtpFechaDiagnostico.valueProperty().unbindBidirectional(paciente.pacfechaDiagnostico);
-            dtpFechaReferencia.valueProperty().unbindBidirectional(paciente.pacFechaReferencia);
-            txtProfesionalResponsable.textProperty().unbindBidirectional(paciente.pacProfesionalResponsable);
-            txaDiagnosticoMedico.textProperty().unbindBidirectional(paciente.pacDiagnostico);
-            dtpFechaRegistro.valueProperty().unbindBidirectional(paciente.pacFechaRegistro);
-            cmbEstadoPaciente.valueProperty().unbindBidirectional(paciente.pacEstado); 
-            txtCedula.textProperty().unbindBidirectional(persona.perCedula);
-            txtNombre.textProperty().unbindBidirectional(persona.perNombre);
-            txtPrimerApellido.textProperty().unbindBidirectional(persona.perPapellido);
-            txtSegundoApellido.textProperty().unbindBidirectional(persona.perSapellido);
-            dtpFechaNacimeinto.valueProperty().unbindBidirectional(persona.perFechaNacimiento);
+            txtDoctor.textProperty().unbindBidirectional(paciente.doctor);
+            dtpFechaDiagnostico.valueProperty().unbindBidirectional(paciente.fechaDiagnostico);
+            dtpFechaReferencia.valueProperty().unbindBidirectional(paciente.fechaReferencia);
+            txtProfesionalResponsable.textProperty().unbindBidirectional(paciente.profesionalResponsable);
+            txaDiagnosticoMedico.textProperty().unbindBidirectional(paciente.diagnostico);
+            dtpFechaRegistro.valueProperty().unbindBidirectional(paciente.fechaRegistro);
+            cmbEstadoPaciente.valueProperty().unbindBidirectional(paciente.estado); 
+            txtCedula.textProperty().unbindBidirectional(persona.cedula);
+            txtNombre.textProperty().unbindBidirectional(persona.nombre);
+            txtPrimerApellido.textProperty().unbindBidirectional(persona.pApellido);
+            txtSegundoApellido.textProperty().unbindBidirectional(persona.sApellido);
+            dtpFechaNacimeinto.valueProperty().unbindBidirectional(persona.fechaNacimiento);
 //            cmbTipoSeguro.valueProperty().unbind();
 //            cmbEscolaridad.valueProperty().unbind();
 //            txtDireccion.textProperty().unbind();
@@ -240,9 +240,9 @@ public class ExpedienteViewController extends Controller {
                 PersonaService service = new PersonaService();
                 PacienteService servicePac = new PacienteService();
                     Respuesta respuesta = service.guardarPersona(persona);
-                    paciente.setPacEstado("T");
-                    paciente.setPacIdPaciente(Long.valueOf(1));
-                    paciente.setPerCedula(persona.getPerCedula());
+                    paciente.setEstado("T");
+                    paciente.setIdPaciente(1);
+                    paciente.setCedula(persona.getCedula());
 //                    Respuesta resPac = servicePac.guardarPaciente(paciente);
                     if (!respuesta.getEstado()) {
                         new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar persona", getStage(), respuesta.getMensaje());

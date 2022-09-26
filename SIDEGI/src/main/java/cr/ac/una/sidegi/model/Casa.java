@@ -6,11 +6,12 @@
 package cr.ac.una.sidegi.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -28,63 +29,63 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Casa.findAll", query = "SELECT c FROM Casa c"),
-    @NamedQuery(name = "Casa.findByCasId", query = "SELECT c FROM Casa c WHERE c.casId = :casId"),
-    @NamedQuery(name = "Casa.findByCasDescripcion", query = "SELECT c FROM Casa c WHERE c.casDescripcion = :casDescripcion")})
+    @NamedQuery(name = "Casa.findByCasidCasa", query = "SELECT c FROM Casa c WHERE c.idCasa = :idCasa"),
+    @NamedQuery(name = "Casa.findByCasDescripcion", query = "SELECT c FROM Casa c WHERE c.descripcion = :descripcion")})
 public class Casa implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "cas_id")
-    private Long casId;
+    @Column(name = "cas_idCasa")
+    private Integer idCasa;
     @Basic(optional = false)
     @Column(name = "cas_descripcion")
-    private String casDescripcion;
-    @OneToMany(mappedBy = "casId")
-    private List<Estadia> estadiaList;
+    private String descripcion;
+    @OneToMany(mappedBy = "casa")//mapeado por el campo IdCasa de estadias
+    private List<Estadia> estadias;
 
     public Casa() {
     }
 
-    public Casa(Long casId) {
-        this.casId = casId;
+    public Casa(Integer casidCasa) {
+        this.idCasa = casidCasa;
     }
 
-    public Casa(Long casId, String casDescripcion) {
-        this.casId = casId;
-        this.casDescripcion = casDescripcion;
+    public Casa(Integer casidCasa, String casDescripcion) {
+        this.idCasa = casidCasa;
+        this.descripcion = casDescripcion;
     }
 
-    public Long getCasId() {
-        return casId;
+    public Integer getIdCasa() {
+        return idCasa;
     }
 
-    public void setCasId(Long casId) {
-        this.casId = casId;
+    public void setIdCasa(Integer idCasa) {
+        this.idCasa = idCasa;
     }
 
-    public String getCasDescripcion() {
-        return casDescripcion;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setCasDescripcion(String casDescripcion) {
-        this.casDescripcion = casDescripcion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @XmlTransient
-    public List<Estadia> getEstadiaList() {
-        return estadiaList;
+    public List<Estadia> getEstadias() {
+        return estadias;
     }
 
-    public void setEstadiaList(List<Estadia> estadiaList) {
-        this.estadiaList = estadiaList;
+    public void setEstadias(List<Estadia> estadias) {
+        this.estadias = estadias;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (casId != null ? casId.hashCode() : 0);
+        hash += (idCasa != null ? idCasa.hashCode() : 0);
         return hash;
     }
 
@@ -95,7 +96,7 @@ public class Casa implements Serializable {
             return false;
         }
         Casa other = (Casa) object;
-        if ((this.casId == null && other.casId != null) || (this.casId != null && !this.casId.equals(other.casId))) {
+        if ((this.idCasa == null && other.idCasa != null) || (this.idCasa != null && !this.idCasa.equals(other.idCasa))) {
             return false;
         }
         return true;
@@ -103,7 +104,7 @@ public class Casa implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.Casa[ casId=" + casId + " ]";
+        return "cr.ac.una.sidegi.model.Casa[ casidCasa=" + idCasa + " ]";
     }
     
 }

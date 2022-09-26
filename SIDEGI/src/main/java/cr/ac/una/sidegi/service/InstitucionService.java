@@ -31,8 +31,8 @@ public class InstitucionService {
     public Respuesta guardarInstitucion(InstitucionDto institucionDto) {
         try {
             Institucion institucion;
-            if (institucionDto.getInsId()!= null && institucionDto.getInsId()> 0) {
-                institucion = em.find(Institucion.class, institucionDto.getInsId());
+            if (institucionDto.getIdInstituicion()!= null && institucionDto.getIdInstituicion()> 0) {
+                institucion = em.find(Institucion.class, institucionDto.getIdInstituicion());
                 if (institucion == null) {
                     return new Respuesta(false, "No se encrontró la institucion a modificar.", "guardarInstitucion NoResultException");
                 }

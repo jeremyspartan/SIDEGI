@@ -14,41 +14,41 @@ import javafx.beans.property.SimpleStringProperty;
  * @author Usuario
  */
 public class DireccionDto {
-    public SimpleStringProperty direcId;
-    public SimpleStringProperty direcDesc;
+    public SimpleStringProperty idDireccion;
+    public SimpleStringProperty descDireccion;
 
     public DireccionDto() {
-        this.direcId = new SimpleStringProperty();
-        this.direcDesc = new SimpleStringProperty();
+        this.idDireccion = new SimpleStringProperty();
+        this.descDireccion = new SimpleStringProperty();
     }
     public DireccionDto(DireccionDto direccionService)  {
-        this.direcId.set(direccionService.getDirecId().toString());
-        this.direcDesc.set(direccionService.getDirecDesc());
+        this.idDireccion.set(direccionService.getIdDireccion().toString());
+        this.descDireccion.set(direccionService.getDescDireccion());
 
     }
     public DireccionDto(Direccion direccion){
-        this.direcId.set(Long.toString(direccion.getDiridDireccion()));
-        this.direcDesc.set(direccion.getDirdescDireccion());
+        this.idDireccion.set(Long.toString(direccion.getIdDireccion()));
+        this.descDireccion.set(direccion.getDescDireccion());
 
     }
 
-    public Long getDirecId() {
-        if(direcId.get()!=null && !direcId.get().isEmpty())
-            return Long.valueOf(direcId.get());
+    public Integer getIdDireccion() {
+        if(idDireccion.get()!=null && !idDireccion.get().isEmpty())
+            return Integer.valueOf(idDireccion.get());
         else
             return null;
     }
 
-    public void setDirecId(Long direcId) {
-        this.direcId.set(direcId.toString());
+    public void setIdDireccion(Long direcId) {
+        this.idDireccion.set(direcId.toString());
     }
 
-    public String getDirecDesc() {
-        return direcDesc.get();
+    public String getDescDireccion() {
+        return descDireccion.get();
     }
 
-    public void setDirecDesc(String direcDesc) {
-        this.direcDesc.set(direcDesc);
+    public void setDescDireccion(String direcDesc) {
+        this.descDireccion.set(direcDesc);
     }
     
     

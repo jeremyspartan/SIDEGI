@@ -7,12 +7,15 @@ package cr.ac.una.sidegi.model;
 
 import cr.ac.una.sidegi.model.dto.DireccionDto;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -29,73 +32,105 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Direccion.findAll", query = "SELECT d FROM Direccion d"),
-    @NamedQuery(name = "Direccion.findByDiridDireccion", query = "SELECT d FROM Direccion d WHERE d.diridDireccion = :diridDireccion"),
-    @NamedQuery(name = "Direccion.findByDirdescDireccion", query = "SELECT d FROM Direccion d WHERE d.dirdescDireccion = :dirdescDireccion")})
+    @NamedQuery(name = "Direccion.findByDiridDireccion", query = "SELECT d FROM Direccion d WHERE d.idDireccion = :idDireccion"),
+    @NamedQuery(name = "Direccion.findByDirdescDireccion", query = "SELECT d FROM Direccion d WHERE d.descDireccion = :descDireccion")})
 public class Direccion implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "dir_idDireccion")
-    private Long diridDireccion;
+    private Integer idDireccion;
     @Basic(optional = false)
     @Column(name = "dir_descDireccion")
-    private String dirdescDireccion;
-    @OneToMany(mappedBy = "diridDireccion")
-    private List<Persona> personaList;
+    private String descDireccion;
+    @OneToMany(mappedBy = "direccion")//mapeado por el campo idDirecccion de persona
+    private List<Persona> personas;
+    @JoinColumn(name = "dir_idCanton", referencedColumnName = "can_idCanton")
+    @ManyToOne(optional = false)
+    private Canton canton;
+    @JoinColumn(name = "dir_idDistrito", referencedColumnName = "dist_idDistrito")
+    @ManyToOne(optional = false)
+    private Distrito distrito;
+    @JoinColumn(name = "dir_idProvincia", referencedColumnName = "pro_idProvincia")
+    @ManyToOne(optional = false)
+    private Provincia provincia;
 
     public Direccion() {
     }
-    
+
     public Direccion(DireccionDto direccionDto) {
         actualizarDireccion(direccionDto);
     }
      
     public void actualizarDireccion(DireccionDto direccionDto){
-        this.diridDireccion = direccionDto.getDirecId();
-        this.dirdescDireccion = direccionDto.getDirecDesc();
-        
+        this.idDireccion = direccionDto.getIdDireccion();
+        this.descDireccion = direccionDto.getDescDireccion();
+    }
+    
+    public Direccion(Integer diridDireccion) {
+        this.idDireccion = diridDireccion;
     }
 
-    public Direccion(Long diridDireccion) {
-        this.diridDireccion = diridDireccion;
+    public Direccion(Integer diridDireccion, String dirdescDireccion) {
+        this.idDireccion = diridDireccion;
+        this.descDireccion = dirdescDireccion;
     }
 
-    public Direccion(Long diridDireccion, String dirdescDireccion) {
-        this.diridDireccion = diridDireccion;
-        this.dirdescDireccion = dirdescDireccion;
+    public Integer getIdDireccion() {
+        return idDireccion;
     }
 
-    public Long getDiridDireccion() {
-        return diridDireccion;
+    public void setIdDireccion(Integer idDireccion) {
+        this.idDireccion = idDireccion;
     }
 
-    public void setDiridDireccion(Long diridDireccion) {
-        this.diridDireccion = diridDireccion;
+    public String getDescDireccion() {
+        return descDireccion;
     }
 
-    public String getDirdescDireccion() {
-        return dirdescDireccion;
-    }
-
-    public void setDirdescDireccion(String dirdescDireccion) {
-        this.dirdescDireccion = dirdescDireccion;
+    public void setDescDireccion(String descDireccion) {
+        this.descDireccion = descDireccion;
     }
 
     @XmlTransient
-    public List<Persona> getPersonaList() {
-        return personaList;
+    public List<Persona> getPersonas() {
+        return personas;
     }
 
-    public void setPersonaList(List<Persona> personaList) {
-        this.personaList = personaList;
+    public void setPersonas(List<Persona> personas) {
+        this.personas = personas;
+    }
+
+    public Canton getCanton() {
+        return canton;
+    }
+
+    public void setCanton(Canton canton) {
+        this.canton = canton;
+    }
+
+    public Distrito getDistrito() {
+        return distrito;
+    }
+
+    public void setDistrito(Distrito distrito) {
+        this.distrito = distrito;
+    }
+
+    public Provincia getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(Provincia provincia) {
+        this.provincia = provincia;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (diridDireccion != null ? diridDireccion.hashCode() : 0);
+        hash += (idDireccion != null ? idDireccion.hashCode() : 0);
         return hash;
     }
 
@@ -106,7 +141,7 @@ public class Direccion implements Serializable {
             return false;
         }
         Direccion other = (Direccion) object;
-        if ((this.diridDireccion == null && other.diridDireccion != null) || (this.diridDireccion != null && !this.diridDireccion.equals(other.diridDireccion))) {
+        if ((this.idDireccion == null && other.idDireccion != null) || (this.idDireccion != null && !this.idDireccion.equals(other.idDireccion))) {
             return false;
         }
         return true;
@@ -114,7 +149,7 @@ public class Direccion implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.Direccion[ diridDireccion=" + diridDireccion + " ]";
+        return "cr.ac.una.sidegi.model.Direccion[ diridDireccion=" + idDireccion + " ]";
     }
     
 }

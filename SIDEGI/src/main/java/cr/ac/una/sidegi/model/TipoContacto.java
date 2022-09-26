@@ -11,6 +11,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -28,21 +30,21 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TipoContacto.findAll", query = "SELECT t FROM TipoContacto t"),
-    @NamedQuery(name = "TipoContacto.findByTpcidTipoContacto", query = "SELECT t FROM TipoContacto t WHERE t.tpcidTipoContacto = :tpcidTipoContacto"),
-    @NamedQuery(name = "TipoContacto.findByTpcDescripcion", query = "SELECT t FROM TipoContacto t WHERE t.tpcDescripcion = :tpcDescripcion")})
+    @NamedQuery(name = "TipoContacto.findByTpcidTipoContacto", query = "SELECT t FROM TipoContacto t WHERE t.idTipoContacto = :idTipoContacto"),
+    @NamedQuery(name = "TipoContacto.findByTpcDescripcion", query = "SELECT t FROM TipoContacto t WHERE t.descripcion = :descripcion")})
 public class TipoContacto implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "tpc_idTipoContacto")
-    private Long tpcidTipoContacto;
+    private Integer idTipoContacto;
     @Basic(optional = false)
     @Column(name = "tpc_descripcion")
-    private String tpcDescripcion;
-    @OneToMany(mappedBy = "tpcIdTipoContacto")
-    private List<Contacto> contactos;
+    private String descripcion;
+    @OneToMany(mappedBy = "tipoContacto")
+    private List<Contacto> contactos;//mapeado por el campo idContacto de Contacto
 
     public TipoContacto() {
     }
@@ -52,36 +54,36 @@ public class TipoContacto implements Serializable {
     }
      
     public void actualizarTipoContacto(TipoContactoDto tipoContactoDto){
-        this.tpcidTipoContacto = tipoContactoDto.getTpcidTipoContacto();
-        this.tpcDescripcion = tipoContactoDto.getTpcDescripcion();
+        this.idTipoContacto = tipoContactoDto.getIdTipoContacto();
+        this.descripcion = tipoContactoDto.getDescripcion();
         tipoContactoDto.getContactos().forEach((object) -> {
             contactos.add(new Contacto(object));
         });
     }
 
-    public TipoContacto(Long tpcidTipoContacto) {
-        this.tpcidTipoContacto = tpcidTipoContacto;
+    public TipoContacto(Integer tpcidTipoContacto) {
+        this.idTipoContacto = tpcidTipoContacto;
     }
 
-    public TipoContacto(Long tpcidTipoContacto, String tpcDescripcion) {
-        this.tpcidTipoContacto = tpcidTipoContacto;
-        this.tpcDescripcion = tpcDescripcion;
+    public TipoContacto(Integer tpcidTipoContacto, String tpcDescripcion) {
+        this.idTipoContacto = tpcidTipoContacto;
+        this.descripcion = tpcDescripcion;
     }
 
-    public Long getTpcidTipoContacto() {
-        return tpcidTipoContacto;
+    public Integer getIdTipoContacto() {
+        return idTipoContacto;
     }
 
-    public void setTpcidTipoContacto(Long tpcidTipoContacto) {
-        this.tpcidTipoContacto = tpcidTipoContacto;
+    public void setIdTipoContacto(Integer idTipoContacto) {
+        this.idTipoContacto = idTipoContacto;
     }
 
-    public String getTpcDescripcion() {
-        return tpcDescripcion;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setTpcDescripcion(String tpcDescripcion) {
-        this.tpcDescripcion = tpcDescripcion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @XmlTransient
@@ -89,14 +91,14 @@ public class TipoContacto implements Serializable {
         return contactos;
     }
 
-    public void setContactos(List<Contacto> contactoList) {
-        this.contactos = contactoList;
+    public void setContactos(List<Contacto> contactos) {
+        this.contactos = contactos;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (tpcidTipoContacto != null ? tpcidTipoContacto.hashCode() : 0);
+        hash += (idTipoContacto != null ? idTipoContacto.hashCode() : 0);
         return hash;
     }
 
@@ -107,7 +109,7 @@ public class TipoContacto implements Serializable {
             return false;
         }
         TipoContacto other = (TipoContacto) object;
-        if ((this.tpcidTipoContacto == null && other.tpcidTipoContacto != null) || (this.tpcidTipoContacto != null && !this.tpcidTipoContacto.equals(other.tpcidTipoContacto))) {
+        if ((this.idTipoContacto == null && other.idTipoContacto != null) || (this.idTipoContacto != null && !this.idTipoContacto.equals(other.idTipoContacto))) {
             return false;
         }
         return true;
@@ -115,7 +117,7 @@ public class TipoContacto implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.TipoContacto[ tpcidTipoContacto=" + tpcidTipoContacto + " ]";
+        return "cr.ac.una.sidegi.model.TipoContacto[ tpcidTipoContacto=" + idTipoContacto + " ]";
     }
     
 }

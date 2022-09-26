@@ -5,7 +5,7 @@
  */
 package cr.ac.una.sidegi.service;
 
-import cr.ac.una.sidegi.model.TiposInstitucion;
+import cr.ac.una.sidegi.model.TipoInstitucion;
 import cr.ac.una.sidegi.model.dto.TiposInstitucionDto;
 import cr.ac.una.sidegi.util.EntityManagerHelper;
 import cr.ac.una.sidegi.util.Respuesta;
@@ -26,16 +26,16 @@ public class TiposInstitucionService {
     
     public Respuesta guardarTipoInstitucion(TiposInstitucionDto tipoInstitucionDto) {
         try {
-            TiposInstitucion tipoInstitucion;
-            if (tipoInstitucionDto.getTinsId()!= null && tipoInstitucionDto.getTinsId()> 0) {
-                tipoInstitucion = em.find(TiposInstitucion.class, tipoInstitucionDto.getTinsId());
+            TipoInstitucion tipoInstitucion;
+            if (tipoInstitucionDto.getIdTipoInstitucion()!= null && tipoInstitucionDto.getIdTipoInstitucion()> 0) {
+                tipoInstitucion = em.find(TipoInstitucion.class, tipoInstitucionDto.getIdTipoInstitucion());
                 if (tipoInstitucion == null) {
                     return new Respuesta(false, "No se encrontró el tipo de institucion a modificar", "guardarTipoInstitucion NoResultException");
                 }
                 tipoInstitucion.actualizarTiposInstitucion(tipoInstitucionDto);
                 tipoInstitucion = em.merge(tipoInstitucion);
             } else {
-                tipoInstitucion = new TiposInstitucion(tipoInstitucionDto);
+                tipoInstitucion = new TipoInstitucion(tipoInstitucionDto);
                 em.persist(tipoInstitucion);
             }
             em.flush();

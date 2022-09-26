@@ -6,10 +6,6 @@
 package cr.ac.una.sidegi.model.dto;
 
 import cr.ac.una.sidegi.model.TipoSeguro;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
@@ -17,41 +13,41 @@ import javafx.beans.property.SimpleStringProperty;
  * @author Usuario
  */
 public class TipoSeguroDto {
-    public SimpleStringProperty tipoSegId;
-    public SimpleStringProperty tipoSegDesc;
+    public SimpleStringProperty idTipoSeguro;
+    public SimpleStringProperty descTipoSeguro;
 
     public TipoSeguroDto() {
-        this.tipoSegId = new SimpleStringProperty();
-        this.tipoSegDesc = new SimpleStringProperty();
+        this.idTipoSeguro = new SimpleStringProperty();
+        this.descTipoSeguro = new SimpleStringProperty();
     }
     public TipoSeguroDto(TipoSeguroDto tipoSeguroService) {
-        this.tipoSegId.set(tipoSeguroService.getTipoSegId().toString());
-        this.tipoSegDesc.set(tipoSeguroService.getTipoSegDesc());
+        this.idTipoSeguro.set(tipoSeguroService.getIdTipoSeguro().toString());
+        this.descTipoSeguro.set(tipoSeguroService.getDescTipoSeguro());
 
     }
     public TipoSeguroDto(TipoSeguro tipoSeguro){
-        this.tipoSegId.set(Long.toString(tipoSeguro.getSegId()));
-        this.tipoSegDesc.set(tipoSeguro.getSegDescripcion());
+        this.idTipoSeguro.set(Long.toString(tipoSeguro.getIdTipoSeguro()));
+        this.descTipoSeguro.set(tipoSeguro.getDescripcion());
 
     }
 
-    public Long getTipoSegId() {
-        if(tipoSegId.get()!=null && !tipoSegId.get().isEmpty())
-            return Long.valueOf(tipoSegId.get());
+    public Integer getIdTipoSeguro() {
+        if(idTipoSeguro.get()!=null && !idTipoSeguro.get().isEmpty())
+            return Integer.valueOf(idTipoSeguro.get());
         else
             return null;
     }
 
-    public void setTipoSegId(Long tipoSegId) {
-        this.tipoSegId.set(tipoSegId.toString());
+    public void setIdTipoSeguro(Long idTipoSeguro) {
+        this.idTipoSeguro.set(idTipoSeguro.toString());
     }
 
-    public String getTipoSegDesc() {
-        return tipoSegDesc.get();
+    public String getDescTipoSeguro() {
+        return descTipoSeguro.get();
     }
 
-    public void setTipoSegDesc(String tipoSegDesc) {
-        this.tipoSegDesc.set(tipoSegDesc);
+    public void setDescTipoSeguro(String descTipoSeguro) {
+        this.descTipoSeguro.set(descTipoSeguro);
     }
     
 

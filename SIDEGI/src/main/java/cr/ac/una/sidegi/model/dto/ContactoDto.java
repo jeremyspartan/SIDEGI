@@ -14,43 +14,43 @@ import javafx.beans.property.SimpleStringProperty;
  * @author computer
  */
 public class ContactoDto {
-    public SimpleStringProperty conIdContacto;
-    public SimpleStringProperty conContacto;
+    public SimpleStringProperty IdContacto;
+    public SimpleStringProperty contacto;
     public List<InstitucionDto> institucionesDto;
     //private List<Persona> personas;
-    public TipoContactoDto tpcIdTipoContactoDto;
+    public TipoContactoDto TipoContactoDto;
     
     public ContactoDto(){
-        this.conIdContacto = new SimpleStringProperty();
-        this.conContacto = new SimpleStringProperty();
+        this.IdContacto = new SimpleStringProperty();
+        this.contacto = new SimpleStringProperty();
     }
     
     public ContactoDto(Contacto contacto){
-        this.conIdContacto.set(Long.toString(contacto.getConIdContacto()));
-        this.conContacto.set(contacto.getConContacto());
-        this.tpcIdTipoContactoDto = new TipoContactoDto(contacto.getTpcIdTipoContacto());
+        this.IdContacto.set(Long.toString(contacto.getIdContacto()));
+        this.contacto.set(contacto.getContacto());
+        this.TipoContactoDto = new TipoContactoDto(contacto.getTipoContacto());
         //    contacto.getInstituciones().forEach((object) -> {
           //      this.institucionesDto.add(new InstitucionDto(object));
           //  });
     }
 
     public Long getConIdContacto() {
-        if(conIdContacto.get()!=null && !conIdContacto.get().isEmpty())
-            return Long.valueOf(conIdContacto.get());
+        if(IdContacto.get()!=null && !IdContacto.get().isEmpty())
+            return Long.valueOf(IdContacto.get());
         else
             return null;
     }
 
     public void setConIdContacto(Long conIdContacto) {
-        this.conIdContacto.set(conIdContacto.toString());
+        this.IdContacto.set(conIdContacto.toString());
     }
 
-    public String getConContacto() {
-        return conContacto.get();
+    public String getContacto() {
+        return contacto.get();
     }
 
-    public void setConContacto(String conContacto) {
-        this.conContacto.set(conContacto);
+    public void setContacto(String conContacto) {
+        this.contacto.set(conContacto);
     }
 
     public List<InstitucionDto> getInstitucionesDto() {
@@ -61,12 +61,12 @@ public class ContactoDto {
         this.institucionesDto = institucionesDto;
     }
 
-    public TipoContactoDto getTpcIdTipoContactoDto() {
-        return tpcIdTipoContactoDto;
+    public TipoContactoDto getTipoContactoDto() {
+        return TipoContactoDto;
     }
 
-    public void setTpcIdTipoContactoDto(TipoContactoDto tpcIdTipoContactoDto) {
-        this.tpcIdTipoContactoDto = tpcIdTipoContactoDto;
+    public void setTipoContactoDto(TipoContactoDto TipoContactoDto) {
+        this.TipoContactoDto = TipoContactoDto;
     }
     
 }

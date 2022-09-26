@@ -10,14 +10,12 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -26,7 +24,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.transaction.Transactional;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -39,66 +36,61 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Paciente.findAll", query = "SELECT p FROM Paciente p"),
-    @NamedQuery(name = "Paciente.findByPacidPaciente", query = "SELECT p FROM Paciente p WHERE p.pacIdPaciente = :pacIdPaciente"),
-    @NamedQuery(name = "Paciente.findByPacDiagnostico", query = "SELECT p FROM Paciente p WHERE p.pacDiagnostico = :pacDiagnostico"),
-    @NamedQuery(name = "Paciente.findByPacEstado", query = "SELECT p FROM Paciente p WHERE p.pacEstado = :pacEstado"),
-    @NamedQuery(name = "Paciente.findByPacprofesionalResponsable", query = "SELECT p FROM Paciente p WHERE p.pacProfesionalResponsable = :pacProfesionalResponsable"),
-    @NamedQuery(name = "Paciente.findByPacfechaReferencia", query = "SELECT p FROM Paciente p WHERE p.pacFechaReferencia = :pacFechaReferencia"),
-    @NamedQuery(name = "Paciente.findByPacfechaDiagnostico", query = "SELECT p FROM Paciente p WHERE p.pacfechaDiagnostico = :pacfechaDiagnostico"),
-    @NamedQuery(name = "Paciente.findByPacDoctor", query = "SELECT p FROM Paciente p WHERE p.pacDoctor = :pacDoctor"),
-    @NamedQuery(name = "Paciente.findByPacfechaRegistro", query = "SELECT p FROM Paciente p WHERE p.pacFechaRegistro = :pacFechaRegistro")})
-@Transactional
+    @NamedQuery(name = "Paciente.findByPacidPaciente", query = "SELECT p FROM Paciente p WHERE p.idPaciente = :idPaciente"),
+    @NamedQuery(name = "Paciente.findByPacDiagnostico", query = "SELECT p FROM Paciente p WHERE p.diagnostico = :diagnostico"),
+    @NamedQuery(name = "Paciente.findByPacEstado", query = "SELECT p FROM Paciente p WHERE p.estado = :estado"),
+    @NamedQuery(name = "Paciente.findByPacprofesionalResponsable", query = "SELECT p FROM Paciente p WHERE p.profesionalResponsable = :profesionalResponsable"),
+    @NamedQuery(name = "Paciente.findByPacfechaReferencia", query = "SELECT p FROM Paciente p WHERE p.fechaReferencia = :fechaReferencia"),
+    @NamedQuery(name = "Paciente.findByPacfechaDiagnostico", query = "SELECT p FROM Paciente p WHERE p.fechaDiagnostico = :fechaDiagnostico"),
+    @NamedQuery(name = "Paciente.findByPacDoctor", query = "SELECT p FROM Paciente p WHERE p.doctor = :doctor"),
+    @NamedQuery(name = "Paciente.findByPacfechaRegistro", query = "SELECT p FROM Paciente p WHERE p.fechaRegistro = :fechaRegistro")})
 public class Paciente implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "pac_idPaciente")
-    private Long pacIdPaciente;
+    private Integer idPaciente;
     @Basic(optional = false)
     @Column(name = "pac_diagnostico")
-    private String pacDiagnostico;
+    private String diagnostico;
     @Basic(optional = false)
     @Column(name = "pac_estado")
-    private String pacEstado;
+    private String estado;
     @Column(name = "pac_profesionalResponsable")
-    private String pacProfesionalResponsable;
+    private String profesionalResponsable;
     @Basic(optional = false)
     @Column(name = "pac_fechaReferencia")
-    //@Temporal(TemporalType.TIMESTAMP)
-    private LocalDate pacFechaReferencia;
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDate fechaReferencia;
     @Basic(optional = false)
     @Column(name = "pac_fechaDiagnostico")
-    //@Temporal(TemporalType.TIMESTAMP)
-    private LocalDate pacfechaDiagnostico;
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDate fechaDiagnostico;
     @Basic(optional = false)
     @Column(name = "pac_doctor")
-    private String pacDoctor;
+    private String doctor;
     @Basic(optional = false)
     @Column(name = "pac_fechaRegistro")
-    //@Temporal(TemporalType.TIMESTAMP)
-    private LocalDate pacFechaRegistro;
-    @JoinTable(name = "sid_pacientetratamientos", joinColumns = {
-        @JoinColumn(name = "pac_idPaciente", referencedColumnName = "pac_idPaciente")}, inverseJoinColumns = {
-        @JoinColumn(name = "tra_id", referencedColumnName = "tra_id")})
-    @ManyToMany
-    private List<Tratamiento> tratamientos;
-    @OneToMany(mappedBy = "pacidPaciente")
-    private List<Observacion> observaciones;
-    @OneToMany(mappedBy = "pacidPaciente")
-    private List<Estadia> estadias;
-    @OneToMany(mappedBy = "pacidPaciente")
-    private List<Entrevista> entrevistas;
-    @OneToMany(mappedBy = "pacidPaciente")
-    private List<Anexo> anexos;
-    @ManyToOne(cascade= CascadeType.MERGE)
-    @JoinColumn(name = "ins_id", referencedColumnName = "ins_id")
-    private Institucion insId;
-    @ManyToOne(cascade= CascadeType.MERGE)
-    @JoinColumn(name = "per_cedula", referencedColumnName = "per_cedula")
-    private Persona perCedula;
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDate fechaRegistro;
+    @ManyToMany(mappedBy = "pacientes")
+    private List<Tratamiento> tratamientos;//mapeado por el campo pacientes de Tratamiento
+    @OneToMany(mappedBy = "paciente")
+    private List<Observacion> observaciones;//mapeado por el campo idPaciente de Observacion
+    @OneToMany(mappedBy = "paciente")
+    private List<Estadia> estadias;//mapeado por el campo idPaciente de Estadia
+    @OneToMany(mappedBy = "paciente")
+    private List<Entrevista> entrevistas;//mapeado por el campo idPaciente de Entrevista
+    @OneToMany(mappedBy = "idPaciente")
+    private List<Anexo> anexos;//mapeado por el campo idPaciente de Anexo
+    @JoinColumn(name = "pac_idInstitucion", referencedColumnName = "ins_idInstitucion")
+    @ManyToOne
+    private Institucion institucion;
+    @JoinColumn(name = "pac_cedula", referencedColumnName = "per_cedula")
+    @ManyToOne
+    private Persona persona;
 
     public Paciente() {
     }
@@ -106,94 +98,95 @@ public class Paciente implements Serializable {
     public Paciente(PacienteDto pacienteDto) {
         actualizarPaciente(pacienteDto);
     }
-
-    public void actualizarPaciente(PacienteDto pacienteDto){
-        this.pacIdPaciente = pacienteDto.getPacIdPaciente();
-        this.pacDiagnostico = pacienteDto.getPacDiagnostico();
-        this.pacEstado = pacienteDto.getPacEstado();
-        this.pacProfesionalResponsable = pacienteDto.getPacProfesionalResponsable();
-        this.pacFechaReferencia = pacienteDto.getPacFechaReferencia();
-        this.pacfechaDiagnostico = pacienteDto.getPacfechaDiagnostico();
-        this.pacDoctor = pacienteDto.getPacDoctor();
-        this.pacFechaRegistro = pacienteDto.getPacFechaRegistro();
+    
+     public void actualizarPaciente(PacienteDto pacienteDto){
+        this.idPaciente = pacienteDto.getIdPaciente();
+        this.diagnostico = pacienteDto.getDiagnostico();
+        this.estado = pacienteDto.getEstado();
+        this.profesionalResponsable = pacienteDto.getProfesionalResponsable();
+        this.fechaReferencia = pacienteDto.getFechaReferencia();
+        this.fechaDiagnostico = pacienteDto.getFechaDiagnostico();
+        this.doctor = pacienteDto.getDoctor();
+        this.fechaRegistro = pacienteDto.getFechaRegistro();
 //        this.insId = new Institucion(pacienteDto.getInsId());
     }
-    public Paciente(Long pacidPaciente) {
-        this.pacIdPaciente = pacidPaciente;
+    public Paciente(Integer idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
-    public Paciente(Long pacidPaciente, String pacDiagnostico, String pacEstado, LocalDate pacfechaReferencia, LocalDate pacfechaDiagnostico, String pacDoctor, LocalDate pacfechaRegistro) {
-        this.pacIdPaciente = pacidPaciente;
-        this.pacDiagnostico = pacDiagnostico;
-        this.pacEstado = pacEstado;
-        this.pacFechaReferencia = pacfechaReferencia;
-        this.pacfechaDiagnostico = pacfechaDiagnostico;
-        this.pacDoctor = pacDoctor;
-        this.pacFechaRegistro = pacfechaRegistro;
+
+    public Paciente(Integer pacidPaciente, String pacDiagnostico, String pacEstado, LocalDate pacfechaReferencia, LocalDate pacfechaDiagnostico, String pacDoctor, LocalDate pacfechaRegistro) {
+        this.idPaciente = pacidPaciente;
+        this.diagnostico = pacDiagnostico;
+        this.estado = pacEstado;
+        this.fechaReferencia = pacfechaReferencia;
+        this.fechaDiagnostico = pacfechaDiagnostico;
+        this.doctor = pacDoctor;
+        this.fechaRegistro = pacfechaRegistro;
     }
 
-    public Long getPacIdPaciente() {
-        return pacIdPaciente;
+    public Integer getIdPaciente() {
+        return idPaciente;
     }
 
-    public void setPacIdPaciente(Long pacidPaciente) {
-        this.pacIdPaciente = pacidPaciente;
+    public void setIdPaciente(Integer idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
-    public String getPacDiagnostico() {
-        return pacDiagnostico;
+    public String getDiagnostico() {
+        return diagnostico;
     }
 
-    public void setPacDiagnostico(String pacDiagnostico) {
-        this.pacDiagnostico = pacDiagnostico;
+    public void setDiagnostico(String diagnostico) {
+        this.diagnostico = diagnostico;
     }
 
-    public String getPacEstado() {
-        return pacEstado;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setPacEstado(String pacEstado) {
-        this.pacEstado = pacEstado;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
-    public String getPacProfesionalResponsable() {
-        return pacProfesionalResponsable;
+    public String getProfesionalResponsable() {
+        return profesionalResponsable;
     }
 
-    public void setPacProfesionalResponsable(String pacProfesionalResponsable) {
-        this.pacProfesionalResponsable = pacProfesionalResponsable;
+    public void setProfesionalResponsable(String profesionalResponsable) {
+        this.profesionalResponsable = profesionalResponsable;
     }
 
-    public LocalDate getPacFechaReferencia() {
-        return pacFechaReferencia;
+    public LocalDate getFechaReferencia() {
+        return fechaReferencia;
     }
 
-    public void setPacFechaReferencia(LocalDate pacFechaReferencia) {
-        this.pacFechaReferencia = pacFechaReferencia;
+    public void setFechaReferencia(LocalDate fechaReferencia) {
+        this.fechaReferencia = fechaReferencia;
     }
 
-    public LocalDate getPacfechaDiagnostico() {
-        return pacfechaDiagnostico;
+    public LocalDate getFechaDiagnostico() {
+        return fechaDiagnostico;
     }
 
-    public void setPacfechaDiagnostico(LocalDate pacfechaDiagnostico) {
-        this.pacfechaDiagnostico = pacfechaDiagnostico;
+    public void setFechaDiagnostico(LocalDate fechaDiagnostico) {
+        this.fechaDiagnostico = fechaDiagnostico;
     }
 
-    public String getPacDoctor() {
-        return pacDoctor;
+    public String getDoctor() {
+        return doctor;
     }
 
-    public void setPacDoctor(String pacDoctor) {
-        this.pacDoctor = pacDoctor;
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
     }
 
-    public LocalDate getPacFechaRegistro() {
-        return pacFechaRegistro;
+    public LocalDate getFechaRegistro() {
+        return fechaRegistro;
     }
 
-    public void setPacFechaRegistro(LocalDate pacFechaRegistro) {
-        this.pacFechaRegistro = pacFechaRegistro;
+    public void setFechaRegistro(LocalDate fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
 
     @XmlTransient
@@ -241,26 +234,26 @@ public class Paciente implements Serializable {
         this.anexos = anexos;
     }
 
-    public Institucion getInsId() {
-        return insId;
+    public Institucion getInstitucion() {
+        return institucion;
     }
 
-    public void setInsId(Institucion insId) {
-        this.insId = insId;
+    public void setInstitucion(Institucion institucion) {
+        this.institucion = institucion;
     }
 
-    public Persona getPerCedula() {
-        return perCedula;
+    public Persona getPersona() {
+        return persona;
     }
 
-    public void setPerCedula(Persona perCedula) {
-        this.perCedula = perCedula;
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (pacIdPaciente != null ? pacIdPaciente.hashCode() : 0);
+        hash += (idPaciente != null ? idPaciente.hashCode() : 0);
         return hash;
     }
 
@@ -271,7 +264,7 @@ public class Paciente implements Serializable {
             return false;
         }
         Paciente other = (Paciente) object;
-        if ((this.pacIdPaciente == null && other.pacIdPaciente != null) || (this.pacIdPaciente != null && !this.pacIdPaciente.equals(other.pacIdPaciente))) {
+        if ((this.idPaciente == null && other.idPaciente != null) || (this.idPaciente != null && !this.idPaciente.equals(other.idPaciente))) {
             return false;
         }
         return true;
@@ -279,7 +272,7 @@ public class Paciente implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.Paciente[ pacidPaciente=" + pacIdPaciente + " ]";
+        return "cr.ac.una.sidegi.model.Paciente[ pacidPaciente=" + idPaciente + " ]";
     }
     
 }

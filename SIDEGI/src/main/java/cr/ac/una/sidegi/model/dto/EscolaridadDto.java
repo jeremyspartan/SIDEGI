@@ -14,41 +14,41 @@ import javafx.beans.property.SimpleStringProperty;
  * @author Usuario
  */
 public class EscolaridadDto {
-    public SimpleStringProperty escId;
-    public SimpleStringProperty escDesc;
+    public SimpleStringProperty idEscolaridad;
+    public SimpleStringProperty descEscolaridad;
     
     public EscolaridadDto() {
-        this.escId = new SimpleStringProperty();
-        this.escDesc = new SimpleStringProperty();
+        this.idEscolaridad = new SimpleStringProperty();
+        this.descEscolaridad = new SimpleStringProperty();
     }
     public EscolaridadDto(EscolaridadDto escolaridadService) throws ParseException {
         this();
-        this.escId.set(escolaridadService.getEscId().toString());
-        this.escDesc.set(escolaridadService.getEscDesc());
+        this.idEscolaridad.set(escolaridadService.getIdEscolaridad().toString());
+        this.descEscolaridad.set(escolaridadService.getDescEscolaridad());
 
     }
     public EscolaridadDto(Escolaridad escolaridad){
-        this.escId.set(Long.toString(escolaridad.getEscId()));
-        this.escDesc.set(escolaridad.getEscDescripcion());
+        this.idEscolaridad.set(Long.toString(escolaridad.getIdEscolaridad()));
+        this.descEscolaridad.set(escolaridad.getDescripcion());
     }
 
-    public Long getEscId() {
-        if(escId.get()!=null && !escId.get().isEmpty())
-            return Long.valueOf(escId.get());
+    public Integer getIdEscolaridad() {
+        if(idEscolaridad.get()!=null && !idEscolaridad.get().isEmpty())
+            return Integer.valueOf(idEscolaridad.get());
         else
             return null;
     }
 
-    public void setEscId(Long escId) {
-        this.escId.set(escId.toString());
+    public void setIdEscolaridad(Long idEscolaridad) {
+        this.idEscolaridad.set(idEscolaridad.toString());
     }
 
-    public String getEscDesc() {
-        return escDesc.get();
+    public String getDescEscolaridad() {
+        return descEscolaridad.get();
     }
 
-    public void setEscDesc(String escDesc) {
-        this.escDesc.set(escDesc);
+    public void setDescEscolaridad(String descEscolaridad) {
+        this.descEscolaridad.set(descEscolaridad);
     }
     
     

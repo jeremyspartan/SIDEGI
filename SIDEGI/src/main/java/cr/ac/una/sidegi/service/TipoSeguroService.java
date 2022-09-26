@@ -29,8 +29,8 @@ public class TipoSeguroService {
     public Respuesta guardarTipoSeguro(TipoSeguroDto tipoSeguroDto) {
         try {
             TipoSeguro tipoSeguro;
-            if (tipoSeguroDto.getTipoSegId()!= null && tipoSeguroDto.getTipoSegId()> 0) {
-                tipoSeguro = em.find(TipoSeguro.class, tipoSeguroDto.getTipoSegId());
+            if (tipoSeguroDto.getIdTipoSeguro()!= null && tipoSeguroDto.getIdTipoSeguro()> 0) {
+                tipoSeguro = em.find(TipoSeguro.class, tipoSeguroDto.getIdTipoSeguro());
                 if (tipoSeguro == null) {
                     return new Respuesta(false, "No se encrontró el tipo de seguro a modificar.", "guardarTipoSeguro NoResultException");
                 }

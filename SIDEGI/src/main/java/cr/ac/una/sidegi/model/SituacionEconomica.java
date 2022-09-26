@@ -6,11 +6,12 @@
 package cr.ac.una.sidegi.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -28,63 +29,63 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SituacionEconomica.findAll", query = "SELECT s FROM SituacionEconomica s"),
-    @NamedQuery(name = "SituacionEconomica.findBySeId", query = "SELECT s FROM SituacionEconomica s WHERE s.seId = :seId"),
-    @NamedQuery(name = "SituacionEconomica.findBySetipoSituacion", query = "SELECT s FROM SituacionEconomica s WHERE s.setipoSituacion = :setipoSituacion")})
+    @NamedQuery(name = "SituacionEconomica.findBySeidSituacionEconomica", query = "SELECT s FROM SituacionEconomica s WHERE s.idSituacionEconomica = :idSituacionEconomica"),
+    @NamedQuery(name = "SituacionEconomica.findBySetipoSituacion", query = "SELECT s FROM SituacionEconomica s WHERE s.tipoSituacion = :tipoSituacion")})
 public class SituacionEconomica implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "se_id")
-    private Long seId;
+    @Column(name = "se_idSituacionEconomica")
+    private Integer idSituacionEconomica;
     @Basic(optional = false)
     @Column(name = "se_tipoSituacion")
-    private String setipoSituacion;
-    @OneToMany(mappedBy = "seId")
-    private List<Ingreso> ingresoList;
+    private String tipoSituacion;
+    @OneToMany(mappedBy = "situacionEconomica")
+    private List<IngresoEconomico> ingresosEconomicos;//mapeado por el campo idSituacionEconomica de IngresoEconomico
 
     public SituacionEconomica() {
     }
 
-    public SituacionEconomica(Long seId) {
-        this.seId = seId;
+    public SituacionEconomica(Integer seidSituacionEconomica) {
+        this.idSituacionEconomica = seidSituacionEconomica;
     }
 
-    public SituacionEconomica(Long seId, String setipoSituacion) {
-        this.seId = seId;
-        this.setipoSituacion = setipoSituacion;
+    public SituacionEconomica(Integer seidSituacionEconomica, String setipoSituacion) {
+        this.idSituacionEconomica = seidSituacionEconomica;
+        this.tipoSituacion = setipoSituacion;
     }
 
-    public Long getSeId() {
-        return seId;
+    public Integer getIdSituacionEconomica() {
+        return idSituacionEconomica;
     }
 
-    public void setSeId(Long seId) {
-        this.seId = seId;
+    public void setIdSituacionEconomica(Integer idSituacionEconomica) {
+        this.idSituacionEconomica = idSituacionEconomica;
     }
 
-    public String getSetipoSituacion() {
-        return setipoSituacion;
+    public String getTipoSituacion() {
+        return tipoSituacion;
     }
 
-    public void setSetipoSituacion(String setipoSituacion) {
-        this.setipoSituacion = setipoSituacion;
+    public void setTipoSituacion(String tipoSituacion) {
+        this.tipoSituacion = tipoSituacion;
     }
 
     @XmlTransient
-    public List<Ingreso> getIngresoList() {
-        return ingresoList;
+    public List<IngresoEconomico> getIngresosEconomicos() {
+        return ingresosEconomicos;
     }
 
-    public void setIngresoList(List<Ingreso> ingresoList) {
-        this.ingresoList = ingresoList;
+    public void setIngresosEconomicos(List<IngresoEconomico> ingresosEconomicos) {
+        this.ingresosEconomicos = ingresosEconomicos;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (seId != null ? seId.hashCode() : 0);
+        hash += (idSituacionEconomica != null ? idSituacionEconomica.hashCode() : 0);
         return hash;
     }
 
@@ -95,7 +96,7 @@ public class SituacionEconomica implements Serializable {
             return false;
         }
         SituacionEconomica other = (SituacionEconomica) object;
-        if ((this.seId == null && other.seId != null) || (this.seId != null && !this.seId.equals(other.seId))) {
+        if ((this.idSituacionEconomica == null && other.idSituacionEconomica != null) || (this.idSituacionEconomica != null && !this.idSituacionEconomica.equals(other.idSituacionEconomica))) {
             return false;
         }
         return true;
@@ -103,7 +104,7 @@ public class SituacionEconomica implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.SituacionEconomica[ seId=" + seId + " ]";
+        return "cr.ac.una.sidegi.model.SituacionEconomica[ seidSituacionEconomica=" + idSituacionEconomica + " ]";
     }
     
 }

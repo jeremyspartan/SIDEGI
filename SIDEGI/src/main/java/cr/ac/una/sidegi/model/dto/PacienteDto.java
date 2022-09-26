@@ -16,132 +16,132 @@ import javafx.beans.property.SimpleStringProperty;
  * @author computer
  */
 public class PacienteDto {
-    public SimpleStringProperty pacIdPaciente;
-    public SimpleStringProperty pacDiagnostico;
-    public SimpleStringProperty pacEstado;
-    public SimpleStringProperty pacProfesionalResponsable;
-    public ObjectProperty<LocalDate> pacFechaReferencia;
-    public ObjectProperty<LocalDate> pacfechaDiagnostico;
-    public SimpleStringProperty pacDoctor;
-    public ObjectProperty<LocalDate> pacFechaRegistro;
+    public SimpleStringProperty idPaciente;
+    public SimpleStringProperty diagnostico;
+    public SimpleStringProperty estado;
+    public SimpleStringProperty profesionalResponsable;
+    public ObjectProperty<LocalDate> fechaReferencia;
+    public ObjectProperty<LocalDate> fechaDiagnostico;
+    public SimpleStringProperty doctor;
+    public ObjectProperty<LocalDate> fechaRegistro;
     /*public List<Tratamiento> tratamientos;
     public List<Observacion> observacionList;
     public List<Estadia> estadias;
     public List<Entrevista> entrevistas;
     public List<Anexo> anexos;*/
-    public InstitucionDto insId;
-    public SimpleStringProperty perCedula;
+    public InstitucionDto idInstitucion;
+    public SimpleStringProperty cedula;
     
     public PacienteDto(){
-        this.pacIdPaciente = new SimpleStringProperty();
-        this.pacDiagnostico = new SimpleStringProperty();
-        this.pacEstado = new SimpleStringProperty();
-        this.pacProfesionalResponsable = new SimpleStringProperty();
-        this.pacFechaReferencia = new SimpleObjectProperty();
-        this.pacfechaDiagnostico = new SimpleObjectProperty();
-        this.pacDoctor = new SimpleStringProperty();
-        this.pacFechaRegistro = new SimpleObjectProperty();
-        this.perCedula = new SimpleStringProperty();
+        this.idPaciente = new SimpleStringProperty();
+        this.diagnostico = new SimpleStringProperty();
+        this.estado = new SimpleStringProperty();
+        this.profesionalResponsable = new SimpleStringProperty();
+        this.fechaReferencia = new SimpleObjectProperty();
+        this.fechaDiagnostico = new SimpleObjectProperty();
+        this.doctor = new SimpleStringProperty();
+        this.fechaRegistro = new SimpleObjectProperty();
+        this.cedula = new SimpleStringProperty();
     }
     
     public PacienteDto(Paciente paciente)
     {
         this();
-        this.pacIdPaciente.set(Long.toString(paciente.getPacIdPaciente()));
-        this.pacDiagnostico.set(paciente.getPacDiagnostico());
-        this.pacEstado.set(paciente.getPacEstado());
-        this.pacProfesionalResponsable.set(paciente.getPacProfesionalResponsable());
-        this.pacFechaReferencia.set(paciente.getPacFechaReferencia());
-        this.pacfechaDiagnostico.set(paciente.getPacfechaDiagnostico());
-        this.pacDoctor.set(paciente.getPacDoctor());
-        this.pacFechaRegistro.set(paciente.getPacFechaRegistro());
-        this.insId = new InstitucionDto(paciente.getInsId());
-        this.perCedula.set(paciente.getPerCedula().getPerCedula());
+        this.idPaciente.set(Long.toString(paciente.getIdPaciente()));
+        this.diagnostico.set(paciente.getDiagnostico());
+        this.estado.set(paciente.getEstado());
+        this.profesionalResponsable.set(paciente.getProfesionalResponsable());
+        this.fechaReferencia.set(paciente.getFechaReferencia());
+        this.fechaDiagnostico.set(paciente.getFechaDiagnostico());
+        this.doctor.set(paciente.getDoctor());
+        this.fechaRegistro.set(paciente.getFechaRegistro());
+        this.idInstitucion = new InstitucionDto(paciente.getInstitucion());
+        this.cedula.set(paciente.getPersona().getCedula());
     }
 
-    public Long getPacIdPaciente() {
-          if(pacIdPaciente.get()!=null && !pacIdPaciente.get().isEmpty())
-            return Long.valueOf(pacIdPaciente.get());
+    public Integer getIdPaciente() {
+          if(idPaciente.get()!=null && !idPaciente.get().isEmpty())
+            return Integer.valueOf(idPaciente.get());
         else
             return null;
     }
 
-    public void setPacIdPaciente(Long pacIdPaciente) {
-        this.pacIdPaciente.set(pacIdPaciente.toString());
+    public void setIdPaciente(Integer IdPaciente) {
+        this.idPaciente.set(IdPaciente.toString());
     }
 
-    public String getPacDiagnostico() {
-        return pacDiagnostico.get();
+    public String getDiagnostico() {
+        return diagnostico.get();
     }
 
-    public void setPacDiagnostico(String pacDiagnostico) {
-        this.pacDiagnostico.set(pacDiagnostico);
+    public void setDiagnostico(String pacDiagnostico) {
+        this.diagnostico.set(pacDiagnostico);
     }
 
-    public String getPacEstado() {
-        return pacEstado.get();
+    public String getEstado() {
+        return estado.get();
     }
 
-    public void setPacEstado(String pacEstado) {
-        this.pacEstado.set(pacEstado);
+    public void setEstado(String Estado) {
+        this.estado.set(Estado);
     }
 
-    public String getPacProfesionalResponsable() {
-        return pacProfesionalResponsable.get();
+    public String getProfesionalResponsable() {
+        return profesionalResponsable.get();
     }
 
-    public String getPerCedula() {
-        return perCedula.get();
+    public String getCedula() {
+        return cedula.get();
     }
 
-    public void setPerCedula(String perCedula) {
-       this.perCedula.set(perCedula);
+    public void setCedula(String perCedula) {
+       this.cedula.set(perCedula);
     }
     
     
 
-    public void setPacProfesionalResponsable(String pacProfesionalResponsable) {
-        this.pacProfesionalResponsable.set(pacProfesionalResponsable);
+    public void setProfesionalResponsable(String pacProfesionalResponsable) {
+        this.profesionalResponsable.set(pacProfesionalResponsable);
     }
 
-    public LocalDate getPacFechaReferencia() {
-        return pacFechaReferencia.get();
+    public LocalDate getFechaReferencia() {
+        return fechaReferencia.get();
     }
 
-    public void setPacFechaReferencia(LocalDate pacFechaReferencia) {
-        this.pacFechaReferencia.set(getPacFechaReferencia());
+    public void setFechaReferencia(LocalDate fechaReferencia) {
+        this.fechaReferencia.set(fechaReferencia);
     }
 
-    public LocalDate getPacfechaDiagnostico() {
-         return pacfechaDiagnostico.get();
+    public LocalDate getFechaDiagnostico() {
+         return fechaDiagnostico.get();
     }
 
-    public void setPacfechaDiagnostico(LocalDate pacfechaDiagnostico) {
-        this.pacfechaDiagnostico.set(getPacFechaReferencia());
+    public void setfechaDiagnostico(LocalDate fechaDiagnostico) {
+        this.fechaDiagnostico.set(fechaDiagnostico);
     }
 
-    public String getPacDoctor() {
-        return pacDoctor.get();
+    public String getDoctor() {
+        return doctor.get();
     }
 
-    public void setPacDoctor(String pacDoctor) {
-        this.pacDoctor.set(pacDoctor);
+    public void setDoctor(String doctor) {
+        this.doctor.set(doctor);
     }
 
-    public LocalDate getPacFechaRegistro() {
-        return pacFechaRegistro.get();
+    public LocalDate getFechaRegistro() {
+        return fechaRegistro.get();
     }
 
-    public void setPacFechaRegistro(LocalDate pacFechaRegistro) {
-        this.pacFechaRegistro.set(getPacFechaReferencia());
+    public void setPacFechaRegistro(LocalDate fechaRegistro) {
+        this.fechaRegistro.set(fechaRegistro);
     }
 
-    public InstitucionDto getInsId() {
-        return insId;
+    public InstitucionDto getIdInstitucion() {
+        return idInstitucion;
     }
 
-    public void setInsId(InstitucionDto insId) {
-        this.insId = insId;
+    public void setIdInstitucion(InstitucionDto idInstitucion) {
+        this.idInstitucion = idInstitucion;
     }
     
     

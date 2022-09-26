@@ -15,44 +15,44 @@ import javafx.beans.property.SimpleStringProperty;
  * @author computer
  */
 public class InstitucionDto {
-    public SimpleStringProperty insId;
-    public SimpleStringProperty insDescripcion;
+    public SimpleStringProperty idInstitucion;
+    public SimpleStringProperty descripcion;
     public List<ContactoDto> contactos;
     public TiposInstitucionDto tipoInstitucion;
     //private List<Paciente> pacienteList;
     
      public InstitucionDto(){
-        this.insId = new SimpleStringProperty();
-        this.insDescripcion = new SimpleStringProperty();
+        this.idInstitucion = new SimpleStringProperty();
+        this.descripcion = new SimpleStringProperty();
         this.contactos = new ArrayList<>();
     }
     
     public InstitucionDto(Institucion institucion){
-        this.insId.set(Long.toString(institucion.getInsId()));
-        this.insDescripcion.set(institucion.getInsDescripcion());
-        this.tipoInstitucion = new TiposInstitucionDto(institucion.getTinsId());
+        this.idInstitucion.set(Long.toString(institucion.getIdInstitucion()));
+        this.descripcion.set(institucion.getDescripcion());
+        this.tipoInstitucion = new TiposInstitucionDto(institucion.getTipoInstitucion());
          institucion.getContactos().forEach((object) -> {
             contactos.add(new ContactoDto(object));
         });
     }
 
-    public Long getInsId() {
-        if(insId.get()!=null && !insId.get().isEmpty())
-            return Long.valueOf(insId.get());
+    public Integer getIdInstituicion() {
+        if(idInstitucion.get()!=null && !idInstitucion.get().isEmpty())
+            return Integer.valueOf(idInstitucion.get());
         else
             return null;
     }
 
-    public void setInsId(Long insId) {
-        this.insId.set(insId.toString());
+    public void setIdInstitucion(Integer idInstitucion) {
+        this.idInstitucion.set(idInstitucion.toString());
     }
 
-    public String getInsDescripcion() {
-        return insDescripcion.get();
+    public String getDescripcion() {
+        return descripcion.get();
     }
 
-    public void setInsDescripcion(String insDescripcion) {
-        this.insDescripcion.set(insDescripcion);
+    public void setDescripcion(String descripcion) {
+        this.descripcion.set(descripcion);
     }
 
     public TiposInstitucionDto getTipoInstitucion() {

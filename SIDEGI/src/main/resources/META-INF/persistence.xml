@@ -26,6 +26,52 @@
     <class>cr.ac.una.sidegi.model.Tratamiento</class>
     <class>cr.ac.una.sidegi.model.Acompannante</class>
     <class>cr.ac.una.sidegi.model.Paciente</class>
+    <class>cr.ac.una.sidegi.model.IngresosEconomicos</class>
+    <class>cr.ac.una.sidegi.model.Canton</class>
+    <class>cr.ac.una.sidegi.model.Distrito</class>
+    <class>cr.ac.una.sidegi.model.Provincia</class>
+    <class>cr.ac.una.sidegi.model.Direcciones</class>
+    <class>cr.ac.una.sidegi.model.Personas</class>
+    <class>cr.ac.una.sidegi.model.Estadias</class>
+    <class>cr.ac.una.sidegi.model.Acompannantes</class>
+    <class>cr.ac.una.sidegi.model.Entrevistas</class>
+    <class>cr.ac.una.sidegi.model.Casas</class>
+    <class>cr.ac.una.sidegi.model.Viviendas</class>
+    <class>cr.ac.una.sidegi.model.Redapoyos</class>
+    <class>cr.ac.una.sidegi.model.TipoObservaciones</class>
+    <class>cr.ac.una.sidegi.model.Distritos</class>
+    <class>cr.ac.una.sidegi.model.Contactos</class>
+    <class>cr.ac.una.sidegi.model.Pacientes</class>
+    <class>cr.ac.una.sidegi.model.Provincias</class>
+    <class>cr.ac.una.sidegi.model.Usuarios</class>
+    <class>cr.ac.una.sidegi.model.Cantones</class>
+    <class>cr.ac.una.sidegi.model.Observaciones</class>
+    <class>cr.ac.una.sidegi.model.TipoRedApoyos</class>
+    <class>cr.ac.una.sidegi.model.Instituciones</class>
+    <class>cr.ac.una.sidegi.model.Escolaridades</class>
+    <class>cr.ac.una.sidegi.model.TipoDocumentos</class>
+    <class>cr.ac.una.sidegi.model.ModalidadesEntrevista</class>
+    <class>cr.ac.una.sidegi.model.Tratamientos</class>
+    <class>cr.ac.una.sidegi.model.TipoContactos</class>
+    <class>cr.ac.una.sidegi.model.TiposSeguros</class>
+    <class>cr.ac.una.sidegi.model.Anexos</class>
+    <class>cr.ac.una.sidegi.model.IngresoEconomico</class>
+    <class>cr.ac.una.sidegi.model.TiposSeguro</class>
+    <class>cr.ac.una.sidegi.model.SidPacientes</class>
+    <class>cr.ac.una.sidegi.model.Vivienda_1</class>
+    <class>cr.ac.una.sidegi.model.SidRedapoyos</class>
+    <class>cr.ac.una.sidegi.model.SidDirecciones</class>
+    <class>cr.ac.una.sidegi.model.SidSituacioneconomica</class>
+    <class>cr.ac.una.sidegi.model.SidDistritos</class>
+    <class>cr.ac.una.sidegi.model.TipoInstitucion</class>
+    <class>cr.ac.una.sidegi.model.SidCantones</class>
+    <class>cr.ac.una.sidegi.model.SidIngresoseconomicos</class>
+    <class>cr.ac.una.sidegi.model.TipoRedApoyo_1</class>
+    <class>cr.ac.una.sidegi.model.SidModalidadesentrevista</class>
+    <class>cr.ac.una.sidegi.model.SidInstituciones</class>
+    <class>cr.ac.una.sidegi.model.SidEscolaridades</class>
+    <class>cr.ac.una.sidegi.model.SidPersonas</class>
+    <class>cr.ac.una.sidegi.model.SidProvincias</class>
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>

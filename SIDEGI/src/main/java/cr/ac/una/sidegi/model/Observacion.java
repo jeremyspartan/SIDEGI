@@ -6,10 +6,11 @@
 package cr.ac.una.sidegi.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,74 +28,74 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Observacion.findAll", query = "SELECT o FROM Observacion o"),
-    @NamedQuery(name = "Observacion.findByObsidObservacion", query = "SELECT o FROM Observacion o WHERE o.obsIdObservacion = :obsidObservacion"),
-    @NamedQuery(name = "Observacion.findByObsdescObservacion", query = "SELECT o FROM Observacion o WHERE o.obsdescObservacion = :obsdescObservacion")})
+    @NamedQuery(name = "Observacion.findByObsidObservacion", query = "SELECT o FROM Observacion o WHERE o.idObservacion = :idObservacion"),
+    @NamedQuery(name = "Observacion.findByObsdescObservacion", query = "SELECT o FROM Observacion o WHERE o.descObservacion = :descObservacion")})
 public class Observacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "obs_idObservacion")
-    private Long obsIdObservacion;
+    private Integer idObservacion;
     @Basic(optional = false)
     @Column(name = "obs_descObservacion")
-    private String obsdescObservacion;
-    @JoinColumn(name = "pac_idPaciente", referencedColumnName = "pac_idPaciente")
+    private String descObservacion;
+    @JoinColumn(name = "obs_idPaciente", referencedColumnName = "pac_idPaciente")
     @ManyToOne
-    private Paciente pacidPaciente;
-    @JoinColumn(name = "tob_idTipoObservacion", referencedColumnName = "tob_idTipoObservacion")
+    private Paciente paciente;
+    @JoinColumn(name = "obs_idTipoObservacion", referencedColumnName = "tob_idTipoObservacion")
     @ManyToOne
-    private TipoObservacion tobidTipoObservacion;
+    private TipoObservacion tipoObservacion;
 
     public Observacion() {
     }
 
-    public Observacion(Long obsidObservacion) {
-        this.obsIdObservacion = obsidObservacion;
+    public Observacion(Integer obsidObservacion) {
+        this.idObservacion = obsidObservacion;
     }
 
-    public Observacion(Long obsidObservacion, String obsdescObservacion) {
-        this.obsIdObservacion = obsidObservacion;
-        this.obsdescObservacion = obsdescObservacion;
+    public Observacion(Integer obsidObservacion, String obsdescObservacion) {
+        this.idObservacion = obsidObservacion;
+        this.descObservacion = obsdescObservacion;
     }
 
-    public Long getObsidObservacion() {
-        return obsIdObservacion;
+    public Integer getIdObservacion() {
+        return idObservacion;
     }
 
-    public void setObsidObservacion(Long obsidObservacion) {
-        this.obsIdObservacion = obsidObservacion;
+    public void setIdObservacion(Integer idObservacion) {
+        this.idObservacion = idObservacion;
     }
 
-    public String getObsdescObservacion() {
-        return obsdescObservacion;
+    public String getDescObservacion() {
+        return descObservacion;
     }
 
-    public void setObsdescObservacion(String obsdescObservacion) {
-        this.obsdescObservacion = obsdescObservacion;
+    public void setDescObservacion(String descObservacion) {
+        this.descObservacion = descObservacion;
     }
 
-    public Paciente getPacidPaciente() {
-        return pacidPaciente;
+    public Paciente getPaciente() {
+        return paciente;
     }
 
-    public void setPacidPaciente(Paciente pacidPaciente) {
-        this.pacidPaciente = pacidPaciente;
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
 
-    public TipoObservacion getTobidTipoObservacion() {
-        return tobidTipoObservacion;
+    public TipoObservacion getTipoObservacion() {
+        return tipoObservacion;
     }
 
-    public void setTobidTipoObservacion(TipoObservacion tobidTipoObservacion) {
-        this.tobidTipoObservacion = tobidTipoObservacion;
+    public void setTipoObservacion(TipoObservacion tipoObservacion) {
+        this.tipoObservacion = tipoObservacion;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (obsIdObservacion != null ? obsIdObservacion.hashCode() : 0);
+        hash += (idObservacion != null ? idObservacion.hashCode() : 0);
         return hash;
     }
 
@@ -105,7 +106,7 @@ public class Observacion implements Serializable {
             return false;
         }
         Observacion other = (Observacion) object;
-        if ((this.obsIdObservacion == null && other.obsIdObservacion != null) || (this.obsIdObservacion != null && !this.obsIdObservacion.equals(other.obsIdObservacion))) {
+        if ((this.idObservacion == null && other.idObservacion != null) || (this.idObservacion != null && !this.idObservacion.equals(other.idObservacion))) {
             return false;
         }
         return true;
@@ -113,7 +114,7 @@ public class Observacion implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.sidegi.model.Observacion[ obsidObservacion=" + obsIdObservacion + " ]";
+        return "cr.ac.una.sidegi.model.Observacion[ obsidObservacion=" + idObservacion + " ]";
     }
     
 }
