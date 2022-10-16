@@ -9,6 +9,7 @@ and open the template in the editor.
 */
 
 *{
+    -fx-color-base:#00B9BB;
     -fx-font-family: Roboto;
     -fx-base-color-focus: black;
     -fx-base-color-unfocus:#4d4d4d;
@@ -19,11 +20,12 @@ and open the template in the editor.
 }
 .contenedorTxt>JFXTextField,JFXPasswordField {
     -fx-font-size: 15px;
-    -jfx-focus-color: #00B9BB; /*#446CCF;                                 */
+    -jfx-focus-color: #00B9BB; /*#446CCF                                */
     -jfx-unfocus-color: black;
     -fx-text-fill: black;
     -fx-prompt-text-fill: -fx-base-color-focus;
 }
+
 .labelTitulos {
      -fx-font-family: arial;
     -fx-font-size: 40px;
@@ -31,6 +33,15 @@ and open the template in the editor.
     -fx-text-fill: black;
     /*-fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.9), 2, 0.0, 1, 2);*/ 
 
+}
+.labelTextoNormal{
+    -fx-font-size: 15px;
+    -fx-text-fill: black;
+}
+.labelSubTitulosPequennos{
+    -fx-font-size: 15px;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
 }
 .labelContrasenna {
      -fx-text-fill: black; 
@@ -41,13 +52,7 @@ and open the template in the editor.
      -fx-cursor: hand;
 }
 
-#lblReloj{
-    -fx-font-family: arial;
-    -fx-font-size: 75px;
-    /*-fx-font-style: bold;*/
-    -fx-text-fill: black;
-    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.9), 2, 0.0, 1, 2); 
-}
+
 
 .botonesRegistro>JFXButton {
     -fx-background-color: white,
@@ -102,7 +107,7 @@ and open the template in the editor.
 .ComboBox>JFXComboBox{
     -fx-prompt-text-fill: black;
     -fx-font-size: 15px;
-    -jfx-focus-color: #446CCF; /*#c4e426;*/                                 
+    -jfx-focus-color: #00B9BB;                                  
     -jfx-unfocus-color: black;
 }
 
@@ -113,14 +118,7 @@ and open the template in the editor.
     -fx-background-color: transparent;
     -fx-background-radius: 50%;
 }
-.btn-Cerrar-Maximizar-Minimizar>JFXButton{
 
-    height:33px;
-    width: 30px;
-    -fx-background-color: transparent;
-    -fx-background-radius: 50%;
-
-}
 
 .botonesVentana > JFXButton:hover {
  
@@ -159,29 +157,26 @@ and open the template in the editor.
 -fx-font-size: 20px;
 -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 2, 0.0, 1, 2);
 }
+/*/////////////////////////////////////////////RadioButton//////////////////////////////////////////////////*/
+.radioButton{
+-jfx-default-color: #00B9BB;
+-fx-text-fill: black;
+-fx-font-size: 15px;
 
+}
+/*/////////////////////////////////////////////RadioButton//////////////////////////////////////////////////*/
+/*/////////////////////////////////////////////DatePicker//////////////////////////////////////////////////*/
 .datePickerContenedor>JFXDatePicker{
     -fx-background-insets: 1 0 1 1, 1 0 1 1, 3 2 3 3;
     -fx-background-radius: 2 0 0 2, 1 0 0 1, 0;
-    -fx-background-color:
-        -fx-control-inner-background,
-        -fx-faint-focus-color,
-        linear-gradient(from 0px 0px to 0px 5px, derive(-fx-control-inner-background, -9%), -fx-control-inner-background);
 -jfx-default-color: #00B9BB;
--fx-text-fill: white;
--fx-prompt-text-fill: white;
+-fx-text-fill: black;
+-fx-prompt-text-fill: black;
 -fx-font-size: 15px;
--fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 2, 0.0, 1, 2);
-}
 
-
-.botonesAnterior-Siguiente{
-        border: 10px;
-        -fx-font-size: 17px;
-    -fx-background-color: #009933;
-    -fx-background-radius: 5em;
-    -fx-text-fill: white;
 }
+/*/////////////////////////////////////////////DatePicker//////////////////////////////////////////////////*/
+.ImagenMenu{-fx-image: url("../resources/logoPng2.png");}   
 
 .BackgroundTiutloMenu{-fx-background-image: url("../resources/fondo3.jpg");}
 .Background3 > ImageView{-fx-image: url("../resources/fondo3.jpg");}
@@ -191,7 +186,7 @@ and open the template in the editor.
 .Cerrar>ImageView{-fx-image: url("../resources/error.png");}
 .Maximizar>ImageView{-fx-image: url("../resources/television.png");}
 .Minimizar>ImageView{-fx-image: url("../resources/minus.png");}
-.ImagenMenu{-fx-image: url("../resources/logoPng2.png");}                        
+                     
 .Sugerencia>ImageView{-fx-image: url("../resources/Signo.png");}
 
 .Sugerenciaboton{
@@ -199,26 +194,6 @@ and open the template in the editor.
     -fx-background-radius: 19em;
 }
 
-.Nombre{-fx-image: url("../resources/notebook.png");}
-.PriApellido{-fx-image: url("../resources/file.png");}
-.SegApellido{-fx-image: url("../resources/file2.png");}
-.Correo{-fx-image: url("../resources/internet.png");}
-.Telefono{-fx-image: url("../resources/home.png");}
-.Celular{-fx-image: url("../resources/smartphone.png");}
-.Cedula{-fx-image: url("../resources/idcard.png");}
-.Usuario{-fx-image: url("../resources/id.png");}
-.Contrasenia>ImageView{-fx-image: url("../resources/contrasenia.png");}
-.Agregar>ImageView{-fx-image: url("../resources/Agregar.png");}
-.ContraseniaLogIn{-fx-image: url("../resources/contrasenia.png");}
-.SelecFoto>ImageView{-fx-image: url("../resources/photoCamera.png");}
-.SelecFoto2>ImageView{-fx-image: url("../resources/files.png");}
-.UserLogIn{-fx-image: url("../resources/User.png");}
-.btnAgregar{
-            border: 10px;
-    -fx-background-color: #17B5C1;
-    -fx-background-radius: 5em;
-    -fx-text-fill: white;
-}
 
 /*/////////////////////////////////////////////Tab Pane//////////////////////////////////////////////////*/
 
@@ -302,85 +277,34 @@ and open the template in the editor.
 -fx-background-insets: 0, 1;
 -fx-opacity: 0.70;
 }
+/*/////////////////////////////////////////////////////////Combo Box////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////Spinner////////////////////////////////////*/
+.spinner {
+    -fx-prompt-text-fill: black;
+    -fx-text-fill: black;
+    -fx-background-color: none;
 
-.combo-box-popup .list-view .list-cell:hover
-{
-   -fx-background-color: orangered;
-   -fx-opacity: 0.70;
+    -fx-padding: 0 0 3 0;   
 }
-
-.combo-box .cell:selected
-{
-    -fx-text-fill: white;
-}
-/*////////////////////////////////////////////////////Table View//////////////////////////////////////////*/
-
-
-.table-view{
-   -fx-background-color: transparent;
-}
-
-.table-view:focused{
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
     -fx-background-color: transparent;
 }
 
-/* Spaltenköpfe
-    Struktur column-header-background -> column-header */
-
-.table-view .column-header-background{
-    -fx-background-color: linear-gradient(#131313 0%, #424141 100%);
+.spinner .increment-arrow-button .increment-arrow,
+.spinner .decrement-arrow-button .decrement-arrow {
+    -fx-background-color: #00B9BB;
+    -fx-font-size: 30px;
 }
 
-.table-view .column-header-background .label{
+.spinner .text-field {
     -fx-background-color: transparent;
-    -fx-text-fill: white;                         
-}
-
-.table-view .column-header {
-    -fx-background-color: transparent;
-}
-
-.table-view .table-cell{
-    -fx-text-fill: white;            /******/
-}
-
-.table-row-cell{
-    -fx-background-color: -fx-table-cell-border-color, #616161;
-    -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em;   
-}
-
-.table-row-cell:odd{
-    -fx-background-color: -fx-table-cell-border-color, #424242;
-    -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em;   
-}
-
-.table-row-cell:selected {
-    -fx-background-color: #005797;
-    -fx-background-insets: 0;
-    -fx-background-radius: 1;
-}
-
-.table-view > .virtual-flow > .scroll-bar:vertical,
-.table-view > .virtual-flow > .scroll-bar:vertical > .track,
-.table-view > .virtual-flow > .scroll-bar:vertical > .track-background, 
-.table-view > .virtual-flow > .scroll-bar:horizontal,
-.table-view > .virtual-flow > .scroll-bar:horizontal > .track,
-.table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
-    -fx-background-color: transparent;
-}
-
-
-
-.table-view > .virtual-flow > .scroll-bar > .increment-button, 
-.table-view > .virtual-flow > .scroll-bar > .decrement-button {
-    -fx-opacity: 0;
-}
-
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #bdbdbd;
+} 
+/*/////////////////////////////////////////////////////////Spinner////////////////////////////////////*/
 .root
 {
-    /*-fx-background-image:url("Fondo11.png");*/
     -fx-background-color:#00B9BB;
 }
 #expedienteViewRoot
@@ -390,80 +314,4 @@ and open the template in the editor.
 #bpCenter
 {
    -fx-background-image:url("Fondo11.png"); 
-}
-.MyJFXTextField
-{
-   -jfx-focus-color: #c4e426;
-  -fx-prompt-text-fill: white;
-  -fx-font-size: 15px;
-  -jfx-unfocus-color: white;
-}
-/*/////////////////////////////////////JEREMY/////////////////////////////////////////////////////*/
-/*
-.text-input
-{
-    -fx-text-fill: white;
-}
-
-.hyperlink:link
-{
-    -fx-text-fill: white;
-}
-
-.hyperlink:visited
-{
-    -fx-text-fill: orangered;
-}
-
-.hyperlink:hover
-{
-    -fx-text-fill: hotpink;
-}
-
-#btnPassword
-{
-    height:47px;
-    width: 35px;
-    -fx-background-color: transparent;
-    -fx-background-radius: 50%;
-}
-
-#btnCerrarVentana
-{
-    height:33px;
-    width: 30px;
-    -fx-background-color: transparent;
-    -fx-background-radius: 50%;
-}
-
-.radio-button
-{
-     -fx-text-fill: white;
-}
-
-.button
-{
-    border: 10px;
-    -fx-background-color: #009999;
-    -fx-background-radius: 5em;
-    -fx-text-fill: white;
-}
-
-#labelTitulo
-{
-    -fx-font-family: arial;
-    -fx-font-size: 20px;
-    -fx-font-style: italic;
-    -fx-text-fill: white;
-}
-
-.combo-box
-{
-  -fx-prompt-text-fill: white;
-}
-
-.button:hover
-{
-   -fx-background-color:orangered;
-};*/
-
+  }

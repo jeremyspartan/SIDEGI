@@ -3,12 +3,15 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -44,7 +47,7 @@
                                     <JFXTextField fx:id="txtPrimerApellido" labelFloat="true" promptText="Primer Apellido" />
                                     <JFXTextField fx:id="txtSegundoApellido" labelFloat="true" promptText="Segundo Apellido" />
                                     <JFXTextField fx:id="txtDireccion" labelFloat="true" promptText="Dirección" />
-                                    <JFXDatePicker fx:id="dtpFechaNacimeinto" promptText="Fecha Naciemiento" styleClass="JFXDatePicker" VBox.vgrow="ALWAYS" />
+                                    <JFXDatePicker fx:id="dtpFechaNacimeinto" promptText="Fecha Nacimiento" styleClass="JFXDatePicker" VBox.vgrow="ALWAYS" />
                                     <JFXComboBox fx:id="cmbTipoSeguro" prefHeight="29.0" prefWidth="198.0" promptText="Tipo Seguro" VBox.vgrow="ALWAYS" />
                                     <JFXComboBox fx:id="cmbEscolaridad" prefHeight="29.0" prefWidth="198.0" promptText="Escolaridad" VBox.vgrow="ALWAYS" />
                                  </children>
@@ -73,7 +76,7 @@
                                        </VBox.margin>
                                     </JFXTextArea>
                                     <JFXComboBox fx:id="cmbEstadoPaciente" prefHeight="29.0" prefWidth="197.0" promptText="Estado del Paciente" VBox.vgrow="ALWAYS" />
-                                    <JFXDatePicker fx:id="dtpFechaReferencia" promptText="Fecha de referencia" />
+                                    <JFXDatePicker fx:id="dtpFechaReferencia" promptText="Fecha de Referencia" />
                                     <JFXTextField fx:id="txtProfesionalResponsable" labelFloat="true" promptText="Profesional Responsable" />
                                     <JFXTextField fx:id="txtDoctor" labelFloat="true" promptText="Doctor" />
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="200.0" styleClass="datePickerContenedor">
@@ -97,11 +100,6 @@
                         </AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Red Apoyo">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                    </content>
-                  </Tab>
                   <Tab text="Persona Cuidadora">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -113,7 +111,7 @@
                                     <JFXTextField fx:id="txtPrimerApellidoPerCuidadora" labelFloat="true" promptText="Primer Apeliido" />
                                     <JFXTextField fx:id="txtSegundoApellidoPerCuidadora" labelFloat="true" promptText="Segundo Apellido" />
                                     <JFXTextField fx:id="txtDireccionPerCuidadora" labelFloat="true" promptText="Direccion" />
-                                    <JFXDatePicker fx:id="dtpFechaNacimeintoPerCuidadora" promptText="Fecha Naciemiento" styleClass="JFXDatePicker" VBox.vgrow="ALWAYS" />
+                                    <JFXDatePicker fx:id="dtpFechaNacimeintoPerCuidadora" promptText="Fecha Nacimiento" styleClass="JFXDatePicker" VBox.vgrow="ALWAYS" />
                                     <JFXComboBox fx:id="cmbTipoSeguroPerCuidadora" prefHeight="29.0" prefWidth="198.0" promptText="Tipo Seguro" VBox.vgrow="ALWAYS" />
                                     <JFXComboBox fx:id="cmbEscolaridadPerCuidadora" prefHeight="29.0" prefWidth="198.0" promptText="Escolaridad" VBox.vgrow="ALWAYS" />
                                  </children>
@@ -130,9 +128,132 @@
                         </AnchorPane>
                      </content>
                   </Tab>
+                  <Tab text="Red Apoyo">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="610.0" prefWidth="1011.0">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="250.0">
+                                             <children>
+                                                <Label styleClass="labelSubTitulosPequennos" text="Familia" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="TOP_CENTER" prefHeight="607.0" prefWidth="250.0">
+                                             <children>
+                                                <Label styleClass="labelSubTitulosPequennos" text="Amigos, Vecinos, Gruos Sociales" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="TOP_CENTER" prefHeight="607.0" prefWidth="250.0">
+                                             <children>
+                                                <Label styleClass="labelSubTitulosPequennos" text="Redes Secundarias" />
+                                             </children>
+                                          </VBox>
+                                          <VBox alignment="TOP_CENTER" prefHeight="607.0" prefWidth="250.0">
+                                             <children>
+                                                <Label styleClass="labelSubTitulosPequennos" text="Institucionales" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </VBox>
+                           </children></AnchorPane>
+                    </content>
+                  </Tab>
                   <Tab text="Vivienda e Ingresos">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label styleClass="labelSubTitulosPequennos" text="Vivienda" VBox.vgrow="ALWAYS" />
+                                    <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="AreaDeTexto" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="83.0" prefWidth="1011.0" spacing="20.0" VBox.vgrow="ALWAYS">
+                                             <children>
+                                                <Label styleClass="labelTextoNormal" text="¿La vivienda cumple las condiciones establecidas para tener una persona con diagnóstico de cáncer?" HBox.hgrow="ALWAYS" />
+                                                <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="107.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <JFXRadioButton styleClass="radioButton" text="Sí" VBox.vgrow="ALWAYS" />
+                                                      <JFXRadioButton styleClass="radioButton" text="No" VBox.vgrow="ALWAYS" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="148.0" prefWidth="971.0" styleClass="AreaDeTexto" VBox.vgrow="ALWAYS">
+                                             <children>
+                                                <JFXTextArea labelFloat="true" prefHeight="137.0" prefWidth="500.0" promptText="¿Qué mejoras se le deben realizar?" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <Separator prefHeight="0.0" prefWidth="1011.0" />
+                                    <Label styleClass="labelSubTitulosPequennos" text="Ingresos" />
+                                    <VBox alignment="TOP_CENTER" prefHeight="356.0" prefWidth="1011.0" VBox.vgrow="ALWAYS">
+                                       <children>
+                                          <HBox prefHeight="36.0" prefWidth="971.0" VBox.vgrow="ALWAYS">
+                                             <children>
+                                                <VBox alignment="CENTER_LEFT" prefHeight="143.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+                                                         <children>
+                                                            <Label styleClass="labelTextoNormal" text="Cantidad de integrantes del grupo familiar:" />
+                                                            <Spinner editable="true" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+                                                         <children>
+                                                            <Label prefHeight="37.0" prefWidth="369.0" styleClass="labelTextoNormal" text="Número de personas que generan ingresos en el hogar:" />
+                                                            <Spinner editable="true" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="134.0" prefWidth="971.0" spacing="50.0" VBox.vgrow="ALWAYS">
+                                             <children>
+                                                <VBox alignment="CENTER_LEFT" spacing="30.0" styleClass="contenedorTxt" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <JFXTextField labelFloat="true" prefHeight="31.0" prefWidth="209.0" promptText="Ingresos del grupo familiar" />
+                                                      <JFXTextField labelFloat="true" prefHeight="31.0" prefWidth="268.0" promptText="Ingresos per-capital del grupo familiar" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox alignment="CENTER_LEFT" prefHeight="92.0" prefWidth="400.0" spacing="20.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <VBox alignment="BOTTOM_LEFT" prefHeight="54.0" prefWidth="526.0" VBox.vgrow="ALWAYS">
+                                                         <children>
+                                                            <Label styleClass="labelTextoNormal" text="Línea de Pobreza (LP)" />
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox prefHeight="105.0" prefWidth="526.0" spacing="5.0" VBox.vgrow="ALWAYS">
+                                                         <children>
+                                                            <JFXRadioButton styleClass="radioButton" text="Pobreza extrema (IPC &lt; CBA)" />
+                                                            <JFXRadioButton styleClass="radioButton" text="Pobreza básica (CBA &lt; IPC &lt; CBA Ampliada)" />
+                                                            <JFXRadioButton styleClass="radioButton" text="No pobre (IPC &gt; CBA Ampliada) " />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </VBox>
+                           </children></AnchorPane>
                      </content>
                   </Tab>
                   <Tab text="Otros Datos">
