@@ -67,6 +67,7 @@ public class MenuViewController extends Controller {
 
     @FXML
     private void onActionBtnRegistro(ActionEvent event) {
+        FlowController.getInstance().goView("RegistroView");
     }
 
     @FXML

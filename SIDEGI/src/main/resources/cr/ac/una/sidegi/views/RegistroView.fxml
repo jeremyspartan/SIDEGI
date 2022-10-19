@@ -1,11 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.sidegi.controller.RegistroViewController">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="600.0" style="-fx-border-color: white; -fx-border-width: 2;" styleClass="bor" stylesheets="@../resources/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="cr.ac.una.sidegi.controller.RegistroViewController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="46.0" prefWidth="596.0" styleClass="labelTitulos">
+               <children>
+                  <Label prefHeight="44.0" prefWidth="446.0" text="Informacion de pacientes" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="68.0" prefWidth="596.0" spacing="20.0">
+               <children>
+                  <JFXTextField fx:id="txtCedula" labelFloat="true" promptText="Cedula" />
+                  <JFXTextField fx:id="txtNombre" labelFloat="true" promptText="Nombre" />
+                  <JFXTextField fx:id="txtApellido" labelFloat="true" promptText="Apellido" />
+                  <JFXButton fx:id="btnBuscar" onAction="#onActionbtnBuscar" text="Buscar" />
+               </children>
+               <styleClass>
+                  <String fx:value="botonesRegistroHover2" />
+                  <String fx:value="botonesSimples2" />
+               </styleClass>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <JFXListView fx:id="lstVRegistros" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" />
+                     </HBox.margin>
+                  </JFXListView>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>
