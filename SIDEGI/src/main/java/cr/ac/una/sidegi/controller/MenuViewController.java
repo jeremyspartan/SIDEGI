@@ -72,6 +72,7 @@ public class MenuViewController extends Controller {
 
     @FXML
     private void onActionBtnAgenda(ActionEvent event) {
+        FlowController.getInstance().goView("AgendaView");
     }
 
     @FXML
